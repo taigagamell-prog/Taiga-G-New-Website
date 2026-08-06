@@ -712,6 +712,10 @@
   @media(max-width:760px){
     footer{padding-bottom:84px}
   }
+  @media(max-width:700px){
+    #referral [style*="grid-template-columns:1fr auto"]{grid-template-columns:1fr}
+    #referral [style*="min-width:160px"]{display:none}
+  }
   @media(max-width:560px){
     .wrap{padding:0 20px}
     .process-steps{grid-template-columns:1fr}
@@ -776,6 +780,7 @@
       <a href="#pricing">Pricing</a>
       <a href="work.html">Work</a>
       <a href="#faq">FAQ</a>
+      <a href="/referral" style="color:var(--ember)">Refer & earn</a>
       <a class="btn ghost" href="/check">Free AI Check</a>
       <a class="btn" href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer">Book a free audit</a>
     </div>
@@ -792,6 +797,7 @@
       <a href="#pricing">Pricing</a>
       <a href="work.html">Work</a>
       <a href="#faq">FAQ</a>
+      <a href="/referral">Refer & earn</a>
       <a href="/check">Free AI Check</a>
       <a class="btn" href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer">Book a free audit</a>
     </div>
@@ -1449,6 +1455,36 @@
         <p>Very little at the start. The audit requires 15 minutes of your time and your current website URL. If we move forward with the Rebuild, you'll fill out a short intake form, share any existing brand assets, and join one brand call in week one. After that, Taiga handles the rest — you review, approve, and launch.</p>
       </details>
 
+    </div>
+  </div>
+</section>
+
+<!-- REFERRAL -->
+<section id="referral" aria-labelledby="ref-h" style="background:var(--pine);border-top:1px solid var(--hair);padding:72px 0">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center">
+      <div>
+        <div class="eyebrow mono reveal">◦ Referral program</div>
+        <h2 id="ref-h" class="reveal" style="margin-top:12px">Know someone who needs this?<br>Earn <span style="color:var(--ember)">20%</span> when they sign.</h2>
+        <p class="note reveal" style="margin-top:14px">Send a chiropractor, gym, dentist, or studio our way. If they become a client, you get 20% of whatever they pay — $600 on a rebuild, up to $200/mo on a retainer. No cap, no expiry. You just send a name.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:28px" class="reveal">
+          <a class="btn" href="/referral">Send a referral</a>
+          <div style="display:flex;gap:32px;align-items:center;flex-wrap:wrap">
+            <div style="display:flex;flex-direction:column;gap:3px">
+              <span style="font-family:'Archivo',sans-serif;font-weight:840;font-variation-settings:'wdth' 110;font-size:26px;letter-spacing:-.03em;color:var(--ember)">$600</span>
+              <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">On a rebuild</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:3px">
+              <span style="font-family:'Archivo',sans-serif;font-weight:840;font-variation-settings:'wdth' 110;font-size:26px;letter-spacing:-.03em;color:var(--ember)">$200<span style="font-size:15px">/mo</span></span>
+              <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">On Growth retainer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="flex-shrink:0;background:rgba(18,49,39,.5);border:1px solid rgba(232,164,74,.2);border-radius:20px;padding:28px 24px;text-align:center;min-width:160px">
+        <div style="font-family:'Archivo',sans-serif;font-weight:840;font-variation-settings:'wdth' 110;font-size:56px;letter-spacing:-.04em;line-height:1;color:var(--ember)">20%</div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:8px">Commission</div>
+      </div>
     </div>
   </div>
 </section>
