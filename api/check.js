@@ -42,7 +42,7 @@ module.exports = async (req, res) => {
 
   // ── validate keys ─────────────────────────────────────────────
   if (!process.env.OPENAI_API_KEY || !process.env.GEMINI_API_KEY) {
-    return res.status(500).json({ error: 'API keys not configured. Contact taiga@taigalocal.com.' });
+    return res.status(500).json({ error: 'API keys not configured. Contact taiga.gamell@gmail.com.' });
   }
 
   // ── build prompts ─────────────────────────────────────────────
