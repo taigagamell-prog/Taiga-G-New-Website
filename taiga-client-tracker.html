@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taiga — Client Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{--boreal:#123127;--pine:#0B1F19;--abyss:#071410;--moss:#4E8168;--ember:#E8A44A;--ember-hot:#F2BA6B;--bone:#F2EDE1;--mist:#C9D6C7;--muted:#87A093;--hair:rgba(201,214,199,.14);
+    --lead:#6A8CAF;--audit:#C99A4A;--proposal:#B47AC8;--client:#5FA576;--lost:#8A6A6A}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:linear-gradient(180deg,var(--boreal),var(--pine) 70%,var(--abyss));background-attachment:fixed;color:var(--bone);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+  ::selection{background:var(--ember);color:var(--abyss)}
+  .mono{font-family:'Space Mono',monospace;letter-spacing:.02em}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+  .wordfont{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;letter-spacing:-.03em}
+  .d{color:var(--ember)}
+  header{padding:34px 0 22px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand .wordfont{font-size:24px}
+  .brand .sub{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-top:2px}
+  .kpis{display:flex;gap:12px;flex-wrap:wrap}
+  .kpi{background:rgba(7,20,16,.55);border:1px solid var(--hair);border-radius:12px;padding:12px 18px;min-width:104px}
+  .kpi .v{font-family:'Archivo',sans-serif;font-weight:840;font-size:24px;color:var(--ember);letter-spacing:-.02em}
+  .kpi .l{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-top:2px}
+  .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 0 22px}
+  .btn{background:var(--ember);color:var(--abyss);font-family:'Archivo',sans-serif;font-weight:800;font-size:14px;padding:11px 20px;border-radius:100px;border:none;cursor:pointer;transition:transform .25s,background .25s}
+  .btn:hover{transform:translateY(-2px);background:var(--ember-hot)}
+  .btn.ghost{background:transparent;border:1px solid var(--hair);color:var(--mist)}
+  .btn.ghost:hover{border-color:var(--ember);color:var(--ember);background:transparent}
+  .search{flex:1;min-width:180px;background:rgba(7,20,16,.55);border:1px solid var(--hair);border-radius:100px;padding:11px 18px;color:var(--bone);font-family:'Inter',sans-serif;font-size:14px;outline:none}
+  .search:focus{border-color:var(--ember)}
+  .board{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;padding-bottom:60px;align-items:start}
+  .col{background:rgba(7,20,16,.4);border:1px solid var(--hair);border-radius:16px;padding:14px;min-height:120px}
+  .col.drag{border-color:var(--ember);background:rgba(232,164,74,.06)}
+  .col-head{display:flex;align-items:center;justify-content:space-between;padding:4px 6px 12px}
+  .col-title{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .dot{width:9px;height:9px;border-radius:50%}
+  .col-count{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted)}
+  .card{background:rgba(18,49,39,.7);border:1px solid var(--hair);border-radius:12px;padding:14px;margin-bottom:10px;cursor:grab;transition:transform .2s,box-shadow .2s,border-color .2s}
+  .card:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.3);border-color:rgba(232,164,74,.35)}
+  .card.dragging{opacity:.4}
+  .card .name{font-family:'Archivo',sans-serif;font-weight:740;font-size:16px;letter-spacing:-.01em}
+  .card .meta{font-size:12.5px;color:var(--mist);margin-top:5px;display:flex;flex-wrap:wrap;gap:4px 10px}
+  .tier{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;padding:3px 8px;border-radius:100px;border:1px solid var(--hair);margin-top:10px;display:inline-block}
+  .tier.growth{color:var(--ember);border-color:rgba(232,164,74,.4)}
+  .tier.steady{color:var(--moss);border-color:rgba(78,129,104,.5)}
+  .tier.roots{color:var(--mist)}
+  .card .foot{margin-top:10px;display:flex;justify-content:space-between;align-items:center;font-family:'Space Mono',monospace;font-size:10.5px;color:var(--muted)}
+  .flag{color:var(--ember-hot)}
+  .empty{color:var(--muted);font-size:12.5px;text-align:center;padding:20px 8px;font-family:'Space Mono',monospace}
+  /* modal */
+  .modal-bg{position:fixed;inset:0;background:rgba(7,20,16,.72);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+  .modal-bg.on{display:flex}
+  .modal{background:linear-gradient(170deg,#16382D,var(--abyss));border:1px solid var(--hair);border-radius:20px;padding:30px;width:100%;max-width:440px;max-height:90vh;overflow:auto}
+  .modal h3{font-family:'Archivo',sans-serif;font-weight:780;font-size:22px;letter-spacing:-.01em}
+  .field{margin-top:14px}
+  .field label{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .field input,.field select,.field textarea{width:100%;margin-top:6px;background:rgba(7,20,16,.6);border:1px solid var(--hair);border-radius:9px;padding:11px 13px;color:var(--bone);font-family:'Inter',sans-serif;font-size:14px;outline:none}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ember)}
+  .field textarea{resize:vertical;min-height:60px}
+  .modal-actions{margin-top:22px;display:flex;gap:10px;justify-content:space-between;align-items:center}
+  .del{background:transparent;border:none;color:var(--lost);font-family:'Space Mono',monospace;font-size:12px;cursor:pointer;text-decoration:underline}
+  .save-note{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);text-align:center;padding:8px 0 30px;letter-spacing:.08em}
+  footer{padding:20px 0 50px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px}
+  .hanko{width:36px;height:36px;border-radius:8px;background:var(--ember);display:flex;align-items:center;justify-content:center;transform:rotate(-3deg)}
+  .hanko span{font-family:'Noto Serif JP',serif;font-weight:600;font-size:20px;color:var(--abyss)}
+  @media(max-width:960px){.board{grid-template-columns:1fr 1fr;overflow-x:visible}}
+  @media(max-width:560px){.board{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">
+    <svg width="28" height="31" viewBox="0 0 100 110"><path fill="#E8A44A" fill-rule="evenodd" d="M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z"/></svg>
+    <div><div class="wordfont">taiga<span class="d">.</span></div><div class="sub">Client Tracker</div></div>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><div class="v" id="kpi-clients">0</div><div class="l">Active clients</div></div>
+    <div class="kpi"><div class="v" id="kpi-mrr">$0</div><div class="l">MRR</div></div>
+    <div class="kpi"><div class="v" id="kpi-pipe">0</div><div class="l">In pipeline</div></div>
+    <div class="kpi"><div class="v" id="kpi-reports">0</div><div class="l">Reports due</div></div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <button class="btn" onclick="openModal()">+ Add contact</button>
+  <input class="search" id="search" placeholder="Search…" oninput="render()">
+  <button class="btn ghost" onclick="exportData()">Export</button>
+  <button class="btn ghost" onclick="importData()">Import</button>
+  <input type="file" id="file" accept="application/json" style="display:none" onchange="doImport(event)">
+</div>
+
+<div class="board" id="board"></div>
+
+<div class="save-note">◦ SAVED AUTOMATICALLY IN THIS BROWSER · EXPORT WEEKLY TO BACK UP</div>
+
+<footer>
+  <div class="mono" style="color:var(--mist)">taiga. — never go dormant</div>
+  <div class="hanko"><span>大</span></div>
+</footer>
+
+</div>
+
+<div class="modal-bg" id="modal-bg" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <h3 id="modal-title">Add contact</h3>
+    <input type="hidden" id="f-id">
+    <div class="field"><label>Business name</label><input id="f-name" placeholder="Bloom Chiropractic"></div>
+    <div class="field"><label>Contact / owner</label><input id="f-contact" placeholder="Dr. Linda Matz"></div>
+    <div class="field"><label>Vertical</label><select id="f-vertical"><option>Chiropractic</option><option>Dental</option><option>CrossFit / Gym</option><option>Med spa</option><option>Salon</option><option>Studio</option><option>Other</option></select></div>
+    <div class="field"><label>Stage</label><select id="f-stage"><option value="lead">Lead</option><option value="audit">Audit booked</option><option value="proposal">Proposal sent</option><option value="client">Client</option><option value="lost">Lost / later</option></select></div>
+    <div class="field"><label>Plan (if client)</label><select id="f-tier"><option value="">—</option><option value="roots">Roots $150</option><option value="steady">Steady $350</option><option value="growth">Growth $1,000</option></select></div>
+    <div class="field"><label>Next action</label><input id="f-next" placeholder="Send video audit"></div>
+    <div class="field"><label>Last terrain report sent</label><input id="f-report" type="date"></div>
+    <div class="field"><label>Notes</label><textarea id="f-notes" placeholder="City, source, credentials location…"></textarea></div>
+    <div class="modal-actions">
+      <button class="del" id="del-btn" onclick="delContact()" style="display:none">Delete</button>
+      <div style="display:flex;gap:10px;margin-left:auto">
+        <button class="btn ghost" onclick="closeModal()">Cancel</button>
+        <button class="btn" onclick="saveContact()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const STAGES=[["lead","Lead","var(--lead)"],["audit","Audit booked","var(--audit)"],["proposal","Proposal sent","var(--proposal)"],["client","Client","var(--client)"],["lost","Lost / later","var(--lost)"]];
+const TIER_MRR={roots:150,steady:350,growth:1000};
+const TIER_LABEL={roots:"Roots",steady:"Steady",growth:"Growth"};
+let data=load();
+
+function load(){try{return JSON.parse(localStorage.getItem("taiga-clients")||"[]")}catch(e){return[]}}
+function save(){localStorage.setItem("taiga-clients",JSON.stringify(data));render()}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function daysSince(d){if(!d)return null;return Math.floor((Date.now()-new Date(d))/86400000)}
+
+function render(){
+  const q=(document.getElementById("search").value||"").toLowerCase();
+  const board=document.getElementById("board");board.innerHTML="";
+  STAGES.forEach(([key,title,color])=>{
+    const items=data.filter(c=>c.stage===key && (!q||JSON.stringify(c).toLowerCase().includes(q)));
+    const col=document.createElement("div");col.className="col";col.dataset.stage=key;
+    col.ondragover=e=>{e.preventDefault();col.classList.add("drag")};
+    col.ondragleave=()=>col.classList.remove("drag");
+    col.ondrop=e=>{e.preventDefault();col.classList.remove("drag");const id=e.dataTransfer.getData("id");const c=data.find(x=>x.id===id);if(c){c.stage=key;if(key!=="client")c.tier="";save()}};
+    col.innerHTML=`<div class="col-head"><div class="col-title"><span class="dot" style="background:${color}"></span>${title}</div><span class="col-count">${items.length}</span></div>`;
+    if(!items.length)col.innerHTML+=`<div class="empty">—</div>`;
+    items.forEach(c=>{
+      const card=document.createElement("div");card.className="card";card.draggable=true;
+      card.ondragstart=e=>{e.dataTransfer.setData("id",c.id);card.classList.add("dragging")};
+      card.ondragend=()=>card.classList.remove("dragging");
+      card.onclick=()=>openModal(c.id);
+      const rd=daysSince(c.report);
+      const reportFlag=c.stage==="client"&&c.tier&&(rd===null||rd>30);
+      card.innerHTML=`<div class="name">${esc(c.name||"Untitled")}</div>
+        <div class="meta">${c.contact?esc(c.contact):""}${c.vertical?" · "+esc(c.vertical):""}</div>
+        ${c.tier?`<span class="tier ${c.tier}">${TIER_LABEL[c.tier]}</span>`:""}
+        <div class="foot"><span>${c.next?"▸ "+esc(c.next):""}</span>${reportFlag?`<span class="flag">◦ report due</span>`:(c.stage==="client"&&rd!==null?`<span>report ${rd}d ago</span>`:"")}</div>`;
+      col.appendChild(card);
+    });
+    board.appendChild(col);
+  });
+  // KPIs
+  const clients=data.filter(c=>c.stage==="client");
+  document.getElementById("kpi-clients").textContent=clients.length;
+  document.getElementById("kpi-mrr").textContent="$"+clients.reduce((s,c)=>s+(TIER_MRR[c.tier]||0),0).toLocaleString();
+  document.getElementById("kpi-pipe").textContent=data.filter(c=>["lead","audit","proposal"].includes(c.stage)).length;
+  document.getElementById("kpi-reports").textContent=clients.filter(c=>c.tier&&(daysSince(c.report)===null||daysSince(c.report)>30)).length;
+}
+function esc(s){return(s||"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]))}
+
+function openModal(id){
+  document.getElementById("modal-bg").classList.add("on");
+  const del=document.getElementById("del-btn");
+  if(id){const c=data.find(x=>x.id===id);document.getElementById("modal-title").textContent="Edit contact";
+    f("id",c.id);f("name",c.name);f("contact",c.contact);f("vertical",c.vertical);f("stage",c.stage);f("tier",c.tier);f("next",c.next);f("report",c.report);f("notes",c.notes);del.style.display="inline"}
+  else{document.getElementById("modal-title").textContent="Add contact";["id","name","contact","next","report","notes"].forEach(k=>f(k,""));f("stage","lead");f("tier","");f("vertical","Chiropractic");del.style.display="none"}
+}
+function f(k,v){const el=document.getElementById("f-"+k);if(v!==undefined)el.value=v||"";return el.value}
+function closeModal(){document.getElementById("modal-bg").classList.remove("on")}
+function saveContact(){
+  const id=f("id");const rec={id:id||uid(),name:f("name"),contact:f("contact"),vertical:f("vertical"),stage:f("stage"),tier:f("tier"),next:f("next"),report:f("report"),notes:f("notes")};
+  if(id){data=data.map(c=>c.id===id?rec:c)}else{data.push(rec)}
+  save();closeModal();
+}
+function delContact(){const id=f("id");if(id&&confirm("Delete this contact?")){data=data.filter(c=>c.id!==id);save();closeModal()}}
+function exportData(){const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="taiga-clients-"+new Date().toISOString().slice(0,10)+".json";a.click()}
+function importData(){document.getElementById("file").click()}
+function doImport(e){const r=new FileReader();r.onload=()=>{try{data=JSON.parse(r.result);save()}catch(x){alert("Could not read that file.")}};r.readAsText(e.target.files[0])}
+
+// seed one example if empty
+if(!data.length){data=[{id:uid(),name:"Bloom Chiropractic",contact:"Dr. Linda Matz",vertical:"Chiropractic",stage:"lead",tier:"",next:"Send filled audit",report:"",notes:"Missoula, MT · bloomchiropractor.com · warm — already building site"}];save()}
+render();
+</script>
+</body>
+</html>

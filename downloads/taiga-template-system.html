@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ============================================================
+     THE TAIGA SYSTEM — self-serve local business site template
+     Swap every [BRACKET]. Full instructions in the setup guide.
+     Neutral palette below is a starting point — change the 6 hex
+     values in :root to rebrand the entire site in 30 seconds.
+============================================================ -->
+<title>[BUSINESS NAME] — [SERVICE] in [CITY]</title>
+<meta name="description" content="[SERVICE] in [CITY]. [BUSINESS NAME] — [one-line promise, under 155 characters]. Book your appointment today.">
+<link rel="canonical" href="https://[YOURDOMAIN].com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="[BUSINESS NAME] — [SERVICE] in [CITY]">
+<meta property="og:description" content="[one-line promise, under 125 characters].">
+<meta property="og:url" content="https://[YOURDOMAIN].com">
+<meta property="og:image" content="https://[YOURDOMAIN].com/share-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- LOCAL BUSINESS SCHEMA — fill the brackets. This is what gets you into Google rich results and AI recommendations. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "[LocalBusiness OR MedicalBusiness OR HealthClub — pick one]",
+  "name": "[BUSINESS NAME]",
+  "image": "https://[YOURDOMAIN].com/share-image.png",
+  "description": "[one-sentence description of the business]",
+  "url": "https://[YOURDOMAIN].com",
+  "telephone": "[+1-XXX-XXX-XXXX]",
+  "address": {"@type": "PostalAddress","streetAddress": "[STREET]","addressLocality": "[CITY]","addressRegion": "[ST]","postalCode": "[ZIP]"},
+  "openingHours": "[Mo-Fr 09:00-17:00]",
+  "priceRange": "[$$]"
+}
+</script>
+<style>
+  /* ========== BRAND TOKENS — edit these 6 lines to rebrand ========== */
+  :root{
+    --ink:#22201C;        /* main text + dark sections */
+    --paper:#FBF8F3;      /* page background */
+    --accent:#B4622D;     /* your brand color — buttons, highlights */
+    --accent-soft:#E7D9C6;/* soft tint for panels */
+    --line:#E4DDD1;       /* hairlines and borders */
+    --muted:#7A736A;      /* secondary text */
+    /* Fonts: swap Fraunces / Inter in the <link> above + here */
+    --display:'Fraunces',Georgia,serif;
+    --body:'Inter',system-ui,sans-serif;
+  }
+  /* ================================================================= */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--accent);color:var(--paper)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 26px}
+  a{color:inherit}
+  h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.02em;line-height:1.05}
+  .btn{display:inline-block;background:var(--accent);color:var(--paper);font-weight:600;font-size:16px;padding:15px 30px;border-radius:8px;text-decoration:none;transition:transform .25s ease,filter .25s ease}
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;background:rgba(251,248,243,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+  .logo{font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:-.02em}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{text-decoration:none;font-size:15px;color:var(--muted)}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links .btn{padding:10px 20px;font-size:14px;color:var(--paper)}
+  @media(max-width:720px){.nav-links a:not(.btn){display:none}}
+
+  /* hero */
+  .hero{padding:96px 0 84px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+  h1{font-size:clamp(40px,6.5vw,68px)}
+  .hero p{font-size:19px;color:var(--muted);margin-top:22px;max-width:44ch}
+  .hero-ctas{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+  .hero-trust{margin-top:26px;font-size:14px;color:var(--muted)}
+  .hero-trust b{color:var(--ink)}
+  .hero-visual{aspect-ratio:4/5;border-radius:16px;background:linear-gradient(160deg,var(--accent-soft),var(--line));border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;text-align:center;padding:20px}
+
+  section{padding:80px 0;border-top:1px solid var(--line)}
+  .section-head{max-width:620px;margin-bottom:44px}
+  h2{font-size:clamp(28px,4vw,40px);margin-top:12px}
+  .section-head p{color:var(--muted);margin-top:14px;font-size:16.5px}
+
+  /* services */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:30px;transition:transform .3s ease,box-shadow .3s ease}
+  .card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(34,32,28,.06)}
+  .card h3{font-size:21px}
+  .card p{color:var(--muted);font-size:15px;margin-top:10px}
+  .card .price{margin-top:16px;font-family:var(--display);font-size:20px;color:var(--accent)}
+
+  /* why / about band */
+  .band{background:var(--ink);color:var(--paper)}
+  .band .section-head p{color:rgba(251,248,243,.7)}
+  .band h2{color:var(--paper)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+  .about-grid p{color:rgba(251,248,243,.8);font-size:16.5px;margin-top:14px}
+  .about-visual{aspect-ratio:1;border-radius:16px;background:linear-gradient(160deg,rgba(180,98,45,.4),rgba(251,248,243,.08));border:1px solid rgba(251,248,243,.15);display:flex;align-items:center;justify-content:center;color:rgba(251,248,243,.6);font-size:14px}
+
+  /* proof */
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .quote{background:#fff;border:1px solid var(--line);border-radius:14px;padding:30px}
+  .quote p{font-family:var(--display);font-size:19px;line-height:1.4}
+  .quote .who{margin-top:16px;font-size:14px;color:var(--muted);font-family:var(--body)}
+  .stars{color:var(--accent);letter-spacing:2px}
+
+  /* faq — keep the question-answer structure, it feeds Google + AI */
+  .faq{max-width:800px}
+  details{border-bottom:1px solid var(--line)}
+  summary{cursor:pointer;list-style:none;padding:22px 0;display:flex;justify-content:space-between;gap:18px;font-family:var(--display);font-size:19px;font-weight:600}
+  summary::-webkit-details-marker{display:none}
+  summary .pm{color:var(--accent);flex:none;transition:transform .3s}
+  details[open] summary .pm{transform:rotate(45deg)}
+  details p{color:var(--muted);padding:0 0 22px;font-size:15.5px;max-width:64ch}
+
+  /* cta */
+  .final{text-align:center}
+  .final h2{max-width:18ch;margin:0 auto}
+  .final p{color:var(--muted);margin:16px auto 0;max-width:46ch}
+  .final .btn{margin-top:30px}
+
+  footer{background:var(--ink);color:rgba(251,248,243,.7);padding:54px 0;font-size:14.5px}
+  .foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px}
+  .foot-grid a{text-decoration:none;color:rgba(251,248,243,.7)}
+  .foot-grid .logo{color:var(--paper)}
+
+  @media(max-width:760px){
+    .hero-grid,.about-grid{grid-template-columns:1fr}
+    .hero-visual{aspect-ratio:16/10}
+    .cards{grid-template-columns:1fr}
+    .quotes{grid-template-columns:1fr}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.btn{transition:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="#" class="logo" style="text-decoration:none">[BUSINESS NAME]</a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn" href="[BOOKING LINK]">Book now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO — H1 must be [SERVICE] in [CITY]. This is your #1 local ranking signal. -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">[CITY] · [SERVICE CATEGORY]</div>
+      <h1>[Best/Trusted] [service] in [City], [ST]</h1>
+      <p>[One or two sentences: the outcome you deliver, in your customer's words. e.g. "Get out of pain and back to your life with gentle, effective chiropractic care — same-week appointments available."]</p>
+      <div class="hero-ctas">
+        <a class="btn" href="[BOOKING LINK]">Book your first visit</a>
+        <a class="btn ghost" href="#services">See services</a>
+      </div>
+      <div class="hero-trust">★★★★★ <b>[4.9]</b> from <b>[120+]</b> [patients/members] in [City]</div>
+    </div>
+    <div class="hero-visual">[Replace with a real photo of your space, team, or work — 4:5 ratio. Real photos beat stock every time.]</div>
+  </div>
+</header>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What we do</div>
+      <h2>[Service] built around you</h2>
+      <p>[One sentence framing your services around the customer's goal, not your process.]</p>
+    </div>
+    <div class="cards">
+      <div class="card"><h3>[Service one]</h3><p>[Two sentences: what it is and who it helps, in plain language.]</p><div class="price">[From $XX]</div></div>
+      <div class="card"><h3>[Service two]</h3><p>[Two sentences.]</p><div class="price">[From $XX]</div></div>
+      <div class="card"><h3>[Service three]</h3><p>[Two sentences.]</p><div class="price">[From $XX]</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / WHY US -->
+<section id="about" class="band">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="eyebrow">Why [Business Name]</div>
+        <h2>[The one thing that makes you different]</h2>
+        <p>[Two or three sentences of real story: who you are, why you started, what you believe about caring for your [patients/members]. Specific beats generic — name your city, your years, your approach.]</p>
+        <div style="margin-top:24px"><a class="btn" href="[BOOKING LINK]">Come see for yourself</a></div>
+      </div>
+      <div class="about-visual">[Photo of you / your team]</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What people say</div>
+      <h2>[City] trusts us</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote"><div class="stars">★★★★★</div><p>"[Paste a real Google review here — word for word.]"</p><div class="who">— [First Name L.], [City]</div></div>
+      <div class="quote"><div class="stars">★★★★★</div><p>"[Real review two.]"</p><div class="who">— [First Name L.], [City]</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ — questions as headers, answers in the first sentence. This is what AI assistants quote. Don't delete the structure. -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Questions</div>
+      <h2>Good to know</h2>
+    </div>
+    <div class="faq">
+      <details open><summary>How much does [service] cost in [City]?<span class="pm">+</span></summary><p>[Answer with a real number in the first sentence. Specific numbers rank and get quoted by AI.]</p></details>
+      <details><summary>Do you take my insurance / do you offer [X]?<span class="pm">+</span></summary><p>[Direct answer first, detail after.]</p></details>
+      <details><summary>How do I book my first appointment?<span class="pm">+</span></summary><p>[Answer, then link to booking.]</p></details>
+      <details><summary>Where are you located in [City]?<span class="pm">+</span></summary><p>[Address + nearby landmark. Helps local search.]</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap">
+    <div class="eyebrow">Ready when you are</div>
+    <h2>Book your [first visit] in [City] today</h2>
+    <p>[One reassuring line. e.g. "New patients welcome. Same-week appointments. We'll take good care of you."]</p>
+    <a class="btn" href="[BOOKING LINK]">Book now</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="logo">[BUSINESS NAME]</div>
+      <div style="margin-top:8px">[Street], [City], [ST] [ZIP]</div>
+      <div>[phone] · [email]</div>
+    </div>
+    <div>
+      <div>[Mon–Fri 9–5, Sat by appointment]</div>
+      <div style="margin-top:8px"><a href="[GOOGLE PROFILE LINK]">Find us on Google</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

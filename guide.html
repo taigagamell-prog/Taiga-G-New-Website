@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setup Guide — The Taiga System</title>
+<meta name="description" content="Step-by-step guide for setting up The Taiga System site template. From zero to live in a weekend.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 110'><path fill='%23E8A44A' fill-rule='evenodd' d='M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1A1916;--paper:#FDFAF5;--tan:#F0EAE0;--accent:#B4622D;--muted:#6E6860;--line:#E4DDD1;--green:#123127}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--accent);color:var(--paper)}
+  a{color:var(--accent)}
+  a:hover{text-decoration:underline}
+
+  /* LAYOUT */
+  .guide-header{background:var(--green);color:#F2EDE1;padding:28px 0}
+  .guide-header .in{max-width:760px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .brand{font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:700;letter-spacing:-.02em;color:#E8A44A;text-decoration:none}
+  .guide-tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,237,225,.55);font-family:'Inter',sans-serif}
+  .back-link{font-size:13px;color:rgba(242,237,225,.6);text-decoration:none;display:flex;align-items:center;gap:6px}
+  .back-link:hover{color:#E8A44A;text-decoration:none}
+
+  .content{max-width:760px;margin:0 auto;padding:0 28px}
+
+  /* HERO */
+  .guide-hero{padding:56px 0 48px;border-bottom:1px solid var(--line)}
+  .guide-hero h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(32px,5vw,48px);font-weight:700;letter-spacing:-.025em;line-height:1.05;margin-bottom:18px;color:var(--ink)}
+  .guide-hero p{font-size:17px;color:var(--muted);max-width:54ch;line-height:1.7}
+  .toc{margin-top:32px;background:var(--tan);border-radius:12px;padding:22px 26px}
+  .toc-label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .toc ol{padding-left:20px;display:flex;flex-direction:column;gap:5px}
+  .toc li{font-size:14px;color:var(--muted)}
+  .toc a{color:var(--accent);text-decoration:none;font-weight:500}
+  .toc a:hover{text-decoration:underline}
+
+  /* STEPS */
+  .step{padding:52px 0;border-bottom:1px solid var(--line)}
+  .step-num{font-family:'Fraunces',Georgia,serif;font-size:64px;font-weight:700;line-height:1;color:var(--line);letter-spacing:-.04em;margin-bottom:8px;display:block}
+  .step h2{font-family:'Fraunces',Georgia,serif;font-size:clamp(22px,3.5vw,30px);font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:6px}
+  .step .time{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:22px;display:block}
+  .step p{color:var(--muted);font-size:15.5px;margin-top:14px;max-width:62ch}
+  .step ul,.step ol{color:var(--muted);font-size:15.5px;padding-left:22px;margin-top:14px;display:flex;flex-direction:column;gap:9px;max-width:64ch}
+  .step li{line-height:1.65}
+  .step li b,.step p b{color:var(--ink);font-weight:600}
+
+  /* BEFORE-START BOX */
+  .gather{background:var(--tan);border-radius:12px;padding:24px 28px;margin-top:24px;max-width:600px}
+  .gather ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:12px}
+  .gather li{font-size:15px;color:var(--ink);display:flex;gap:12px;align-items:baseline}
+  .gather li::before{content:"→";color:var(--accent);font-weight:600;flex:none}
+
+  /* CODE */
+  .code-block{background:var(--ink);color:#F2EDE1;border-radius:10px;padding:18px 22px;font-family:'Courier New',monospace;font-size:13.5px;line-height:1.7;margin-top:16px;overflow-x:auto;max-width:100%}
+  .code-block .hl{color:#E8A44A}
+
+  /* TOKENS TABLE */
+  .tokens{width:100%;border-collapse:collapse;margin-top:18px;font-size:14px}
+  .tokens th{text-align:left;padding:10px 14px;background:var(--tan);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .tokens td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:top;line-height:1.55}
+  .tokens td:first-child{font-family:'Courier New',monospace;font-size:13px;color:var(--accent);white-space:nowrap}
+  .tokens tr:hover td{background:var(--tan)}
+
+  /* CHECKLIST */
+  .checklist-section{padding:52px 0}
+  .checklist-section h2{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:28px}
+  .cl{display:flex;flex-direction:column;gap:0}
+  .cl-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer}
+  .cl-item:last-child{border-bottom:none}
+  .cl-item input[type="checkbox"]{width:18px;height:18px;flex:none;accent-color:var(--accent);margin-top:2px;cursor:pointer}
+  .cl-item label{font-size:15px;color:var(--ink);cursor:pointer;line-height:1.55;flex:1}
+  .cl-item.checked label{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)}
+  .cl-progress{font-family:'Courier New',monospace;font-size:13px;color:var(--muted);margin-bottom:20px}
+  .cl-progress b{color:var(--ink)}
+  .reset-btn{font-size:13px;color:var(--muted);background:none;border:none;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:2px}
+  .reset-btn:hover{color:var(--ink)}
+
+  /* ESCAPE HATCHES */
+  .escape-section{background:var(--green);color:#F2EDE1;padding:52px 0;margin-top:0}
+  .escape-section .content h2{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:700;letter-spacing:-.02em;color:#F2EDE1;margin-bottom:8px}
+  .escape-section .content p{color:rgba(242,237,225,.7);font-size:15px;margin-bottom:28px}
+  .ec-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .ec{border:1px solid rgba(242,237,225,.15);border-radius:14px;padding:26px}
+  .ec.featured{border-color:rgba(232,164,74,.4);background:rgba(232,164,74,.05)}
+  .ec-tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(242,237,225,.45);margin-bottom:12px}
+  .ec-price{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:700;color:#F2EDE1;margin-bottom:6px}
+  .ec.featured .ec-price{color:#E8A44A}
+  .ec-title{font-weight:600;font-size:15px;color:#F2EDE1;margin-bottom:8px}
+  .ec-desc{font-size:14px;color:rgba(242,237,225,.6);line-height:1.6;margin-bottom:18px}
+  .ec-btn{display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;border-radius:8px;padding:11px 22px;text-decoration:none;transition:opacity .2s;width:100%}
+  .ec-btn.ghost{color:#F2EDE1;border:1px solid rgba(242,237,225,.25);background:transparent}
+  .ec-btn.ghost:hover{border-color:rgba(232,164,74,.5);color:#E8A44A;text-decoration:none}
+  .ec-btn.solid{background:#E8A44A;color:#071410}
+  .ec-btn.solid:hover{background:#F2BA6B;text-decoration:none;opacity:1}
+
+  /* FOOTER */
+  .guide-footer{background:var(--tan);padding:32px 0;border-top:1px solid var(--line)}
+  .guide-footer .in{max-width:760px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  .guide-footer p{font-size:13px;color:var(--muted)}
+  .guide-footer a{color:var(--accent);text-decoration:none}
+  .guide-footer a:hover{text-decoration:underline}
+
+  @media(max-width:600px){
+    .ec-grid{grid-template-columns:1fr}
+    .step-num{font-size:44px}
+    .guide-header .in{flex-direction:column;align-items:flex-start;gap:8px}
+  }
+</style>
+</head>
+<body>
+
+<header class="guide-header">
+  <div class="in">
+    <a class="brand" href="/" aria-label="Taiga">taiga.</a>
+    <span class="guide-tag">The Taiga System — Setup Guide</span>
+    <a class="back-link" href="/kit">← Back to your files</a>
+  </div>
+</header>
+
+<div class="content">
+
+  <div class="guide-hero">
+    <h1>Zero to live<br>in a weekend.</h1>
+    <p>A professional, search-optimized website for your local business — no developer, no monthly agency fee. Follow this guide top to bottom and you'll be live in a weekend.</p>
+    <nav class="toc" aria-label="Guide sections">
+      <div class="toc-label">In this guide</div>
+      <ol>
+        <li><a href="#before">Before you start</a> — gather your assets (15 min)</li>
+        <li><a href="#step-1">Step 1 — Rebrand</a> — change 6 lines, rebrand everything (30 min)</li>
+        <li><a href="#step-2">Step 2 — Fill the brackets</a> — the whole job (60–90 min)</li>
+        <li><a href="#step-3">Step 3 — Add photos</a> — real beats stock (20 min)</li>
+        <li><a href="#step-4">Step 4 — Share image</a> — the link preview (15 min)</li>
+        <li><a href="#step-5">Step 5 — Go live</a> — Netlify Drop or your host (30 min)</li>
+        <li><a href="#step-6">Step 6 — Where the traffic is</a> — the part most people skip</li>
+        <li><a href="#checklist">Launch checklist</a></li>
+      </ol>
+    </nav>
+  </div>
+
+  <!-- BEFORE -->
+  <section class="step" id="before">
+    <span class="step-num">00</span>
+    <h2>Before you start</h2>
+    <span class="time">15 minutes</span>
+    <p>Gather these so you're not hunting mid-build. Write your business details once, then copy them everywhere — consistency is a real ranking factor.</p>
+    <div class="gather">
+      <ul>
+        <li>Business name, address, phone, and hours — <b>exactly as they should appear everywhere</b></li>
+        <li>Your booking link (Calendly, your practice software, Google appointment page, or just your phone number)</li>
+        <li>3–5 real photos: your space, your team, your work</li>
+        <li>Your 2 best Google reviews, copied word for word</li>
+        <li>The one thing that makes you different from the competitor down the street — one sentence</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- STEP 1 -->
+  <section class="step" id="step-1">
+    <span class="step-num">01</span>
+    <h2>Make it yours</h2>
+    <span class="time">30 minutes</span>
+    <p>Open the template file in any text editor. TextEdit works; <a href="https://code.visualstudio.com" target="_blank" rel="noopener">VS Code</a> is nicer and free.</p>
+    <p><b>Rebrand the whole site by changing 6 lines.</b> Near the top, find the block labeled <code style="font-size:13px;background:var(--tan);padding:1px 6px;border-radius:3px">BRAND TOKENS</code>. These six values control every button, heading, border, and background on the site:</p>
+    <div class="code-block"><span class="hl">--ink</span>:#22201C;        <span style="color:rgba(242,237,225,.4)">/* main text + dark sections */</span>
+<span class="hl">--paper</span>:#FBF8F3;      <span style="color:rgba(242,237,225,.4)">/* page background */</span>
+<span class="hl">--accent</span>:#B4622D;     <span style="color:rgba(242,237,225,.4)">/* your brand color — buttons, highlights */</span>
+<span class="hl">--accent-soft</span>:#E7D9C6;<span style="color:rgba(242,237,225,.4)">/* soft tint for panels */</span>
+<span class="hl">--line</span>:#E4DDD1;       <span style="color:rgba(242,237,225,.4)">/* hairlines and borders */</span>
+<span class="hl">--muted</span>:#7A736A;      <span style="color:rgba(242,237,225,.4)">/* secondary text */</span></div>
+
+    <table class="tokens">
+      <thead><tr><th>Token</th><th>What it controls</th><th>Tip</th></tr></thead>
+      <tbody>
+        <tr><td>--ink</td><td>All body text, dark section backgrounds</td><td>Near-black. Keep it warm (brown-black) or cool (blue-black) to set tone.</td></tr>
+        <tr><td>--paper</td><td>Page background</td><td>Cream, white, or very light grey all work. Avoid pure #FFFFFF if you want warmth.</td></tr>
+        <tr><td>--accent</td><td>Every button, link, and highlight</td><td>Your main brand color. If unsure, pull the dominant color from your logo.</td></tr>
+        <tr><td>--accent-soft</td><td>Panel backgrounds, soft tints</td><td>A desaturated or much-lightened version of --accent. Canva "tints" tool helps.</td></tr>
+        <tr><td>--line</td><td>All hairlines and borders</td><td>Slightly warmer or cooler than --paper. Should barely be visible.</td></tr>
+        <tr><td>--muted</td><td>Secondary text, captions</td><td>A medium grey. Should pass AA contrast on your --paper background.</td></tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top:22px"><b>Fonts (optional).</b> The template uses Fraunces (display) and Inter (body). To swap, change the two values on the <code style="font-size:13px;background:var(--tan);padding:1px 6px;border-radius:3px">--display</code> and <code style="font-size:13px;background:var(--tan);padding:1px 6px;border-radius:3px">--body</code> lines, and update the Google Fonts link in the <code style="font-size:13px;background:var(--tan);padding:1px 6px;border-radius:3px">&lt;head&gt;</code> to match. Browse free at <a href="https://fonts.google.com" target="_blank" rel="noopener">fonts.google.com</a>.</p>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="step" id="step-2">
+    <span class="step-num">02</span>
+    <h2>Fill every [bracket]</h2>
+    <span class="time">60–90 minutes</span>
+    <p>Search the file for <code style="font-size:13px;background:var(--tan);padding:1px 6px;border-radius:3px">[</code> and work through every bracket. This is the whole job. Key ones to get exactly right:</p>
+
+    <p style="margin-top:22px"><b>The H1 headline.</b> Use the format <b>[Service] in [City]</b> — for example "Trusted Chiropractic Care in Missoula, MT." This is the single most important line for showing up when someone searches your service. Don't get clever here; get clear.</p>
+
+    <p><b>Meta title and description</b> (top of the file, inside <code style="font-size:13px;background:var(--tan);padding:1px 6px;border-radius:3px">&lt;head&gt;</code>). Title under 60 characters. Description under 155. Lead with your service and city. These are what Google shows in search results.</p>
+
+    <p><b>The schema block</b> — the <code style="font-size:13px;background:var(--tan);padding:1px 6px;border-radius:3px">&lt;script type="application/ld+json"&gt;</code> section near the top. Fill your real business details. Pick the right type on the first line:</p>
+    <ul>
+      <li><b>MedicalBusiness</b> — clinics, chiropractic, physical therapy, dental</li>
+      <li><b>HealthClub</b> — gyms, fitness studios, yoga, pilates</li>
+      <li><b>LocalBusiness</b> — everything else</li>
+    </ul>
+    <p>This block is invisible to visitors but tells Google and AI assistants exactly who you are — it's how you become the recommendation.</p>
+
+    <p><b>Services, about, reviews, FAQ.</b> Write plainly. Name what the customer gets, not how you do it. In the FAQ, keep every question written as a real question people ask, and answer in the first sentence — that's what gets your page quoted by ChatGPT and Google's AI Overview.</p>
+
+    <p><b>Every booking button.</b> Replace <code style="font-size:13px;background:var(--tan);padding:1px 6px;border-radius:3px">[BOOKING LINK]</code> everywhere with your real link. Search the file for it so you don't miss one.</p>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="step" id="step-3">
+    <span class="step-num">03</span>
+    <h2>Add your photos</h2>
+    <span class="time">20 minutes</span>
+    <p>Wherever you see a grey placeholder box, swap in a real image. Put your image files in the same folder as the site and replace each placeholder with:</p>
+    <div class="code-block">&lt;img src="<span class="hl">your-photo.jpg</span>" alt="<span class="hl">Describe what's in the photo</span>"
+     style="width:100%;height:100%;object-fit:cover"&gt;</div>
+    <p>The <code style="font-size:13px;background:var(--tan);padding:1px 6px;border-radius:3px">alt</code> text isn't optional — write what's in the photo. It helps both search and accessibility. "Dr. Smith adjusting a patient's back at our Missoula clinic" beats "photo1."</p>
+    <p><b>Real photos beat stock every time.</b> Even an iPhone photo of your actual space converts better than a Getty image of a perfect clinic.</p>
+  </section>
+
+  <!-- STEP 4 -->
+  <section class="step" id="step-4">
+    <span class="step-num">04</span>
+    <h2>Make the share image</h2>
+    <span class="time">15 minutes</span>
+    <p>When someone texts your link or posts it on social, a preview card appears. Create a 1200×630 image — <a href="https://www.canva.com/create/social-media/open-graph-image/" target="_blank" rel="noopener">Canva has a free Open Graph template</a>. Put your business name, tagline, and a photo on it.</p>
+    <p>Name the file <code style="font-size:13px;background:var(--tan);padding:1px 6px;border-radius:3px">share-image.png</code> and put it in the same folder as the site. The template already points to it.</p>
+  </section>
+
+  <!-- STEP 5 -->
+  <section class="step" id="step-5">
+    <span class="step-num">05</span>
+    <h2>Put it online</h2>
+    <span class="time">30 minutes</span>
+    <p><b>Simplest — Netlify Drop.</b> Go to <a href="https://app.netlify.com/drop" target="_blank" rel="noopener">app.netlify.com/drop</a> and drag your whole site folder onto the page. It's live in seconds on a free address. Connect your own domain in the site settings when ready.</p>
+    <p><b>Also fine — your domain host.</b> Most registrars (GoDaddy, Namecheap, Squarespace Domains) have simple file hosting or a one-click upload. Upload the folder, point your domain at it.</p>
+    <p><b>Important:</b> Your main file should be named <code style="font-size:13px;background:var(--tan);padding:1px 6px;border-radius:3px">index.html</code> so it loads as your homepage. The template ships with that name.</p>
+  </section>
+
+  <!-- STEP 6 -->
+  <section class="step" id="step-6">
+    <span class="step-num">06</span>
+    <h2>Where the traffic actually comes from</h2>
+    <span class="time">Ongoing — start this week</span>
+    <p>A website alone doesn't get you found. Do these three and you'll outrank businesses with much bigger budgets and much older sites.</p>
+
+    <p style="margin-top:24px"><b>1. Claim and fill your Google Business Profile</b> at <a href="https://business.google.com" target="_blank" rel="noopener">business.google.com</a>. This is more important than the website for local search. Fill every field, add photos, list your services, set your hours. Post to it at least once a week — even just a photo. This is what puts you in the map when someone searches nearby.</p>
+
+    <p><b>2. Get reviews, consistently.</b> Ask every happy patient or client, in person, the day of. Send them your Google review link by text while they're still happy. Reviews are the single biggest lever in local ranking. It's free and most businesses do it inconsistently — that's the gap.</p>
+
+    <p><b>3. Publish one helpful page a month.</b> Answer a real question your customers ask — "How often should I see a chiropractor in Missoula?" — as its own page, titled as the question. This is how you rank for more searches over time and how your site gets quoted by ChatGPT and Google's AI. Use the same structure as the FAQ: question as the header, answer in the first sentence.</p>
+  </section>
+
+</div><!-- /content -->
+
+<!-- CHECKLIST -->
+<div style="background:var(--tan);padding:52px 0" id="checklist">
+  <div class="content">
+    <div class="checklist-section" style="padding:0">
+      <h2>Launch checklist</h2>
+      <p class="cl-progress" id="cl-progress"><!-- filled by JS --></p>
+      <div class="cl" id="cl">
+        <div class="cl-item" data-id="colors"><input type="checkbox" id="c0"><label for="c0">6 brand colors changed in the BRAND TOKENS block</label></div>
+        <div class="cl-item" data-id="brackets"><input type="checkbox" id="c1"><label for="c1">Every [bracket] filled — searched the file for <code style="font-size:12px;background:rgba(0,0,0,.05);padding:1px 5px;border-radius:3px">[</code> to confirm</label></div>
+        <div class="cl-item" data-id="h1"><input type="checkbox" id="c2"><label for="c2">H1 is "[Service] in [City]" — specific, not clever</label></div>
+        <div class="cl-item" data-id="meta"><input type="checkbox" id="c3"><label for="c3">Meta title under 60 chars, description under 155</label></div>
+        <div class="cl-item" data-id="schema"><input type="checkbox" id="c4"><label for="c4">Schema block filled with real details, correct business type (MedicalBusiness / HealthClub / LocalBusiness)</label></div>
+        <div class="cl-item" data-id="booking"><input type="checkbox" id="c5"><label for="c5">All booking buttons point to your real link — searched for [BOOKING LINK] to confirm</label></div>
+        <div class="cl-item" data-id="photos"><input type="checkbox" id="c6"><label for="c6">Real photos in, with descriptive alt text on each</label></div>
+        <div class="cl-item" data-id="share"><input type="checkbox" id="c7"><label for="c7">Share image made (1200×630) and named share-image.png in the folder</label></div>
+        <div class="cl-item" data-id="live"><input type="checkbox" id="c8"><label for="c8">Site live — main file named index.html</label></div>
+        <div class="cl-item" data-id="gbp"><input type="checkbox" id="c9"><label for="c9">Google Business Profile claimed and every field filled</label></div>
+        <div class="cl-item" data-id="reviews"><input type="checkbox" id="c10"><label for="c10">Review request process started — link ready to send after every visit</label></div>
+      </div>
+      <button class="reset-btn" id="reset-cl" style="margin-top:18px">Reset checklist</button>
+    </div>
+  </div>
+</div>
+
+<!-- ESCAPE HATCHES -->
+<div class="escape-section">
+  <div class="content" style="padding-top:0;padding-bottom:0">
+    <h2>Stuck, or want it done for you?</h2>
+    <p>This system gets you 80% of the way with a weekend of focused work. If you hit a wall or just don't want to:</p>
+    <div class="ec-grid">
+      <div class="ec">
+        <div class="ec-tag">◦ Option A — help</div>
+        <div class="ec-price">$200</div>
+        <div class="ec-title">60-minute setup call</div>
+        <div class="ec-desc">Screen-to-screen. We work through your specific site live — exact fixes, no guesswork. Covers wherever you're stuck, from Fraunces swaps to schema to GBP questions.</div>
+        <a class="ec-btn ghost" href="mailto:taiga@taigalocal.com?subject=Setup call - The Taiga System">Email to book →</a>
+      </div>
+      <div class="ec featured">
+        <div class="ec-tag">◦ Option B — done for you</div>
+        <div class="ec-price">$2,500 down</div>
+        <div class="ec-title">Full Rebuild — your $500 credited</div>
+        <div class="ec-desc">Taiga does the complete build — custom brand, site, geo content, GBP setup. Your $500 template purchase credits in full toward the deposit. No expiry, no conditions.</div>
+        <a class="ec-btn solid" href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer">Book a free audit →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="guide-footer">
+  <div class="in">
+    <p>The Taiga System · <a href="https://taigalocal.com">taigalocal.com</a> · <a href="mailto:taiga@taigalocal.com">taiga@taigalocal.com</a></p>
+    <p style="color:var(--muted)">never go dormant.</p>
+  </div>
+</footer>
+
+<script>
+  const ITEMS = document.querySelectorAll('.cl-item');
+  const STORE_KEY = 'ts_checklist_v1';
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch { return {}; }
+  }
+  function saveState(state) {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch {}
+  }
+  function updateProgress() {
+    const checked = document.querySelectorAll('.cl-item input:checked').length;
+    const total = ITEMS.length;
+    const el = document.getElementById('cl-progress');
+    if (checked === total) {
+      el.innerHTML = '<b>All done.</b> You\'re ready to launch.';
+    } else {
+      el.innerHTML = '<b>' + checked + ' / ' + total + '</b> complete';
+    }
+  }
+  function applyState(state) {
+    ITEMS.forEach(item => {
+      const id = item.dataset.id;
+      const cb = item.querySelector('input');
+      if (state[id]) { cb.checked = true; item.classList.add('checked'); }
+      else { cb.checked = false; item.classList.remove('checked'); }
+    });
+    updateProgress();
+  }
+
+  const state = loadState();
+  applyState(state);
+
+  ITEMS.forEach(item => {
+    item.querySelector('input').addEventListener('change', e => {
+      const id = item.dataset.id;
+      state[id] = e.target.checked;
+      item.classList.toggle('checked', e.target.checked);
+      saveState(state);
+      updateProgress();
+    });
+  });
+
+  document.getElementById('reset-cl').addEventListener('click', () => {
+    if (confirm('Reset the checklist?')) {
+      Object.keys(state).forEach(k => delete state[k]);
+      saveState(state);
+      applyState(state);
+    }
+  });
+</script>
+
+</body>
+</html>

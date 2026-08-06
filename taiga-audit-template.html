@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taiga — Terrain Audit · [Business Name]</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{--boreal:#123127;--pine:#0B1F19;--abyss:#071410;--moss:#4E8168;--ember:#E8A44A;--bone:#F2EDE1;--mist:#C9D6C7;--muted:#87A093;--hair:rgba(201,214,199,.14)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:linear-gradient(180deg,var(--boreal),var(--pine) 70%,var(--abyss));background-attachment:fixed;color:var(--bone);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .mono{font-family:'Space Mono',monospace;letter-spacing:.02em}
+  .jp{font-family:'Noto Serif JP',serif}
+  .wrap{max-width:860px;margin:0 auto;padding:0 28px}
+  .wordfont{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;letter-spacing:-.03em}
+  .d{color:var(--ember)}
+  .eyebrow{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);display:inline-flex;align-items:center;gap:12px}
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--ember)}
+  header{padding:80px 0 56px}
+  .doc-type{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+  h1{font-family:'Archivo',sans-serif;font-weight:820;font-variation-settings:"wdth" 108;font-size:clamp(34px,6vw,54px);letter-spacing:-.025em;line-height:1;margin-top:18px}
+  .meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:26px;font-family:'Space Mono',monospace;font-size:12.5px;color:var(--mist)}
+  .meta b{color:var(--ember);font-weight:700}
+  section{padding:48px 0;border-top:1px solid var(--hair)}
+  h2{font-family:'Archivo',sans-serif;font-weight:760;font-size:clamp(22px,3.4vw,30px);letter-spacing:-.015em;margin-top:14px}
+  .card{background:rgba(7,20,16,.55);border:1px solid var(--hair);border-radius:16px;padding:28px;margin-top:24px}
+  .row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px dashed rgba(201,214,199,.15);font-family:'Space Mono',monospace;font-size:13.5px}
+  .row:last-child{border:none}
+  .row .kw{color:var(--mist)} .row .val{color:var(--ember);font-weight:700}
+  .row .val.bad{color:#D96B5A}
+  .leak{border-left:3px solid var(--ember);margin-top:20px;background:rgba(7,20,16,.55);border-radius:0 14px 14px 0;padding:24px 28px}
+  .leak .n{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.14em;color:var(--ember)}
+  .leak h3{font-family:'Archivo',sans-serif;font-weight:740;font-size:19px;margin:8px 0 6px}
+  .leak p{color:var(--mist);font-size:14.5px}
+  .leak .cost{margin-top:12px;font-family:'Space Mono',monospace;font-size:12.5px;color:var(--muted)}
+  .leak .cost b{color:var(--ember)}
+  .ph{color:var(--ember);background:rgba(232,164,74,.08);padding:1px 7px;border-radius:5px;font-family:'Space Mono',monospace;font-size:.9em}
+  .path{margin-top:24px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  .opt{border:1px solid var(--hair);border-radius:14px;padding:24px}
+  .opt.hot{border-color:rgba(232,164,74,.45);background:linear-gradient(170deg,#16382D,var(--abyss))}
+  .opt h4{font-family:'Archivo',sans-serif;font-weight:760;font-size:17px}
+  .opt .p{font-family:'Archivo',sans-serif;font-weight:840;font-size:30px;margin-top:10px;letter-spacing:-.02em}
+  .opt .p span{font-size:13px;font-family:'Inter',sans-serif;font-weight:500;color:var(--mist)}
+  .opt p{color:var(--mist);font-size:13.5px;margin-top:10px}
+  footer{padding:46px 0 70px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}
+  .hanko{width:44px;height:44px;border-radius:9px;background:var(--ember);display:flex;align-items:center;justify-content:center;transform:rotate(-3deg)}
+  .hanko span{font-family:'Noto Serif JP',serif;font-weight:600;font-size:25px;color:var(--abyss)}
+  @media(max-width:760px){.path{grid-template-columns:1fr 1fr}}
+  @media(max-width:480px){.path{grid-template-columns:1fr}}
+  @media print{body{background:var(--pine)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div style="display:flex;align-items:center;gap:11px;margin-bottom:36px">
+    <svg width="26" height="29" viewBox="0 0 100 110"><path fill="#E8A44A" fill-rule="evenodd" d="M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z"/></svg>
+    <span class="wordfont" style="font-size:22px">taiga<span class="d">.</span></span>
+  </div>
+  <div class="doc-type">◦ Terrain Audit — yours to keep</div>
+  <h1><span class="ph">[Business Name]</span></h1>
+  <div class="meta">
+    <span>DATE · <b>[date]</b></span>
+    <span>CITY · <b>[city]</b></span>
+    <span>PREPARED BY · <b>TAIGA</b></span>
+  </div>
+</header>
+
+<section>
+  <div class="eyebrow mono">◦ 01 — Where you stand</div>
+  <h2>The search terrain today</h2>
+  <div class="card">
+    <div class="row"><span class="kw">"[service] near me" — [city]</span><span class="val bad">[position / not found]</span></div>
+    <div class="row"><span class="kw">"[service] [city]"</span><span class="val bad">[position]</span></div>
+    <div class="row"><span class="kw">Google map pack</span><span class="val bad">[in / out]</span></div>
+    <div class="row"><span class="kw">ChatGPT "best [service] in [city]"</span><span class="val bad">[cited / not cited]</span></div>
+    <div class="row"><span class="kw">Mobile load time</span><span class="val bad">[X.X]s</span></div>
+    <div class="row"><span class="kw">Google Business Profile — last post</span><span class="val bad">[X months ago]</span></div>
+    <div class="row"><span class="kw">Reviews vs top competitor</span><span class="val bad">[N] vs [N]</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow mono">◦ 02 — The three things</div>
+  <h2>What's costing you <span class="ph">[patients/members]</span></h2>
+  <div class="leak">
+    <div class="n">LEAK / 01</div>
+    <h3><span class="ph">[e.g. You're invisible in the map pack]</span></h3>
+    <p><span class="ph">[Two sentences: what's wrong, why it happens. Plain language, no jargon.]</span></p>
+    <div class="cost">EST. MONTHLY COST · <b>[N] [patients/members] ≈ $[N]/yr</b></div>
+  </div>
+  <div class="leak">
+    <div class="n">LEAK / 02</div>
+    <h3><span class="ph">[e.g. The site loses mobile visitors before it loads]</span></h3>
+    <p><span class="ph">[What's wrong, why it happens.]</span></p>
+    <div class="cost">EST. MONTHLY COST · <b>[N] [patients/members] ≈ $[N]/yr</b></div>
+  </div>
+  <div class="leak">
+    <div class="n">LEAK / 03</div>
+    <h3><span class="ph">[e.g. No answer-structured content for AI search]</span></h3>
+    <p><span class="ph">[What's wrong, why it happens.]</span></p>
+    <div class="cost">EST. MONTHLY COST · <b>[N] [patients/members] ≈ $[N]/yr</b></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow mono">◦ 03 — The path</div>
+  <h2>Three honest ways forward</h2>
+  <div class="path">
+    <div class="opt">
+      <h4>Fix it yourself</h4>
+      <p class="p">$0 <span>or $500</span></p>
+      <p>This audit is yours — fix it in-house if you have the hours. Or grab the Taiga site template: schema, FAQ structure for AI citation, and GBP checklist included. Deploy in an afternoon. <a href="https://taigalocal.com/template" style="color:var(--ember)">taigalocal.com/template →</a></p>
+    </div>
+    <div class="opt">
+      <h4>Watch the terrain</h4>
+      <p class="p">$99<span>/mo</span></p>
+      <p>Monthly report — 5 keyword rankings, map pack position, AI citation check (ChatGPT, Gemini, Google AI Overview), GBP calls and review count, one-sentence summary. No delivery work. No contract. Cancel anytime.</p>
+    </div>
+    <div class="opt hot">
+      <h4>The Rebuild + Retainer</h4>
+      <p class="p">$3,000 <span>then from $150/mo</span></p>
+      <p>We fix all three in ~4 weeks — site, brand, local + AI search — then keep you climbing monthly. Retainer runs on credits: Roots (1 credit, $150), Steady (3 credits, $350), or Growth (8 credits, $1,000).</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="mono" style="color:var(--mist)">taiga. — never go dormant</div>
+    <div style="margin-top:6px">Questions: [email] · [phone]</div>
+  </div>
+  <div class="hanko"><span>大</span></div>
+</footer>
+
+</div>
+</body>
+</html>

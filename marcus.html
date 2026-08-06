@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Marcus &#8212; Bennet</title>
+<meta name="description" content="Marcus Bennet — Visuals Composer, Digital Crafter." />
+<link rel="icon" href="data:," />
+<style>
+@font-face {
+  font-family: 'Helvetica Neue ME';
+  src: url('https://db.onlinewebfonts.com/c/95cecf452d3208890088a5b4c19c7ecf?family=Helvetica+Neue+ME') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+html, body { height: 100%; }
+body {
+  font-family: 'Helvetica Neue ME', Helvetica, Arial, sans-serif;
+  background: #141414;
+  color: #efeee9;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Root section — full viewport */
+.hero {
+  position: relative;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Images */
+.bg-img, .portrait-img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.bg-img { z-index: 0; }
+.portrait-img { z-index: 20; pointer-events: none; }
+
+/* Header z-30 */
+.site-header {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 24px 24px;
+}
+@media (min-width: 640px) {
+  .site-header { padding: 32px 40px; }
+}
+.brand-link {
+  font-family: 'Helvetica Neue ME', Helvetica, Arial, sans-serif;
+  font-size: 1.125rem;
+  letter-spacing: 0.025em;
+  color: #efeee9;
+  text-decoration: none;
+}
+
+/* Desktop nav — hidden on mobile */
+.desktop-nav {
+  display: none;
+}
+@media (min-width: 640px) {
+  .desktop-nav {
+    display: flex;
+    align-items: flex-start;
+    gap: 64px;
+  }
+}
+@media (min-width: 1024px) {
+  .desktop-nav { gap: 96px; }
+}
+.year {
+  font-size: 0.875rem;
+  color: #efeee9;
+}
+.nav-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.nav-col a {
+  font-size: 0.875rem;
+  color: #efeee9;
+  text-decoration: none;
+  transition: opacity 300ms;
+}
+.nav-col a:hover { opacity: 0.6; }
+
+/* Hamburger — mobile only */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 50;
+  position: relative;
+  overflow: visible;
+}
+@media (min-width: 640px) { .hamburger { display: none; } }
+
+.bar {
+  display: block;
+  width: 24px;
+  height: 4px; /* we use the visual gap via gap — adjust */
+  background: #efeee9;
+  border-radius: 2px;
+  transform-origin: center;
+  transition: transform 500ms cubic-bezier(0.76, 0, 0.24, 1), opacity 300ms;
+  position: absolute;
+}
+.bar-top    { top: calc(50% - 8px); }
+.bar-middle { top: calc(50% - 2px); }
+.bar-bottom { top: calc(50% + 4px); }
+
+.hamburger.open .bar-top    { transform: translateY(8px) rotate(45deg); }
+.hamburger.open .bar-middle { opacity: 0; }
+.hamburger.open .bar-bottom { transform: translateY(-4px) rotate(-45deg); }
+
+/* Marquee z-10 */
+.marquee-wrap {
+  position: absolute;
+  inset-inline: 0;
+  top: 16vh;
+  z-index: 10;
+  overflow: hidden;
+}
+@media (min-width: 640px) { .marquee-wrap { top: 14vh; } }
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  font-family: 'Helvetica Neue ME', Helvetica, Arial, sans-serif;
+  font-size: 16vh;
+  line-height: 1;
+  color: #efeee9;
+  animation: marquee-scroll 30s linear infinite;
+}
+@media (min-width: 640px) { .marquee-track { font-size: 26vh; } }
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-span { padding-right: 6vw; }
+
+/* Cream rule z-10 */
+.cream-rule {
+  position: absolute;
+  left: 24px; right: 24px;
+  bottom: calc(5.5rem);
+  z-index: 10;
+  height: 2px;
+  background: #efeee9;
+  transform-origin: left;
+  transform: scaleX(0);
+}
+@media (min-width: 640px) {
+  .cream-rule { left: 40px; right: 40px; bottom: 112px; }
+}
+
+/* Desktop footer z-10 */
+.site-footer {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 20px 24px;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  font-family: 'Helvetica Neue ME', Helvetica, Arial, sans-serif;
+  color: #efeee9;
+}
+@media (min-width: 640px) {
+  .site-footer {
+    z-index: 10;
+    font-size: 0.875rem;
+    padding: 32px 40px;
+  }
+}
+.footer-left { display: flex; flex-direction: column; }
+.footer-right { text-align: right; display: flex; flex-direction: column; }
+
+/* Mobile footer — same element, but on mobile it needs z-30 to be above drawer overlay  */
+@media (max-width: 639px) {
+  .site-footer { z-index: 30; }
+}
+
+/* Mobile drawer z-40 */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 500ms;
+}
+.drawer-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.drawer-panel {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: 80%;
+  max-width: 384px;
+  background: #141414;
+  z-index: 40;
+  padding: 40px 32px;
+  transform: translateX(100%);
+  transition: transform 600ms cubic-bezier(0.76, 0, 0.24, 1);
+  overflow-y: auto;
+}
+.drawer-panel.open { transform: translateX(0); }
+
+.drawer-close {
+  position: absolute;
+  top: 24px; right: 24px;
+  background: none;
+  border: none;
+  color: #efeee9;
+  cursor: pointer;
+  opacity: 0;
+  transform: rotate(90deg);
+  transition: opacity 300ms, transform 300ms;
+  z-index: 50;
+}
+.drawer-close.open {
+  opacity: 1;
+  transform: rotate(0);
+  transition-delay: 300ms;
+}
+.drawer-close svg { display: block; }
+
+.drawer-section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(239,238,233,0.5);
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 300ms, transform 300ms;
+}
+.drawer-section-label.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.drawer-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+.drawer-nav-links a {
+  display: block;
+  font-size: 2.25rem;
+  color: #efeee9;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 300ms, transform 300ms;
+}
+.drawer-nav-links a.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.drawer-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.drawer-social-links a {
+  font-size: 0.875rem;
+  color: #efeee9;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 300ms, transform 300ms;
+}
+.drawer-social-links a.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Entrance animations */
+@keyframes anim-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes anim-rise-in {
+  from { opacity: 0; transform: translateY(4vh) scale(1.03); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes anim-fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes anim-line {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.anim-fade-in  { animation: anim-fade-in  1.2s ease-out           both; }
+.anim-rise-in  { animation: anim-rise-in  1.4s cubic-bezier(0.22, 1, 0.36, 1) 300ms both; }
+.anim-line     { animation: anim-line     1.1s cubic-bezier(0.76, 0, 0.24, 1) 1200ms both; }
+
+/* anim-fade-up with custom delays via inline style */
+.anim-fade-up  { animation: anim-fade-up  0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-fade-in, .anim-rise-in, .anim-fade-up, .anim-line {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+  }
+  .marquee-track { animation-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+
+  <!-- Background image — z default (below everything) -->
+  <img class="bg-img anim-fade-in" src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260729_022513_486985a2-ac8c-4278-91a8-071dcd9fcaff.png&w=1280&q=85" alt="">
+
+  <!-- Marquee — z-10, behind portrait -->
+  <div class="marquee-wrap anim-fade-up" style="animation-delay:500ms">
+    <div class="marquee-track">
+      <span class="marquee-span">Marcus &mdash; Bennet&nbsp;</span>
+      <span class="marquee-span">Marcus &mdash; Bennet&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- Front portrait — z-20, above marquee -->
+  <img class="portrait-img anim-rise-in" src="https://stone-expand-60400629.figma.site/_assets/v11/8da570354e86aa0d44ac3e4aa335a72c8e750d68.png" alt="Portrait">
+
+  <!-- Cream rule — z-10 -->
+  <div class="cream-rule anim-line"></div>
+
+  <!-- Header — z-30 -->
+  <header class="site-header">
+    <a class="brand-link anim-fade-up" style="animation-delay:800ms" href="#">Marcus</a>
+
+    <!-- Desktop nav -->
+    <div class="desktop-nav">
+      <span class="year anim-fade-up" style="animation-delay:900ms">2025</span>
+      <nav class="nav-col" aria-label="Site links">
+        <a href="#" class="anim-fade-up" style="animation-delay:1000ms">Story</a>
+        <a href="#" class="anim-fade-up" style="animation-delay:1080ms">Jobs</a>
+        <a href="#" class="anim-fade-up" style="animation-delay:1160ms">Message</a>
+      </nav>
+      <nav class="nav-col" aria-label="Social links">
+        <a href="#" class="anim-fade-up" style="animation-delay:1150ms">Instagram</a>
+        <a href="#" class="anim-fade-up" style="animation-delay:1210ms">TikTok</a>
+        <a href="#" class="anim-fade-up" style="animation-delay:1270ms">YouTube</a>
+      </nav>
+    </div>
+
+    <!-- Hamburger — mobile only, z-50 -->
+    <button class="hamburger anim-fade-up" style="animation-delay:900ms" id="ham-btn" aria-label="Open menu" aria-expanded="false">
+      <span class="bar bar-top"></span>
+      <span class="bar bar-middle"></span>
+      <span class="bar bar-bottom"></span>
+    </button>
+  </header>
+
+  <!-- Desktop footer — z-10 (sm+) -->
+  <footer class="site-footer">
+    <div class="footer-left anim-fade-up" style="animation-delay:1400ms">
+      <span>Visuals Composer</span>
+      <span>Digital Crafter</span>
+      <span>Obsessed by The Office</span>
+    </div>
+    <div class="footer-right anim-fade-up" style="animation-delay:1550ms">
+      <span>A homage to</span>
+      <span>Marcus Holloway</span>
+    </div>
+  </footer>
+
+</section>
+
+<!-- Mobile drawer backdrop + panel — z-40 -->
+<div class="drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
+<div class="drawer-panel" id="drawer-panel" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
+  <button class="drawer-close" id="drawer-close" aria-label="Close menu">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  <p class="drawer-section-label" id="dl-site" style="margin-top:48px">Site Index</p>
+  <nav class="drawer-nav-links" aria-label="Mobile site links">
+    <a href="#" id="dl-nav-0">Story</a>
+    <a href="#" id="dl-nav-1">Jobs</a>
+    <a href="#" id="dl-nav-2">Message</a>
+  </nav>
+
+  <p class="drawer-section-label" id="dl-social-label">Find Me</p>
+  <div class="drawer-social-links" role="list">
+    <a href="#" id="dl-soc-0" role="listitem">Instagram</a>
+    <a href="#" id="dl-soc-1" role="listitem">TikTok</a>
+    <a href="#" id="dl-soc-2" role="listitem">YouTube</a>
+  </div>
+</div>
+
+<script defer>
+(function () {
+  const hamBtn   = document.getElementById('ham-btn');
+  const backdrop = document.getElementById('drawer-backdrop');
+  const panel    = document.getElementById('drawer-panel');
+  const closeBtn = document.getElementById('drawer-close');
+  let isOpen = false;
+
+  const navEls    = [0,1,2].map(i => document.getElementById('dl-nav-' + i));
+  const socEls    = [0,1,2].map(i => document.getElementById('dl-soc-' + i));
+  const siteLabel = document.getElementById('dl-site');
+  const socLabel  = document.getElementById('dl-social-label');
+
+  function openDrawer() {
+    isOpen = true;
+    document.body.style.overflow = 'hidden';
+    hamBtn.setAttribute('aria-expanded', 'true');
+    hamBtn.classList.add('open');
+    backdrop.classList.add('open');
+    backdrop.setAttribute('aria-hidden', 'false');
+    panel.classList.add('open');
+    panel.setAttribute('aria-hidden', 'false');
+    closeBtn.classList.add('open');
+
+    setTimeout(() => siteLabel.classList.add('show'), 250);
+    navEls.forEach((el, i) => setTimeout(() => el.classList.add('show'), 300 + i * 80));
+    setTimeout(() => socLabel.classList.add('show'), 500);
+    socEls.forEach((el, i) => setTimeout(() => el.classList.add('show'), 550 + i * 60));
+  }
+
+  function closeDrawer() {
+    isOpen = false;
+    document.body.style.overflow = '';
+    hamBtn.setAttribute('aria-expanded', 'false');
+    hamBtn.classList.remove('open');
+    backdrop.classList.remove('open');
+    backdrop.setAttribute('aria-hidden', 'true');
+    panel.classList.remove('open');
+    panel.setAttribute('aria-hidden', 'true');
+    closeBtn.classList.remove('open');
+
+    siteLabel.classList.remove('show');
+    socLabel.classList.remove('show');
+    navEls.forEach(el => el.classList.remove('show'));
+    socEls.forEach(el => el.classList.remove('show'));
+  }
+
+  hamBtn.addEventListener('click', () => isOpen ? closeDrawer() : openDrawer());
+  closeBtn.addEventListener('click', closeDrawer);
+  backdrop.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen) closeDrawer(); });
+})();
+</script>
+</body>
+</html>

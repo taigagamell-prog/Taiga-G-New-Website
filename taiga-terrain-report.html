@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taiga — Terrain Report · [Client] · [Month]</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{--boreal:#123127;--pine:#0B1F19;--abyss:#071410;--moss:#4E8168;--ember:#E8A44A;--bone:#F2EDE1;--mist:#C9D6C7;--muted:#87A093;--hair:rgba(201,214,199,.14)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:linear-gradient(180deg,var(--boreal),var(--pine) 70%,var(--abyss));background-attachment:fixed;color:var(--bone);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .mono{font-family:'Space Mono',monospace;letter-spacing:.02em}
+  .jp{font-family:'Noto Serif JP',serif}
+  .wrap{max-width:860px;margin:0 auto;padding:0 28px}
+  .wordfont{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;letter-spacing:-.03em}
+  .d{color:var(--ember)}
+  .eyebrow{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);display:inline-flex;align-items:center;gap:12px}
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--ember)}
+  header{padding:76px 0 50px}
+  h1{font-family:'Archivo',sans-serif;font-weight:820;font-variation-settings:"wdth" 108;font-size:clamp(32px,5.6vw,50px);letter-spacing:-.025em;line-height:1;margin-top:18px}
+  .meta{margin-top:24px;display:flex;flex-wrap:wrap;gap:26px;font-family:'Space Mono',monospace;font-size:12.5px;color:var(--mist)}
+  .meta b{color:var(--ember)}
+  section{padding:44px 0;border-top:1px solid var(--hair)}
+  h2{font-family:'Archivo',sans-serif;font-weight:760;font-size:clamp(21px,3.2vw,28px);letter-spacing:-.015em;margin-top:14px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+  .stat{background:rgba(7,20,16,.55);border:1px solid var(--hair);border-radius:14px;padding:22px}
+  .stat .v{font-family:'Archivo',sans-serif;font-weight:840;font-size:34px;letter-spacing:-.02em;color:var(--ember)}
+  .stat .l{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--muted);margin-top:6px;text-transform:uppercase}
+  .card{background:rgba(7,20,16,.55);border:1px solid var(--hair);border-radius:16px;padding:26px;margin-top:24px}
+  .row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px dashed rgba(201,214,199,.15);font-family:'Space Mono',monospace;font-size:13.5px}
+  .row:last-child{border:none}
+  .row .kw{color:var(--mist)} .row .val{color:var(--ember);font-weight:700}
+  .row .was{color:var(--muted);font-size:11.5px;margin-left:10px}
+  .ship{margin-top:24px}
+  .ship li{list-style:none;padding:11px 0;border-bottom:1px dashed rgba(201,214,199,.15);font-size:14.5px;color:var(--mist);display:flex;gap:12px}
+  .ship li::before{content:"◦";color:var(--ember);font-family:'Space Mono',monospace;font-weight:700}
+  .next{border-left:3px solid var(--ember);background:rgba(7,20,16,.55);border-radius:0 14px 14px 0;padding:22px 26px;margin-top:24px;color:var(--mist);font-size:14.5px}
+  .next b{color:var(--bone)}
+  .ph{color:var(--ember);background:rgba(232,164,74,.08);padding:1px 7px;border-radius:5px;font-family:'Space Mono',monospace;font-size:.9em}
+  footer{padding:42px 0 66px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}
+  .hanko{width:44px;height:44px;border-radius:9px;background:var(--ember);display:flex;align-items:center;justify-content:center;transform:rotate(-3deg)}
+  .hanko span{font-family:'Noto Serif JP',serif;font-weight:600;font-size:25px;color:var(--abyss)}
+  @media(max-width:640px){.stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div style="display:flex;align-items:center;gap:11px;margin-bottom:34px">
+    <svg width="26" height="29" viewBox="0 0 100 110"><path fill="#E8A44A" fill-rule="evenodd" d="M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z"/></svg>
+    <span class="wordfont" style="font-size:22px">taiga<span class="d">.</span></span>
+  </div>
+  <div class="eyebrow mono">◦ Monthly Terrain Report</div>
+  <h1><span class="ph">[Client Name]</span> · <span class="ph">[Month YYYY]</span></h1>
+  <div class="meta"><span>PLAN · <b>GROWTH</b></span><span>CITY · <b>[city]</b></span><span>MONTH · <b>[N] OF ENGAGEMENT</b></span></div>
+</header>
+
+<section>
+  <div class="eyebrow mono">◦ 01 — Headline numbers</div>
+  <h2>The month in three figures</h2>
+  <div class="stats">
+    <div class="stat"><div class="v">[+N%]</div><div class="l">Calls from Google</div></div>
+    <div class="stat"><div class="v">[+N%]</div><div class="l">Search traffic</div></div>
+    <div class="stat"><div class="v">[#N]</div><div class="l">Best local ranking</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow mono">◦ 02 — Rankings</div>
+  <h2>Where you stand vs last month</h2>
+  <div class="card">
+    <div class="row"><span class="kw">"[service] near me"</span><span><span class="val">#[N]</span><span class="was">was #[N]</span></span></div>
+    <div class="row"><span class="kw">"[service] [city]"</span><span><span class="val">#[N]</span><span class="was">was #[N]</span></span></div>
+    <div class="row"><span class="kw">"[secondary keyword]"</span><span><span class="val">#[N]</span><span class="was">was #[N]</span></span></div>
+    <div class="row"><span class="kw">Google map pack</span><span class="val">[TOP 3 / #N]</span></div>
+    <div class="row"><span class="kw">AI recommendations (ChatGPT / Google AI)</span><span class="val">[CITED / IN PROGRESS]</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow mono">◦ 03 — Shipped</div>
+  <h2>What went live this month</h2>
+  <ul class="ship">
+    <li><span class="ph">[Blog: "title" — targeting "keyword"]</span></li>
+    <li><span class="ph">[Landing page / revision shipped]</span></li>
+    <li><span class="ph">[GBP: N posts, N review replies, N new reviews]</span></li>
+    <li><span class="ph">[Technical: schema / speed / fixes]</span></li>
+  </ul>
+</section>
+
+<section>
+  <div class="eyebrow mono">◦ 04 — Next month</div>
+  <h2>Where we push</h2>
+  <div class="next"><b>Focus:</b> <span class="ph">[e.g. take #1 on "service near me"; seasonal promo page for January; push review count past competitor]</span> — <span class="ph">[one sentence on why this matters to revenue]</span>.</div>
+</section>
+
+<footer>
+  <div>
+    <div class="mono" style="color:var(--mist)">taiga. — never go dormant</div>
+    <div style="margin-top:6px">Reply to this report with any request — it goes straight into your queue.</div>
+  </div>
+  <div class="hanko"><span>大</span></div>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Work · Taiga</title>
+<meta name="description" content="Taiga client rebuilds — before and after. Brand strategy, website design, and local SEO for health practices, gyms, and local businesses.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://taigalocal.com/work.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Client Work · Taiga">
+<meta property="og:description" content="Before and after. Real rebuilds for health practices and gyms — brand, site, and local SEO delivered in weeks.">
+<meta property="og:url" content="https://taigalocal.com/work.html">
+<meta property="og:site_name" content="Taiga">
+<meta property="og:image" content="https://taigalocal.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Taiga — Never go dormant. Websites + local SEO for health practices and gyms.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Client Work · Taiga">
+<meta name="twitter:description" content="Before and after. Real rebuilds for health practices and gyms — brand, site, and local SEO delivered in weeks.">
+<meta name="twitter:image" content="https://taigalocal.com/images/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{--boreal:#123127;--pine:#0B1F19;--abyss:#071410;--moss:#4E8168;--ember:#E8A44A;--ember-hot:#F2BA6B;--bone:#F2EDE1;--mist:#C9D6C7;--muted:#87A093;--hair:rgba(201,214,199,.14)}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{background:var(--abyss);color:var(--bone);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--ember);color:var(--abyss)}
+  .mono{font-family:'Space Mono',monospace;letter-spacing:.02em}
+  .jp{font-family:'Noto Serif JP',serif}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+  .wordfont{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;letter-spacing:-.03em}
+  .d{color:var(--ember)}
+  .eyebrow{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);display:inline-flex;align-items:center;gap:12px}
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--ember)}
+  h2{font-family:'Archivo',sans-serif;font-weight:780;font-variation-settings:"wdth" 108;font-size:clamp(26px,4.2vw,42px);letter-spacing:-.02em;line-height:1.04;margin-top:14px}
+  h3{font-family:'Archivo',sans-serif;font-weight:720;font-size:20px;letter-spacing:-.015em;line-height:1.2}
+  .note{color:var(--mist);margin-top:14px;max-width:56ch;font-size:16px}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .75s cubic-bezier(.2,.6,.2,1),transform .75s cubic-bezier(.2,.6,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .btn{display:inline-block;background:var(--ember);color:var(--abyss);font-family:'Archivo',sans-serif;font-weight:800;font-size:16px;padding:16px 30px;border-radius:100px;text-decoration:none;letter-spacing:-.01em;transition:transform .3s cubic-bezier(.2,.6,.2,1),background .3s}
+  .btn:hover{transform:translateY(-3px);background:var(--ember-hot)}
+  .btn.ghost{background:transparent;border:1px solid rgba(201,214,199,.3);color:var(--bone)}
+  .btn.ghost:hover{border-color:var(--ember);color:var(--ember);background:transparent}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;background:rgba(7,20,16,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--hair)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+  .nav-brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--bone)}
+  .nav-brand .wordfont{font-size:23px}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{color:var(--mist);text-decoration:none;font-size:14.5px;font-weight:500;transition:color .3s}
+  .nav-links a:hover,.nav-links a.active{color:var(--ember)}
+  .nav-links .btn{padding:11px 24px;font-size:15px;font-weight:700;letter-spacing:.01em}
+  @media(max-width:760px){.nav-links a:not(.btn){display:none}}
+
+  /* PAGE HERO */
+  .page-hero{padding:96px 0 72px;background:linear-gradient(180deg,var(--pine),var(--abyss));border-bottom:1px solid var(--hair)}
+  .page-hero h1{font-family:'Archivo',sans-serif;font-weight:840;font-variation-settings:"wdth" 110;font-size:clamp(36px,5.5vw,58px);letter-spacing:-.028em;line-height:.98;margin-top:18px}
+  .page-hero h1 em{font-style:normal;color:var(--ember)}
+  .page-hero .note{max-width:48ch;font-size:17px;margin-top:20px}
+
+  section{padding:80px 0;position:relative}
+
+  /* CASE STUDY */
+  .case-wrap{border:1px solid var(--hair);border-radius:22px;overflow:hidden;margin-top:44px}
+  .case-split{display:grid;grid-template-columns:1fr 1fr}
+  .case-before{background:rgba(7,20,16,.7);padding:40px;display:flex;flex-direction:column;border-right:1px solid var(--hair)}
+  .case-before-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+  .case-before-name{font-family:'Archivo',sans-serif;font-weight:760;font-size:18px;color:var(--mist);margin-bottom:6px}
+  .case-before-url{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);text-decoration:line-through;margin-bottom:20px}
+  .case-issues{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+  .case-issue{display:flex;gap:10px;align-items:baseline;font-size:14px;color:var(--muted)}
+  .case-issue::before{content:"✕";font-family:'Space Mono',monospace;font-size:10px;color:rgba(135,160,147,.4);flex:none}
+  .case-after{position:relative;overflow:hidden;min-height:340px}
+  .case-after img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .case-after-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(7,20,16,.88) 0%,rgba(7,20,16,.25) 100%);z-index:1;padding:40px;display:flex;flex-direction:column;justify-content:space-between}
+  .case-after-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#4ade80}
+  .case-after-name{font-family:'Archivo',sans-serif;font-weight:820;font-variation-settings:"wdth" 110;font-size:28px;letter-spacing:-.02em;color:var(--bone);margin-top:8px}
+  .case-after-url{font-family:'Space Mono',monospace;font-size:11.5px;color:var(--ember);text-decoration:none;letter-spacing:.04em;margin-top:6px;display:inline-block}
+  .case-after-url:hover{text-decoration:underline}
+  .case-stats{display:flex;gap:24px;flex-wrap:wrap}
+  .case-stat .sv{font-family:'Archivo',sans-serif;font-weight:820;font-size:24px;letter-spacing:-.02em;color:var(--ember)}
+  .case-stat .sl{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);margin-top:2px}
+  .case-deliverables{background:rgba(7,20,16,.55);border-top:1px solid var(--hair);padding:22px 40px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .case-del-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+  .case-del{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:rgba(232,164,74,.08);border:1px solid rgba(232,164,74,.25);border-radius:100px;padding:6px 13px;color:var(--ember)}
+  .case-desc{margin-top:28px;font-size:16px;color:var(--mist);max-width:68ch;line-height:1.7}
+
+  /* NEXT UP CARD */
+  .next-card{margin-top:32px;background:rgba(18,49,39,.3);border:1px dashed rgba(201,214,199,.2);border-radius:22px;padding:48px;text-align:center}
+  .next-card p{color:var(--muted);font-size:15px;margin-top:10px;max-width:38ch;margin-left:auto;margin-right:auto}
+  .next-card h3{color:var(--mist);font-size:22px}
+
+  /* BROWSER MOCKUP */
+  .case-before-screen{padding:0;overflow:hidden}
+  .mock-browser{background:#fff;height:100%;display:flex;flex-direction:column;font-family:'Inter',sans-serif;font-size:13px;color:#111;min-height:340px}
+  .mock-chrome{background:#f0f0f0;padding:9px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid #ddd;flex:none}
+  .mock-dot{width:10px;height:10px;border-radius:50%;flex:none}
+  .mock-url{background:#fff;border-radius:100px;padding:3px 12px;font-size:10px;color:#888;flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;border:1px solid #e0e0e0}
+  .mock-body{flex:1;overflow:hidden}
+
+  /* TESTIMONIALS */
+  .testi-section{background:var(--pine);border-top:1px solid var(--hair)}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px}
+  .testi{background:rgba(7,20,16,.5);border:1px solid var(--hair);border-radius:16px;padding:26px;transition:border-color .3s}
+  .testi:hover{border-color:rgba(232,164,74,.3)}
+  .testi-tag{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .testi-q{font-size:14.5px;color:var(--mist);line-height:1.65;font-style:italic}
+  .testi-q::before{content:'"';color:var(--ember);font-size:24px;line-height:0;vertical-align:-.45em;margin-right:2px;font-style:normal}
+  .testi-who{margin-top:16px;border-top:1px dashed rgba(201,214,199,.12);padding-top:14px}
+  .testi-who b{font-family:'Archivo',sans-serif;font-size:14px;font-weight:700;color:var(--bone);display:block;letter-spacing:-.01em}
+  .testi-who span{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:3px;display:block}
+
+  /* CTA STRIP */
+  .cta-strip{background:var(--abyss);border-top:1px solid var(--hair);padding:72px 0;text-align:center}
+  .cta-strip h2{max-width:22ch;margin:0 auto}
+  .cta-strip .note{text-align:center;margin:16px auto 0;max-width:44ch}
+  .cta-strip .btn{margin-top:32px;font-size:17px;padding:18px 36px}
+
+  footer{background:var(--abyss);border-top:1px solid var(--hair);padding:52px 0;color:var(--muted);font-size:13.5px}
+  .foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+  .foot-brand{display:flex;align-items:center;gap:12px}
+  .foot-brand .wordfont{font-size:22px;color:var(--bone)}
+  .foot-links{display:flex;gap:24px;flex-wrap:wrap}
+  .foot-links a{color:var(--muted);text-decoration:none;transition:color .3s}
+  .foot-links a:hover{color:var(--ember)}
+  .hanko{width:40px;height:40px;border-radius:9px;background:var(--ember);display:flex;align-items:center;justify-content:center;transform:rotate(-3deg)}
+  .hanko span{font-family:'Noto Serif JP',serif;font-weight:600;font-size:23px;color:var(--abyss)}
+
+  /* MOTION CARDS GRID */
+  .motion-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+
+  @media(max-width:880px){
+    .case-split,.testi-grid{grid-template-columns:1fr}
+    .case-before{border-right:none;border-bottom:1px solid var(--hair)}
+    .case-after{min-height:260px}
+    .case-deliverables{padding:22px 24px}
+    .motion-cards{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:560px){
+    .motion-cards{grid-template-columns:1fr}
+  }
+  @media(max-width:560px){section{padding:60px 0}}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="wrap nav-in">
+    <a class="nav-brand" href="/" aria-label="Taiga — Home">
+      <svg width="26" height="29" viewBox="0 0 100 110" aria-hidden="true"><path fill="#E8A44A" fill-rule="evenodd" d="M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z"/></svg>
+      <span class="wordfont">taiga<span class="d">.</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/#rebuild">The Rebuild</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="work.html" class="active">Work</a>
+      <a href="/#faq">FAQ</a>
+      <a class="btn" href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer">Book a free audit</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow mono">◦ Client work</div>
+    <h1>What a rebuild <em>actually</em> produces.</h1>
+    <p class="note">Real projects, real transformations. Brand, site, and search — delivered in weeks, not months.</p>
+  </div>
+</header>
+
+<!-- GILDRE CASE STUDY -->
+<section aria-labelledby="gildre-h">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">◦ Rebuild No. 01</div>
+    <h2 id="gildre-h" class="reveal">Gildre: from flat template to flagship founder brand.</h2>
+    <p class="note reveal">A curated founder community for operators scaling to $5M ARR. Rebranded and relaunched in 4 weeks.</p>
+
+    <div class="case-wrap reveal">
+      <div class="case-split">
+        <div class="case-before case-before-screen">
+          <div class="mock-browser">
+            <div class="mock-chrome">
+              <div class="mock-dot" style="background:#ff5f57"></div>
+              <div class="mock-dot" style="background:#febc2e"></div>
+              <div class="mock-dot" style="background:#28c840"></div>
+              <div class="mock-url">gildre.com — before rebuild</div>
+            </div>
+            <div class="mock-body" style="background:#fff;padding:16px 18px">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid #eee">
+                <div style="font-size:15px;font-weight:800;color:#3B2D6E;letter-spacing:-.01em">GILDRE<span style="color:#5FC4A2">MENTORS</span></div>
+                <div style="display:flex;gap:14px;font-size:10px;color:#666">Home · About · Mentors · Events · Resources · Login</div>
+              </div>
+              <div style="padding:18px 0 14px">
+                <div style="font-size:10px;color:#aaa;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Connect · Grow · Succeed</div>
+                <div style="font-size:20px;font-weight:700;line-height:1.2;color:#222;margin-bottom:10px">Find Your Expert Mentor.<br>Grow Your Business.</div>
+                <div style="font-size:11px;color:#777;line-height:1.55;margin-bottom:14px;max-width:42ch">Access a curated network of seasoned advisors ready to help your startup scale to the next level.</div>
+                <div style="display:inline-block;background:#3B2D6E;color:#fff;font-size:10px;padding:8px 16px;border-radius:4px">Browse Mentors →</div>
+              </div>
+              <div style="display:flex;gap:8px">
+                <div style="background:#f5f0ff;border-radius:8px;padding:10px 12px;flex:1;font-size:9px">
+                  <div style="color:#3B2D6E;font-weight:800;font-size:16px;margin-bottom:2px">50+</div>
+                  <div style="color:#999">Expert Mentors</div>
+                </div>
+                <div style="background:#f5f0ff;border-radius:8px;padding:10px 12px;flex:1;font-size:9px">
+                  <div style="color:#3B2D6E;font-weight:800;font-size:16px;margin-bottom:2px">200+</div>
+                  <div style="color:#999">Members</div>
+                </div>
+                <div style="background:#f5f0ff;border-radius:8px;padding:10px 12px;flex:1;font-size:9px">
+                  <div style="color:#3B2D6E;font-weight:800;font-size:16px;margin-bottom:2px">12+</div>
+                  <div style="color:#999">Cities</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="case-after">
+          <img src="images/gildre-community.webp" alt="Gildre community members gathered at Brooklyn Bridge Park, New York City" loading="lazy">
+          <div class="case-after-overlay">
+            <div>
+              <div class="case-after-label">After · Live now</div>
+              <div class="case-after-name">Gildre</div>
+              <a class="case-after-url" href="https://www.gildre.com" target="_blank" rel="noopener noreferrer">↗ gildre.com</a>
+            </div>
+            <div class="case-stats">
+              <div class="case-stat"><div class="sv">250+</div><div class="sl">Members</div></div>
+              <div class="case-stat"><div class="sv">74</div><div class="sl">Cities</div></div>
+              <div class="case-stat"><div class="sv">5</div><div class="sl">In-person chapters</div></div>
+              <div class="case-stat"><div class="sv">4 wks</div><div class="sl">Delivery</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="case-deliverables">
+        <span class="case-del-label">Delivered:</span>
+        <span class="case-del">Brand strategy</span>
+        <span class="case-del">Visual identity</span>
+        <span class="case-del">Full website rebuild</span>
+        <span class="case-del">Membership structure</span>
+        <span class="case-del">Conversion copy</span>
+      </div>
+    </div>
+
+    <p class="case-desc reveal">Gildre needed to stop looking like another mentor marketplace and start feeling like the premium founder community it actually is. The rebrand repositioned them around the community — curated, peer-driven, stage-specific — and the new site reflects that from the first scroll. The conversion structure now makes joining the obvious next step.</p>
+  </div>
+</section>
+
+<!-- BLOOM CHIROPRACTIC CASE STUDY -->
+<section aria-labelledby="bloom-h" style="background:var(--pine)">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">◦ Rebuild No. 02</div>
+    <h2 id="bloom-h" class="reveal">Bloom Chiropractic: 30 years of trust, finally visible on search.</h2>
+    <p class="note reveal">Dr. Linda Matz has been Missoula's chiropractor for over three decades. Her old site made her look like a newcomer. The rebuild changed that.</p>
+
+    <div class="case-wrap reveal">
+      <div class="case-split">
+        <div class="case-before case-before-screen">
+          <div class="mock-browser">
+            <div class="mock-chrome">
+              <div class="mock-dot" style="background:#ff5f57"></div>
+              <div class="mock-dot" style="background:#febc2e"></div>
+              <div class="mock-dot" style="background:#28c840"></div>
+              <div class="mock-url">bloomchiropracticwellness.com — before</div>
+            </div>
+            <div class="mock-body">
+              <div style="background:#c8197a;color:#fff;font-size:10px;padding:5px;text-align:center;font-weight:600">Limited Time Offer: StemWave Discovery Visit $49! ✕</div>
+              <div style="background:#fff;padding:10px 14px;border-bottom:1px solid #eee">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div>
+                    <div style="font-size:9px;color:#555">Dr. Linda Matz</div>
+                    <div style="font-size:13px;font-weight:900;color:#c8197a;line-height:1.1">BLOOM<br>CHIROPRACTIC</div>
+                  </div>
+                  <div style="background:#c8197a;color:#fff;font-size:9px;padding:6px 12px;border-radius:3px;font-weight:700">Call Now</div>
+                </div>
+                <div style="font-size:9px;color:#555;display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid #eee">
+                  <span>Home</span><span>Our Services</span><span>Health Concerns</span><span>StemWave</span><span>Cold Laser</span><span>LENS Neurofeedback</span><span>Nutritional Therapy</span><span>What to Expect</span>
+                </div>
+              </div>
+              <div style="background:#f5faf5;padding:16px 14px;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:center">
+                <div style="background:#c8dfc8;border-radius:6px;height:88px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#777">stock photo</div>
+                <div>
+                  <div style="font-size:17px;font-weight:700;color:#111;line-height:1.2;margin-bottom:8px">We help your body thrive.</div>
+                  <div style="font-size:10px;color:#666;line-height:1.5;margin-bottom:10px">At Bloom Chiropractic and Wellness Center, we use a holistic approach to eliminate pain...</div>
+                  <div style="background:#c8197a;color:#fff;font-size:9px;padding:7px 12px;border-radius:3px;display:inline-block;font-weight:600">Call for an Appointment Today!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="case-after">
+          <img src="images/bloom-dr-linda.webp" alt="Dr. Linda Matz, Bloom Chiropractic, Missoula Montana" loading="lazy">
+          <div class="case-after-overlay">
+            <div>
+              <div class="case-after-label">After · Launching now</div>
+              <div class="case-after-name">Bloom Chiropractic</div>
+              <span class="case-after-url" style="color:var(--muted);cursor:default">bloomchiropracticwellness.com</span>
+            </div>
+            <div class="case-stats">
+              <div class="case-stat"><div class="sv">5.0 ★</div><div class="sl">Google rating</div></div>
+              <div class="case-stat"><div class="sv">125</div><div class="sl">Reviews</div></div>
+              <div class="case-stat"><div class="sv">30+</div><div class="sl">Years in Missoula</div></div>
+              <div class="case-stat"><div class="sv">4×</div><div class="sl">Best of Missoula</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="case-deliverables">
+        <span class="case-del-label">Delivered:</span>
+        <span class="case-del">Brand system</span>
+        <span class="case-del">Full website rebuild</span>
+        <span class="case-del">Local SEO</span>
+        <span class="case-del">GBP rebuild</span>
+        <span class="case-del">Conversion copy</span>
+        <span class="case-del">Schema markup</span>
+      </div>
+    </div>
+
+    <p class="case-desc reveal">Dr. Linda Matz is a third-generation chiropractor with 30 years in Missoula, 125 five-star Google reviews, and techniques most clinics don't offer. Her old site hid all of it behind a cluttered nav and a stock photo hero. The rebuild leads with her authority — the headline, the stats, the service depth — and structures every page so new patients find her before competitors with a fraction of her track record.</p>
+
+    <div class="next-card reveal">
+      <h3>Rebuild No. 03</h3>
+      <p>Your practice or gym could be next.</p>
+      <a class="btn ghost" href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer" style="margin-top:22px">Book your free audit</a>
+    </div>
+  </div>
+</section>
+
+<!-- MOTION SAMPLES -->
+<section aria-labelledby="motion-h" style="background:var(--abyss)">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">◦ Motion design</div>
+    <h2 id="motion-h" class="reveal">What a bolder client build looks like.</h2>
+    <p class="note reveal" style="max-width:52ch">These demos show cinematic scroll and editorial motion — techniques available as starting points for clients who want something more ambitious. Built with the same no-framework, fast-load approach as every Taiga site.</p>
+
+    <div class="motion-cards reveal">
+
+      <!-- Mostar demo card -->
+      <a href="mostar.html" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;border-radius:22px;overflow:hidden;border:1px solid var(--hair);background:rgba(7,20,16,.5);transition:transform .4s cubic-bezier(.2,.6,.2,1),border-color .3s;position:relative" onmouseenter="this.style.transform='translateY(-5px)';this.style.borderColor='rgba(232,164,74,.35)'" onmouseleave="this.style.transform='';this.style.borderColor=''">
+        <div style="position:relative;height:220px;overflow:hidden;background:#7fb4d4">
+          <img src="https://raft-blast-61784561.figma.site/_assets/v11/c6a6d8ef49bca43f708aa852692942c45ec950d4.png" alt="Stari Most bridge, Mostar" loading="lazy" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:110%;height:auto;object-fit:contain">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,20,16,0) 40%,rgba(7,20,16,.85) 100%)"></div>
+          <div style="position:absolute;top:16px;left:20px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#4ade80">Cinematic scroll</div>
+        </div>
+        <div style="padding:24px 28px 28px">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ember);margin-bottom:8px">Demo · Vanilla JS</div>
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:820;font-variation-settings:'wdth' 110;font-size:21px;letter-spacing:-.02em;color:var(--bone);margin-bottom:10px">Mostar City</h3>
+          <p style="font-size:14px;color:var(--mist);line-height:1.6">Three-frame cinematic scroll with parallax layers, blur transitions, animated sight cards, and pointer-driven depth. Scrolls ~3,700px inside a sticky viewport.</p>
+          <div style="margin-top:16px;font-family:'Space Mono',monospace;font-size:10px;color:var(--ember)">View demo ↗</div>
+        </div>
+      </a>
+
+      <!-- Marcus demo card -->
+      <a href="marcus.html" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;border-radius:22px;overflow:hidden;border:1px solid var(--hair);background:rgba(7,20,16,.5);transition:transform .4s cubic-bezier(.2,.6,.2,1),border-color .3s;position:relative" onmouseenter="this.style.transform='translateY(-5px)';this.style.borderColor='rgba(232,164,74,.35)'" onmouseleave="this.style.transform='';this.style.borderColor=''">
+        <div style="position:relative;height:220px;overflow:hidden;background:#141414">
+          <img src="https://stone-expand-60400629.figma.site/_assets/v11/8da570354e86aa0d44ac3e4aa335a72c8e750d68.png" alt="Marcus Bennet portrait cutout" loading="lazy" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:100%;width:auto;object-fit:contain">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,20,0) 30%,rgba(20,20,20,.7) 100%)"></div>
+          <div style="position:absolute;top:16px;left:20px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#4ade80">Editorial hero</div>
+        </div>
+        <div style="padding:24px 28px 28px">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ember);margin-bottom:8px">Demo · Vanilla JS</div>
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:820;font-variation-settings:'wdth' 110;font-size:21px;letter-spacing:-.02em;color:var(--bone);margin-bottom:10px">Marcus — Bennet</h3>
+          <p style="font-size:14px;color:var(--mist);line-height:1.6">Full-viewport editorial portfolio with giant scrolling name, portrait cutout, staggered entrance animations, and a mobile drawer. Black/cream, no scroll.</p>
+          <div style="margin-top:16px;font-family:'Space Mono',monospace;font-size:10px;color:var(--ember)">View demo ↗</div>
+        </div>
+      </a>
+
+      <!-- NovaAI demo card -->
+      <a href="novaai.html" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;border-radius:22px;overflow:hidden;border:1px solid var(--hair);background:rgba(7,20,16,.5);transition:transform .4s cubic-bezier(.2,.6,.2,1),border-color .3s;position:relative" onmouseenter="this.style.transform='translateY(-5px)';this.style.borderColor='rgba(232,164,74,.35)'" onmouseleave="this.style.transform='';this.style.borderColor=''">
+        <div style="position:relative;height:220px;overflow:hidden;background:#0a0a0a">
+          <img src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260728_050334_5b076e26-0ce7-4898-b432-d764190e448f.png&w=1280&q=85" alt="NovaAI — Mitha portrait" loading="lazy" style="position:absolute;right:0;bottom:0;height:100%;width:auto;object-fit:contain;opacity:.85">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,0) 30%,rgba(10,10,10,.9) 100%)"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.6) 0%,rgba(10,10,10,0) 50%)"></div>
+          <div style="position:absolute;top:16px;left:20px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#4ade80">Scroll video</div>
+          <!-- glass badge -->
+          <div style="position:absolute;bottom:16px;left:20px;display:inline-flex;align-items:center;border-left:2px solid #fff;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:5px 10px;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#fff">AI automation</div>
+        </div>
+        <div style="padding:24px 28px 28px">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ember);margin-bottom:8px">Demo · Vanilla JS</div>
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:820;font-variation-settings:'wdth' 110;font-size:21px;letter-spacing:-.02em;color:var(--bone);margin-bottom:10px">NOVA_AI</h3>
+          <p style="font-size:14px;color:var(--mist);line-height:1.6">Scroll-scrubbed background video with frame cache, glass navbar, frosted capability panel, and IntersectionObserver reveals. Dark, precise, automated.</p>
+          <div style="margin-top:16px;font-family:'Space Mono',monospace;font-size:10px;color:var(--ember)">View demo ↗</div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="reveal" style="margin-top:20px;background:rgba(18,49,39,.25);border:1px dashed rgba(201,214,199,.15);border-radius:14px;padding:20px 24px;font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);line-height:1.7;max-width:72ch">
+      ◦ These are motion-design starting points — if a client wants this energy, Taiga reinterprets the technique in their own brand system. Fast load, mobile-first, no frameworks.
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section" aria-labelledby="testi-h">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">◦ From Gildre's community</div>
+    <h2 id="testi-h" class="reveal">What members say about the rebuilt platform.</h2>
+    <p class="note reveal">15 member testimonials collected after launch.</p>
+    <div class="testi-grid">
+
+      <div class="testi reveal">
+        <div class="testi-tag">Gildre member</div>
+        <p class="testi-q">Being in Gildre feels like having founder co-workers that actually get it. They've saved me hours of research just by sharing what's worked for them.</p>
+        <div class="testi-who"><b>Caitlin Van Berkel</b><span>Founder · Silver Lining Career Coach</span></div>
+      </div>
+
+      <div class="testi reveal">
+        <div class="testi-tag">Gildre member</div>
+        <p class="testi-q">This is the first membership where I truly feel like I'm getting what I paid for. The value and time the Gildre team spends with us on our business is remarkable.</p>
+        <div class="testi-who"><b>Iliana Alvarado</b><span>President · Ensyx Systems</span></div>
+      </div>
+
+      <div class="testi reveal">
+        <div class="testi-tag">Gildre member</div>
+        <p class="testi-q">Gildre continues to introduce me to an amazing network that helped our company partner with and reach different sponsors. The in-person events are genuine.</p>
+        <div class="testi-who"><b>Dan Hernandez</b><span>Co-Founder · HUPR</span></div>
+      </div>
+
+      <div class="testi reveal">
+        <div class="testi-tag">Gildre member</div>
+        <p class="testi-q">Gildre was instrumental when I was first starting my company and needed to meet other business owners who understood the same challenges.</p>
+        <div class="testi-who"><b>Connor Fitzgerald</b><span>Founder · AGI Beacon</span></div>
+      </div>
+
+      <div class="testi reveal">
+        <div class="testi-tag">Gildre member</div>
+        <p class="testi-q">The structure at Gildre is impressive — it's truly a space where founders challenge each other and mentorship isn't abstract.</p>
+        <div class="testi-who"><b>Christof Mannfeld</b><span>Founder · SOLVEE</span></div>
+      </div>
+
+      <div class="testi reveal">
+        <div class="testi-tag">Gildre member</div>
+        <p class="testi-q">Gildre connected me with founders who had the SaaS and entrepreneurship experience I needed, so I wasn't walking that road alone.</p>
+        <div class="testi-who"><b>Gavin Buckland</b><span>Founder · Clipsense.ai</span></div>
+      </div>
+
+      <div class="testi reveal">
+        <div class="testi-tag">Gildre member</div>
+        <p class="testi-q">Since we joined Gildre we've started to see measurable consistency in new customers. Inbound interest continues to grow, which has helped create momentum.</p>
+        <div class="testi-who"><b>Alejandro Sandoval</b><span>Founder · Rodo</span></div>
+      </div>
+
+      <div class="testi reveal">
+        <div class="testi-tag">Gildre member</div>
+        <p class="testi-q">Joining Gildre was the best decision I made since starting my practice in 2016. At each encounter I got better ideas that improved my offering.</p>
+        <div class="testi-who"><b>Carol Palombini</b><span>Founder · Palombini Coaching</span></div>
+      </div>
+
+      <div class="testi reveal">
+        <div class="testi-tag">Gildre member</div>
+        <p class="testi-q">I wanted to surround myself with others going through similar growth and challenges. Gildre gives me exactly that — a community where I can both give and gain exceptional value.</p>
+        <div class="testi-who"><b>Elise Madrick</b><span>Founder · Cerené</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="wrap">
+    <div class="eyebrow mono" style="justify-content:center">◦ Next step</div>
+    <h2>Your practice or gym could be next.</h2>
+    <p class="note">15-minute speed audit. We name what's costing you patients or members right now. You keep the findings either way.</p>
+    <a class="btn" href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer">Book your free audit</a>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <div class="foot-brand">
+      <svg width="24" height="27" viewBox="0 0 100 110" aria-hidden="true"><path fill="#E8A44A" fill-rule="evenodd" d="M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z"/></svg>
+      <span class="wordfont">taiga<span class="d">.</span></span>
+      <span style="margin-left:6px">Web · Brand · Local Search</span>
+    </div>
+    <nav class="foot-links" aria-label="Footer navigation">
+      <a href="/">Home</a>
+      <a href="/#rebuild">The Rebuild</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="work.html">Work</a>
+      <a href="/#faq">FAQ</a>
+      <a href="kickoff.html">Client kickoff</a>
+      <a href="check.html">Free AI Checker</a>
+      <a href="template.html">Template</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer">Book an audit</a>
+    </nav>
+    <div class="hanko" aria-label="Taiga seal"><span class="jp">大</span></div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

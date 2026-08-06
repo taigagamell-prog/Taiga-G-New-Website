@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your files are ready — The Taiga System</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 110'><path fill='%23E8A44A' fill-rule='evenodd' d='M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{--boreal:#123127;--pine:#0B1F19;--abyss:#071410;--ember:#E8A44A;--ember-hot:#F2BA6B;--bone:#F2EDE1;--mist:#C9D6C7;--muted:#87A093;--hair:rgba(201,214,199,.14);--moss:#4E8168}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--abyss);color:var(--bone);font-family:'Inter',sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--ember);color:var(--abyss)}
+  a{color:var(--ember);text-decoration:none}
+  a:hover{text-decoration:underline;text-underline-offset:3px}
+  .wrap{max-width:860px;margin:0 auto;padding:0 28px}
+  .wordfont{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;letter-spacing:-.03em}
+  .d{color:var(--ember)}
+
+  /* HEADER */
+  .k-header{padding:20px 0;background:var(--pine);border-bottom:1px solid var(--hair)}
+  .k-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand-link{display:flex;align-items:center;gap:9px;text-decoration:none;color:inherit}
+  .brand-link .wordfont{font-size:20px;color:var(--bone)}
+  .header-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);background:rgba(201,214,199,.07);border:1px solid var(--hair);border-radius:100px;padding:4px 12px}
+
+  /* HERO */
+  .k-hero{padding:64px 0 56px;background:linear-gradient(180deg,var(--pine) 0%,var(--abyss) 100%);border-bottom:1px solid var(--hair)}
+  .confirm-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(78,129,104,.18);border:1px solid rgba(78,129,104,.35);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--moss);margin-bottom:24px}
+  .confirm-badge::before{content:"✓";color:var(--moss);font-weight:700}
+  h1.kit-h1{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;font-size:clamp(34px,5.5vw,54px);letter-spacing:-.03em;line-height:1;color:var(--bone);margin-bottom:16px}
+  .kit-sub{font-size:16px;color:var(--mist);max-width:50ch;line-height:1.65}
+
+  /* FILES */
+  .files{padding:64px 0;border-bottom:1px solid var(--hair)}
+  .files-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+  .file-card{background:rgba(18,49,39,.3);border:1px solid var(--hair);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:20px;transition:border-color .25s}
+  .file-card:hover{border-color:rgba(201,214,199,.25)}
+  .file-num{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember)}
+  .file-name{font-family:'Archivo',sans-serif;font-weight:760;font-size:22px;letter-spacing:-.015em;color:var(--bone);line-height:1.1}
+  .file-type{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.08em}
+  .file-desc{font-size:14px;color:var(--muted);line-height:1.65;flex:1}
+  .file-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Archivo',sans-serif;font-weight:760;font-size:14px;letter-spacing:.01em;border-radius:10px;padding:12px 22px;text-decoration:none;transition:background .2s,transform .15s;white-space:nowrap}
+  .file-btn.solid{background:var(--ember);color:var(--abyss)}
+  .file-btn.solid:hover{background:var(--ember-hot);transform:translateY(-1px);text-decoration:none;color:var(--abyss)}
+  .file-btn.ghost{background:transparent;color:var(--bone);border:1px solid rgba(201,214,199,.3)}
+  .file-btn.ghost:hover{border-color:var(--ember);color:var(--ember);background:transparent;transform:translateY(-1px);text-decoration:none}
+  .dl-note{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);margin-top:8px;line-height:1.6}
+
+  /* START HERE */
+  .start{padding:64px 0;border-bottom:1px solid var(--hair)}
+  .sh2{font-family:'Archivo',sans-serif;font-weight:840;font-variation-settings:"wdth" 110;font-size:clamp(24px,4vw,34px);letter-spacing:-.022em;margin-top:14px;color:var(--bone);line-height:1.05}
+  .start-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair);border-radius:16px;overflow:hidden;margin-top:36px}
+  .ss{background:var(--abyss);padding:26px 22px}
+  .ss-n{font-family:'Archivo',sans-serif;font-weight:860;font-size:32px;letter-spacing:-.04em;line-height:1;color:rgba(232,164,74,.2);margin-bottom:12px}
+  .ss-title{font-family:'Archivo',sans-serif;font-weight:720;font-size:15px;color:var(--bone);margin-bottom:6px}
+  .ss-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+  /* WHAT'S INSIDE */
+  .inside{background:var(--pine);padding:64px 0;border-bottom:1px solid var(--hair)}
+  .inside-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+  .inside-card{border:1px solid var(--hair);border-radius:14px;padding:26px}
+  .ic-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ember);margin-bottom:10px}
+  .ic-title{font-family:'Archivo',sans-serif;font-weight:720;font-size:16px;color:var(--bone);margin-bottom:10px}
+  .ic-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:7px}
+  .ic-list li{font-size:13px;color:var(--muted);display:flex;gap:9px;align-items:baseline;line-height:1.5}
+  .ic-list li::before{content:"◦";color:var(--ember);flex:none;font-size:10px}
+
+  /* ESCAPE HATCHES */
+  .escape{padding:64px 0;border-bottom:1px solid var(--hair)}
+  .escape-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px}
+  .ec{border:1px solid var(--hair);border-radius:18px;padding:30px}
+  .ec.hot{border-color:rgba(232,164,74,.3);background:rgba(18,49,39,.4)}
+  .ec-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .ec-price{font-family:'Archivo',sans-serif;font-weight:860;font-size:26px;letter-spacing:-.025em;color:var(--bone);margin-bottom:8px}
+  .ec.hot .ec-price{color:var(--ember)}
+  .ec-was{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);text-decoration:line-through;margin-bottom:2px}
+  .ec-title{font-family:'Archivo',sans-serif;font-weight:720;font-size:15px;color:var(--bone);margin-bottom:8px}
+  .ec-desc{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:20px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Archivo',sans-serif;font-weight:760;font-size:14px;letter-spacing:.01em;color:var(--abyss);background:var(--ember);border:none;border-radius:10px;padding:13px 26px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none;white-space:nowrap;width:100%;justify-content:center}
+  .btn:hover{background:var(--ember-hot);transform:translateY(-1px);text-decoration:none;color:var(--abyss)}
+  .btn.ghost{background:transparent;color:var(--bone);border:1px solid rgba(201,214,199,.3)}
+  .btn.ghost:hover{border-color:var(--ember);color:var(--ember);background:transparent}
+
+  /* FOOTER */
+  .k-footer{padding:40px 0 56px}
+  .foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+  .foot-brand{font-family:'Archivo',sans-serif;font-weight:760;font-size:16px;color:var(--bone)}
+  .foot-links{display:flex;gap:20px;flex-wrap:wrap}
+  .foot-links a{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s}
+  .foot-links a:hover{color:var(--ember)}
+  .hanko{width:40px;height:40px;border-radius:9px;background:var(--ember);display:flex;align-items:center;justify-content:center;transform:rotate(-3deg);flex:none}
+
+  @media(max-width:640px){
+    .files-grid,.start-steps,.inside-grid,.escape-cards{grid-template-columns:1fr}
+    .wrap{padding:0 20px}
+  }
+</style>
+</head>
+<body>
+
+<header class="k-header">
+  <div class="wrap">
+    <a class="brand-link" href="/" aria-label="Taiga — Home">
+      <svg width="22" height="25" viewBox="0 0 100 110" aria-hidden="true"><path fill="#E8A44A" fill-rule="evenodd" d="M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z"/></svg>
+      <span class="wordfont">taiga<span class="d">.</span></span>
+    </a>
+    <span class="header-tag">Order confirmed</span>
+  </div>
+</header>
+
+<main>
+
+<section class="k-hero">
+  <div class="wrap">
+    <div class="confirm-badge">Payment received</div>
+    <h1 class="kit-h1">Your files<br>are ready.</h1>
+    <p class="kit-sub">The Taiga System — both files are below. Start with the template, keep the guide open while you work. A weekend of focused work gets you live.</p>
+  </div>
+</section>
+
+<!-- FILES -->
+<section class="files">
+  <div class="wrap">
+    <div class="files-grid">
+
+      <!-- Template -->
+      <div class="file-card">
+        <div>
+          <div class="file-num">◦ File 01</div>
+          <div class="file-name">The site<br>template</div>
+          <div class="file-type">taiga-template-system.html · ~16KB</div>
+        </div>
+        <div class="file-desc">The full 8-page site — nav, hero, services, about, reviews, FAQ, CTA, footer. 89 bracketed placeholders. Schema, OG tags, mobile-first, reduced-motion. Change 6 hex values to rebrand everything.</div>
+        <div>
+          <a class="file-btn solid" href="/downloads/taiga-template-system.html" download="taiga-template-system.html">
+            ↓ Download template
+          </a>
+          <div class="dl-note">Right-click → Save As if your browser opens it instead of downloading.</div>
+        </div>
+      </div>
+
+      <!-- Guide -->
+      <div class="file-card">
+        <div>
+          <div class="file-num">◦ File 02</div>
+          <div class="file-name">The setup<br>guide</div>
+          <div class="file-type">taigalocal.com/guide · interactive</div>
+        </div>
+        <div class="file-desc">6 steps from a raw HTML file to a live, ranking site. Covers rebrand, bracket fill, photos, share image, deploy, and Step 6 — the GBP + reviews + monthly page trifecta where the traffic actually comes from.</div>
+        <div>
+          <a class="file-btn ghost" href="/guide" target="_blank">
+            Open setup guide →
+          </a>
+          <div class="dl-note">Bookmark this link — the interactive checklist saves your progress in your browser.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- START HERE -->
+<section class="start">
+  <div class="wrap">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember)">◦ Where to begin</div>
+    <h2 class="sh2">Three things, in order.</h2>
+    <div class="start-steps">
+      <div class="ss">
+        <div class="ss-n">01</div>
+        <div class="ss-title">Download the template</div>
+        <div class="ss-desc">Save the file. Open it in VS Code or any text editor. Don't open it in a browser yet — you'll edit first.</div>
+      </div>
+      <div class="ss">
+        <div class="ss-n">02</div>
+        <div class="ss-title">Open the guide alongside it</div>
+        <div class="ss-desc">Work through Steps 1–5 with the guide open. The checklist at the bottom tracks your progress.</div>
+      </div>
+      <div class="ss">
+        <div class="ss-n">03</div>
+        <div class="ss-title">Don't skip Step 6</div>
+        <div class="ss-desc">GBP + reviews + monthly pages. The site is the foundation. These are the traffic. Most people skip them. That's the gap.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="inside">
+  <div class="wrap">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember)">◦ What's in the template</div>
+    <h2 class="sh2">Technical wins,<br>pre-baked.</h2>
+    <div class="inside-grid">
+      <div class="inside-card">
+        <div class="ic-label">◦ SEO foundation</div>
+        <div class="ic-title">Everything agencies charge extra for</div>
+        <ul class="ic-list">
+          <li>LocalBusiness / MedicalBusiness schema markup</li>
+          <li>Canonical tag and OG / Twitter card meta</li>
+          <li>H1 structured as [Service] in [City] — your #1 ranking signal</li>
+          <li>FAQ in question-answer format that AI assistants quote</li>
+          <li>Clean meta title and description slots with character guidance</li>
+        </ul>
+      </div>
+      <div class="inside-card">
+        <div class="ic-label">◦ Build quality</div>
+        <div class="ic-title">Fast, accessible, honest</div>
+        <ul class="ic-list">
+          <li>Mobile-first layout — passes Core Web Vitals out of the box</li>
+          <li>Reduced-motion CSS for accessibility</li>
+          <li>6-token design system — rebrand with 6 hex values</li>
+          <li>2 font variables — swap display and body type in 2 lines</li>
+          <li>~16KB uncompressed — loads on any connection</li>
+        </ul>
+      </div>
+      <div class="inside-card">
+        <div class="ic-label">◦ Pages included</div>
+        <div class="ic-title">Every section a local practice needs</div>
+        <ul class="ic-list">
+          <li>Nav (sticky, mobile-responsive)</li>
+          <li>Hero — [service] in [city] H1 with trust signal</li>
+          <li>Services — 3-card grid with pricing placeholders</li>
+          <li>About / Why us — dark band section</li>
+          <li>Reviews — 2-quote grid for real Google reviews</li>
+          <li>FAQ — accordion structure for AI citation</li>
+          <li>CTA — closing conversion section</li>
+          <li>Footer — address, hours, Google profile link</li>
+        </ul>
+      </div>
+      <div class="inside-card">
+        <div class="ic-label">◦ The guide covers</div>
+        <div class="ic-title">From file to live site</div>
+        <ul class="ic-list">
+          <li>6-token rebrand walkthrough with explanations</li>
+          <li>89-bracket fill guide with priority order</li>
+          <li>Schema type decision tree (Medical / Health / Local)</li>
+          <li>Netlify Drop deploy — drag a folder, live in 30 seconds</li>
+          <li>GBP, review, and monthly-page playbook (Step 6)</li>
+          <li>Interactive launch checklist with localStorage state</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESCAPE HATCHES -->
+<section class="escape">
+  <div class="wrap">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember)">◦ If you get stuck</div>
+    <h2 class="sh2">Two exits.<br>Your $500 travels.</h2>
+    <div class="escape-cards">
+      <div class="ec">
+        <div class="ec-tag">◦ Option A — help</div>
+        <div class="ec-price">$200</div>
+        <div class="ec-title">60-minute setup call</div>
+        <div class="ec-desc">Screen-to-screen with Taiga. We work through your specific site live — exact fixes on your actual file, no generics. Covers wherever you're stuck, from VS Code basics to schema to GBP questions.</div>
+        <a class="btn ghost" href="mailto:taiga@taigalocal.com?subject=Setup call - The Taiga System">Email to book → taiga@taigalocal.com</a>
+      </div>
+      <div class="ec hot">
+        <div class="ec-tag">◦ Option B — done for you</div>
+        <div class="ec-was">$3,000 down</div>
+        <div class="ec-price">$2,500 down</div>
+        <div class="ec-title">Full Rebuild — your $500 credited</div>
+        <div class="ec-desc">Taiga does the complete build — custom brand, 8-page site, geo content, GBP setup, the works. Your $500 from this purchase credits in full toward the deposit. No time limit, no conditions.</div>
+        <a class="btn" href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer">Book the free audit →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="k-footer">
+  <div class="wrap foot-in">
+    <div>
+      <div class="foot-brand">taiga<span class="d">.</span> — never go dormant</div>
+      <nav class="foot-links" style="margin-top:10px">
+        <a href="/">Home</a>
+        <a href="/guide">Setup Guide</a>
+        <a href="/check">Free AI Check</a>
+        <a href="mailto:taiga@taigalocal.com">taiga@taigalocal.com</a>
+      </nav>
+    </div>
+    <div class="hanko" aria-label="Taiga seal"><span style="font-family:'Noto Serif JP',serif;font-weight:600;font-size:23px;color:var(--abyss)">大</span></div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kickoff Agreement · Taiga</title>
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kickoff Agreement · Taiga">
+<meta property="og:description" content="Lock in your Rebuild. Read the agreement and pay the deposit — build starts the day it clears.">
+<meta property="og:image" content="https://taigalocal.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://taigalocal.com/images/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{--boreal:#123127;--pine:#0B1F19;--abyss:#071410;--ember:#E8A44A;--ember-hot:#F2BA6B;--bone:#F2EDE1;--mist:#C9D6C7;--muted:#87A093;--hair:rgba(201,214,199,.14)}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{background:var(--abyss);color:var(--bone);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--ember);color:var(--abyss)}
+  .mono{font-family:'Space Mono',monospace}
+  .wordfont{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;letter-spacing:-.03em}
+  .d{color:var(--ember)}
+  .wrap{max-width:720px;margin:0 auto;padding:0 28px}
+  .eyebrow{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);display:inline-flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--ember)}
+
+  /* HEADER */
+  .doc-header{padding:64px 0 52px;background:linear-gradient(180deg,var(--pine) 0%,var(--abyss) 100%);border-bottom:1px solid var(--hair)}
+  .brand-row{display:flex;align-items:center;gap:10px;margin-bottom:40px}
+  .brand-row .wordfont{font-size:21px;color:var(--bone)}
+  .client-label{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  h1{font-family:'Archivo',sans-serif;font-weight:840;font-variation-settings:"wdth" 110;font-size:clamp(32px,5vw,50px);letter-spacing:-.028em;line-height:.98;color:var(--bone)}
+  h1 .client-name{color:var(--ember)}
+  .hero-sub{font-size:17px;color:var(--mist);margin-top:18px;max-width:42ch;line-height:1.55}
+
+  /* SCOPE TABLE */
+  section{padding:52px 0}
+  section+section{border-top:1px solid var(--hair)}
+  .scope-table{margin-top:28px;border:1px solid var(--hair);border-radius:18px;overflow:hidden}
+  .scope-row{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:1px solid var(--hair);gap:20px}
+  .scope-row:last-child{border-bottom:none}
+  .scope-row.total{background:rgba(232,164,74,.06);border-top:1px solid rgba(232,164,74,.2)}
+  .scope-row.total .sr-label{font-family:'Archivo',sans-serif;font-weight:760;font-size:16px;color:var(--bone)}
+  .scope-row.total .sr-val{font-family:'Archivo',sans-serif;font-weight:840;font-size:26px;letter-spacing:-.02em;color:var(--ember)}
+  .scope-row.plan{background:rgba(18,49,39,.35)}
+  .sr-label{font-size:15px;color:var(--mist)}
+  .sr-val{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4ade80;white-space:nowrap}
+  .sr-val.neutral{color:var(--muted)}
+  .sr-val.big{font-family:'Archivo',sans-serif;font-size:17px;font-weight:760;letter-spacing:-.01em;color:var(--bone)}
+  .scope-row.plan .sr-val{color:var(--ember);font-size:12px;letter-spacing:.06em}
+
+  /* AGREEMENT */
+  .terms{margin-top:28px;display:flex;flex-direction:column;gap:0;border:1px solid var(--hair);border-radius:18px;overflow:hidden}
+  .term{padding:22px 28px;border-bottom:1px solid var(--hair)}
+  .term:last-child{border-bottom:none}
+  .term-head{font-family:'Archivo',sans-serif;font-weight:740;font-size:15px;letter-spacing:-.01em;color:var(--bone);margin-bottom:7px}
+  .term-body{font-size:14px;color:var(--muted);line-height:1.65}
+  .term-body b{color:var(--mist);font-weight:600}
+
+  /* PAYMENT */
+  .pay-section{background:var(--pine);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:52px 0}
+  .pay-card{background:rgba(7,20,16,.7);border:1px solid rgba(232,164,74,.3);border-radius:22px;padding:40px;text-align:center;position:relative;overflow:hidden}
+  .pay-card::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(232,164,74,.08) 0%,transparent 65%);pointer-events:none}
+  .pay-amount{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 110;font-size:52px;letter-spacing:-.03em;color:var(--ember);line-height:1}
+  .pay-label{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+  .pay-sub{font-size:14px;color:var(--muted);margin-top:12px;max-width:38ch;margin-left:auto;margin-right:auto;line-height:1.55}
+  .pay-btn{display:inline-block;margin-top:28px;background:var(--ember);color:var(--abyss);font-family:'Archivo',sans-serif;font-weight:800;font-size:17px;padding:18px 36px;border-radius:100px;text-decoration:none;letter-spacing:-.01em;transition:transform .3s,background .3s;position:relative;z-index:1}
+  .pay-btn:hover{transform:translateY(-3px);background:var(--ember-hot)}
+  .pay-secure{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:18px;display:flex;align-items:center;justify-content:center;gap:8px}
+  .pay-secure::before{content:"◦";color:rgba(201,214,199,.3)}
+
+  /* NEXT STEPS */
+  .next-steps{margin-top:28px;background:rgba(18,49,39,.25);border:1px solid var(--hair);border-radius:16px;padding:28px}
+  .next-steps h3{font-family:'Archivo',sans-serif;font-weight:740;font-size:17px;letter-spacing:-.01em;margin-bottom:14px;color:var(--bone)}
+  .next-step{display:flex;gap:14px;font-size:14px;color:var(--muted);margin-bottom:10px;line-height:1.55}
+  .next-step:last-child{margin-bottom:0}
+  .ns-num{font-family:'Space Mono',monospace;font-size:10px;background:rgba(232,164,74,.12);border:1px solid rgba(232,164,74,.2);color:var(--ember);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;margin-top:1px}
+
+  /* RETAINER PREVIEW */
+  .retainer-preview{margin-top:24px;border:1px solid rgba(232,164,74,.28);border-radius:16px;overflow:hidden}
+  .rp-hdr{background:rgba(232,164,74,.08);padding:16px 24px;border-bottom:1px solid rgba(232,164,74,.18);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .rp-hdr-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ember)}
+  .rp-tier-chip{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;background:var(--ember);color:var(--abyss);border-radius:100px;padding:3px 11px;font-weight:700;white-space:nowrap}
+  .rp-body{padding:20px 24px;display:flex;flex-direction:column;gap:10px}
+  .rp-item{display:flex;gap:12px;font-size:14px;color:var(--mist);line-height:1.5;align-items:baseline}
+  .rp-item::before{content:"◦";font-family:'Space Mono',monospace;font-size:10px;color:var(--ember);flex:none}
+  .rp-note{padding:14px 24px;border-top:1px solid var(--hair);font-size:12px;font-family:'Space Mono',monospace;color:var(--muted);letter-spacing:.06em;line-height:1.55}
+
+  /* HANDOFF TERM */
+  .term.handoff{background:rgba(18,49,39,.3)}
+  .handoff-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;background:rgba(201,214,199,.08);border:1px solid var(--hair);border-radius:100px;padding:3px 10px;color:var(--muted);margin-bottom:8px}
+
+  /* FOOTER */
+  .doc-footer{padding:44px 0 60px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:13px}
+  .hanko{width:40px;height:40px;border-radius:9px;background:var(--ember);display:flex;align-items:center;justify-content:center;transform:rotate(-3deg);flex:none}
+  .hanko span{font-family:'Noto Serif JP',serif;font-weight:600;font-size:23px;color:var(--abyss)}
+  .foot-info a{color:var(--muted);text-decoration:none}
+  .foot-info a:hover{color:var(--ember)}
+
+  @media(max-width:600px){
+    .scope-row{flex-direction:column;align-items:flex-start;gap:6px;padding:16px 20px}
+    .term{padding:20px}
+    .pay-card{padding:28px 20px}
+    .pay-amount{font-size:44px}
+  }
+</style>
+</head>
+<body>
+
+<div class="doc-header">
+  <div class="wrap">
+    <div class="brand-row">
+      <svg width="24" height="27" viewBox="0 0 100 110" aria-hidden="true"><path fill="#E8A44A" fill-rule="evenodd" d="M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z"/></svg>
+      <span class="wordfont">taiga<span class="d">.</span></span>
+    </div>
+    <div class="client-label">◦ Kickoff</div>
+    <h1>
+      <span id="client-display" class="client-name">&#8203;</span><br>
+      Let's make you<br>impossible to miss.
+    </h1>
+    <p class="hero-sub">Two minutes here locks in your Rebuild: read the agreement below, then secure your start date with the deposit. Build begins the day it clears.</p>
+  </div>
+</div>
+
+<main>
+
+<!-- SCOPE -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">◦ Your Rebuild — scope</div>
+    <div class="scope-table" style="margin-top:22px">
+      <div class="scope-row">
+        <span class="sr-label">Brand audit + brand guide</span>
+        <span class="sr-val">Included</span>
+      </div>
+      <div class="scope-row">
+        <span class="sr-label">Website redesign — up to 8 pages, built to book</span>
+        <span class="sr-val">Included</span>
+      </div>
+      <div class="scope-row">
+        <span class="sr-label">Local SEO + geo setup (GBP, map pack, schema)</span>
+        <span class="sr-val">Included</span>
+      </div>
+      <div class="scope-row">
+        <span class="sr-label">AI-search (GEO) visibility structure</span>
+        <span class="sr-val">Included</span>
+      </div>
+      <div class="scope-row">
+        <span class="sr-label">Timeline from completed intake</span>
+        <span class="sr-val neutral">~4 weeks</span>
+      </div>
+      <div class="scope-row total">
+        <span class="sr-label">Total — Rebuild <span style="font-size:12px;color:var(--muted);font-family:'Space Mono',monospace;letter-spacing:.05em">(launch pricing · founding client)</span></span>
+        <span class="sr-val" style="font-family:'Archivo',sans-serif;font-size:26px;font-weight:840;letter-spacing:-.02em;color:var(--ember)">$3,000</span>
+      </div>
+      <div class="scope-row plan">
+        <span class="sr-label" style="color:var(--mist)">Monthly plan after launch</span>
+        <span class="sr-val" id="plan-display">—</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGREEMENT -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">◦ The agreement — plain language</div>
+    <div class="terms" style="margin-top:22px">
+
+      <div class="term">
+        <div class="term-head">Parties &amp; scope.</div>
+        <p class="term-body">Taiga ("we") will deliver the Rebuild scope above for <b id="client-inline">your business</b> ("you"). Anything outside that scope is quoted separately before work begins — no surprise invoices.</p>
+      </div>
+
+      <div class="term">
+        <div class="term-head">Payment.</div>
+        <p class="term-body"><b>50% deposit ($1,500) to begin</b>; remaining 50% ($1,500) invoiced at launch, due within 7 days. The monthly plan starts at launch and is billed monthly in advance.</p>
+      </div>
+
+      <div class="term">
+        <div class="term-head">Timeline &amp; your part.</div>
+        <p class="term-body">~4 weeks from the day we receive your completed intake and credentials. Delays in providing content, access, or approvals pause the clock, not the quality.</p>
+      </div>
+
+      <div class="term">
+        <div class="term-head">Revisions.</div>
+        <p class="term-body">One structured revision round on brand direction and one on the site before launch. After launch, changes flow through your monthly plan.</p>
+      </div>
+
+      <div class="term">
+        <div class="term-head">Ownership.</div>
+        <p class="term-body">On final payment, you own the website, brand assets, and content we created for you, fully. We may show the work in our portfolio unless you ask us not to.</p>
+      </div>
+
+      <div class="term">
+        <div class="term-head">Monthly plan &amp; credits.</div>
+        <p class="term-body">Month-to-month, cancel anytime with <b>30 days' written notice</b>. Each plan runs on credits — <b>one credit = one geo blog post or one revision</b>. Unused credits roll over one month only; they don't stack beyond that. If a 12-month Growth commitment was applied to discount this Rebuild and you cancel early, the discounted amount becomes due.</p>
+      </div>
+
+      <div class="term handoff">
+        <div class="handoff-tag">Optional path</div>
+        <div class="term-head">Independence handoff.</div>
+        <p class="term-body">If at launch you'd rather take over the site and SEO in-house instead of staying on retainer, that's a legitimate choice. Taiga will document every build decision, transfer all access and credentials, and run a live training session covering the tools, workflows, and monthly rhythm. <b>Fee is negotiated based on scope — typically $500–$2,500.</b> Fair heads up: the setup, keyword logic, and ongoing cadence are more involved than they look from the outside. Most clients who price this out find the retainer is the better math. But the keys are always yours if you want them.</p>
+      </div>
+
+      <div class="term">
+        <div class="term-head">Cancellation of the Rebuild.</div>
+        <p class="term-body"><b>Before work starts: full deposit refund.</b> After work starts: the deposit covers work performed and is non-refundable; you keep everything produced to date.</p>
+      </div>
+
+      <div class="term">
+        <div class="term-head">Good faith &amp; limits.</div>
+        <p class="term-body">We optimize aggressively for rankings and results but no one can guarantee a specific Google position — anyone who does is lying to you. Our liability is capped at fees paid. Montana law governs.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- PAYMENT -->
+<div class="pay-section">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;margin-bottom:28px">◦ Lock it in</div>
+    <div class="pay-card">
+      <div class="pay-amount">$1,500</div>
+      <div class="pay-label">Deposit · 50% of Rebuild</div>
+      <p class="pay-sub">By paying the deposit you confirm you've read and agree to the terms above. That's it — no printers, no pens.</p>
+      <a class="pay-btn" id="pay-link" href="#" target="_blank" rel="noopener noreferrer">Pay deposit &amp; start the build</a>
+      <div class="pay-secure">Secure checkout via Stripe · Receipt sent automatically</div>
+    </div>
+
+    <div class="next-steps">
+      <h3>What happens next</h3>
+      <div class="next-step">
+        <div class="ns-num">1</div>
+        <span>Payment clears — you'll get a receipt from Stripe and a confirmation from us within the hour.</span>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">2</div>
+        <span>We send the intake questionnaire (~15 minutes). Your 4-week clock starts the day it's back with credentials.</span>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">3</div>
+        <span>Brand direction lands in week one. Site preview in week two. Live in week four.</span>
+      </div>
+      <div class="next-step" style="margin-top:4px;padding-top:14px;border-top:1px dashed var(--hair)">
+        <div class="ns-num" style="background:transparent;border-color:transparent;color:var(--muted)">?</div>
+        <span>Questions first? Just reply to the kickoff email or <a href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer" style="color:var(--ember)">book a 15-minute call</a>.</span>
+      </div>
+    </div>
+
+    <div class="retainer-preview" id="retainer-preview">
+      <div class="rp-hdr">
+        <span class="rp-hdr-label">◦ Your retainer starts at launch — month one looks like this</span>
+        <span class="rp-tier-chip" id="rp-tier-chip">Growth · 8 credits/mo</span>
+      </div>
+      <div class="rp-body" id="rp-body">
+        <!-- populated by JS -->
+      </div>
+      <div class="rp-note" id="rp-note">Credits roll over one month if unused · Cancel anytime with 30 days' notice · No long contracts</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap doc-footer">
+    <div class="foot-info">
+      <div style="font-family:'Archivo',sans-serif;font-weight:760;font-size:16px;color:var(--bone);margin-bottom:4px">taiga<span class="d">.</span> — never go dormant</div>
+      <div><a href="https://taigalocal.com">taigalocal.com</a> · <a href="mailto:taiga@taigalocal.com">taiga@taigalocal.com</a> · <a href="check.html">Free AI Checker</a> · <a href="template.html">Template</a> · <a href="privacy.html">Privacy</a></div>
+    </div>
+    <div class="hanko" aria-label="Taiga seal"><span style="font-family:'Noto Serif JP',serif;font-weight:600;font-size:23px;color:var(--abyss)">大</span></div>
+  </div>
+</footer>
+
+<script>
+  // Read URL params: ?client=Bloom+Chiropractic&plan=growth&stripe=https://...
+  const p = new URLSearchParams(location.search);
+  const client = p.get('client') || '';
+  const plan = (p.get('plan') || '').toLowerCase();
+  const stripe = p.get('stripe') || '';
+
+  // Populate client name
+  if (client) {
+    document.title = 'Kickoff · ' + client + ' · Taiga';
+    document.getElementById('client-display').textContent = client;
+    document.getElementById('client-inline').textContent = client;
+  } else {
+    document.getElementById('client-display').textContent = '';
+    document.getElementById('client-inline').textContent = 'your business';
+  }
+
+  // Plan definitions
+  const PLANS = {
+    roots: {
+      label: 'Roots · 1 credit/mo', price: '$150/mo',
+      items: [
+        '1 credit — use it for a geo blog post or a site revision',
+        'Hosting oversight, security monitoring, and small fixes',
+        'Basic Google Business Profile upkeep'
+      ],
+      note: 'Credits roll over one month if unused · Cancel anytime with 30 days\' notice'
+    },
+    steady: {
+      label: 'Steady · 3 credits/mo', price: '$350/mo',
+      items: [
+        '3 credits — geo blog posts, revisions, or page updates, your call',
+        'Google Business Profile upkeep',
+        'Hosting oversight and security included',
+        '3–5 business day turnaround'
+      ],
+      note: 'Credits roll over one month if unused · Cancel anytime with 30 days\' notice'
+    },
+    growth: {
+      label: 'Growth · 8 credits/mo', price: '$1,000/mo',
+      items: [
+        '8 credits — geo blogs, revisions, or landing pages',
+        'Active Google Business Profile management',
+        'Review-generation system to keep reviews coming in',
+        'Local keyword and rank tracking',
+        'Monthly terrain report: traffic, rankings, calls — always vs. your baseline',
+        'Priority queue — 2–3 business day turnaround'
+      ],
+      note: 'Credits roll over one month if unused · Cancel anytime with 30 days\' notice · Priority queue included'
+    }
+  };
+
+  // Populate plan in scope table
+  const planEl = document.getElementById('plan-display');
+  if (PLANS[plan]) {
+    planEl.textContent = PLANS[plan].label + ' — ' + PLANS[plan].price;
+    planEl.style.color = 'var(--ember)';
+  } else {
+    planEl.textContent = 'Roots $150 · Steady $350 · Growth $1,000 /mo';
+  }
+
+  // Populate retainer preview card
+  const tierData = PLANS[plan] || PLANS.growth;
+  const chipEl = document.getElementById('rp-tier-chip');
+  const bodyEl = document.getElementById('rp-body');
+  const noteEl = document.getElementById('rp-note');
+  if (chipEl) chipEl.textContent = (plan ? tierData.label : 'Growth · 8 credits/mo') + ' — ' + tierData.price;
+  if (bodyEl) bodyEl.innerHTML = tierData.items.map(i =>
+    '<div class="rp-item">' + i + '</div>'
+  ).join('');
+  if (noteEl) noteEl.textContent = tierData.note;
+
+  // Populate Stripe link
+  const payBtn = document.getElementById('pay-link');
+  if (stripe) {
+    payBtn.href = stripe;
+  } else {
+    payBtn.href = '#';
+    payBtn.addEventListener('click', e => e.preventDefault());
+  }
+</script>
+</body>
+</html>

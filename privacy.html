@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy · Taiga</title>
+<meta name="description" content="Taiga's privacy policy. Plain language about what we collect, why, and how to reach us.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://taigalocal.com/privacy.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 110'><path fill='%23E8A44A' fill-rule='evenodd' d='M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{--boreal:#123127;--pine:#0B1F19;--abyss:#071410;--ember:#E8A44A;--ember-hot:#F2BA6B;--bone:#F2EDE1;--mist:#C9D6C7;--muted:#87A093;--hair:rgba(201,214,199,.14)}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{background:var(--abyss);color:var(--bone);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--ember);color:var(--abyss)}
+  .mono{font-family:'Space Mono',monospace}
+  .wordfont{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;letter-spacing:-.03em}
+  .d{color:var(--ember)}
+  .wrap{max-width:720px;margin:0 auto;padding:0 28px}
+  .eyebrow{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);display:inline-flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--ember)}
+
+  /* HEADER */
+  .doc-header{padding:64px 0 52px;background:linear-gradient(180deg,var(--pine) 0%,var(--abyss) 100%);border-bottom:1px solid var(--hair)}
+  .brand-row{display:flex;align-items:center;gap:10px;margin-bottom:40px}
+  .brand-row a{text-decoration:none;color:inherit;display:flex;align-items:center;gap:10px}
+  .brand-row .wordfont{font-size:21px;color:var(--bone)}
+  .doc-meta{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  h1{font-family:'Archivo',sans-serif;font-weight:840;font-variation-settings:"wdth" 110;font-size:clamp(32px,5vw,46px);letter-spacing:-.028em;line-height:.98;color:var(--bone)}
+  .hero-sub{font-size:16px;color:var(--mist);margin-top:16px;max-width:48ch;line-height:1.6}
+
+  /* CONTENT */
+  .content{padding:0 0 80px}
+  .policy-section{padding:44px 0;border-bottom:1px solid var(--hair)}
+  .policy-section:last-child{border-bottom:none}
+  .ps-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);margin-bottom:10px}
+  h2{font-family:'Archivo',sans-serif;font-weight:760;font-size:22px;letter-spacing:-.015em;color:var(--bone);margin-bottom:14px}
+  p{font-size:15px;color:var(--mist);line-height:1.72;margin-bottom:12px}
+  p:last-child{margin-bottom:0}
+  p b{color:var(--bone);font-weight:600}
+  ul{margin:10px 0 12px;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+  li{font-size:15px;color:var(--mist);line-height:1.6;display:flex;gap:12px;align-items:baseline}
+  li::before{content:"◦";font-family:'Space Mono',monospace;font-size:10px;color:var(--ember);flex:none}
+  a{color:var(--ember);text-decoration:none}
+  a:hover{text-decoration:underline;text-underline-offset:3px}
+
+  /* THIRD-PARTY CARDS */
+  .tp-cards{display:flex;flex-direction:column;gap:12px;margin-top:18px}
+  .tp-card{background:rgba(18,49,39,.3);border:1px solid var(--hair);border-radius:14px;padding:20px 24px}
+  .tp-name{font-family:'Archivo',sans-serif;font-weight:720;font-size:15px;color:var(--bone);margin-bottom:4px}
+  .tp-desc{font-size:14px;color:var(--muted);line-height:1.6}
+  .tp-link{font-family:'Space Mono',monospace;font-size:11px;color:var(--ember);margin-top:8px;display:block}
+
+  /* RIGHTS GRID */
+  .rights-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+  .right-card{background:rgba(7,20,16,.5);border:1px solid var(--hair);border-radius:12px;padding:16px 20px}
+  .right-title{font-family:'Archivo',sans-serif;font-weight:720;font-size:14px;color:var(--bone);margin-bottom:4px}
+  .right-desc{font-size:13px;color:var(--muted);line-height:1.55}
+
+  /* CONTACT BLOCK */
+  .contact-block{background:rgba(232,164,74,.05);border:1px solid rgba(232,164,74,.2);border-radius:16px;padding:28px;margin-top:24px}
+  .contact-block p{font-size:15px}
+  .contact-block a{border-bottom:1px solid rgba(232,164,74,.35);padding-bottom:1px}
+  .contact-block a:hover{border-color:var(--ember);text-decoration:none}
+
+  /* FOOTER */
+  .doc-footer{padding:44px 0 60px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:13px}
+  .foot-links-sm{display:flex;gap:20px;flex-wrap:wrap}
+  .foot-links-sm a{color:var(--muted);text-decoration:none;transition:color .2s}
+  .foot-links-sm a:hover{color:var(--ember)}
+  .hanko{width:40px;height:40px;border-radius:9px;background:var(--ember);display:flex;align-items:center;justify-content:center;transform:rotate(-3deg);flex:none}
+  .hanko span{font-family:'Noto Serif JP',serif;font-weight:600;font-size:23px;color:var(--abyss)}
+
+  @media(max-width:600px){
+    .rights-grid{grid-template-columns:1fr}
+    .wrap{padding:0 20px}
+  }
+</style>
+</head>
+<body>
+
+<div class="doc-header">
+  <div class="wrap">
+    <div class="brand-row">
+      <a href="/" aria-label="Taiga — Home">
+        <svg width="24" height="27" viewBox="0 0 100 110" aria-hidden="true"><path fill="#E8A44A" fill-rule="evenodd" d="M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z"/></svg>
+        <span class="wordfont">taiga<span class="d">.</span></span>
+      </a>
+    </div>
+    <div class="doc-meta">Privacy Policy · Effective August 1, 2026</div>
+    <h1>We keep it simple.<br>Here's exactly what we collect.</h1>
+    <p class="hero-sub">Plain language. No legal fog. If you have a question this doesn't answer, email us — we'll reply like a human.</p>
+  </div>
+</div>
+
+<main class="content">
+  <div class="wrap">
+
+    <!-- WHO WE ARE -->
+    <div class="policy-section">
+      <div class="ps-label">01</div>
+      <h2>Who this covers</h2>
+      <p>This policy applies to <b>Taiga</b> (operated by Taiga Gamell, Missoula, Montana) and the website at <a href="https://taigalocal.com">taigalocal.com</a>. It covers what information we collect when you visit the site, book a call, pay a deposit, or become a client.</p>
+      <p>Questions or requests: <a href="mailto:taiga@taigalocal.com">taiga@taigalocal.com</a></p>
+    </div>
+
+    <!-- WHAT WE COLLECT -->
+    <div class="policy-section">
+      <div class="ps-label">02</div>
+      <h2>What we collect</h2>
+      <p><b>Information you give us directly:</b></p>
+      <ul>
+        <li><b>Name and email address</b> — when you book a free audit via Google Calendar or reach out by email.</li>
+        <li><b>Business information</b> — when you complete the client intake questionnaire (business name, address, services, goals). This is only collected from clients who have already signed an agreement.</li>
+        <li><b>Payment information</b> — when you pay a deposit or retainer invoice via Stripe. <b>We never see or store your card details.</b> Stripe handles all payment processing and is PCI-DSS compliant.</li>
+      </ul>
+      <p style="margin-top:12px"><b>Information collected automatically:</b></p>
+      <ul>
+        <li><b>Analytics data</b> — pages visited, time on site, referral source, general location (city/country), and device type. Collected via Google Analytics. No personally identifiable information is attached to these records.</li>
+        <li><b>Cookies</b> — small text files stored in your browser. See section 06 below.</li>
+      </ul>
+    </div>
+
+    <!-- HOW WE USE IT -->
+    <div class="policy-section">
+      <div class="ps-label">03</div>
+      <h2>How we use it</h2>
+      <ul>
+        <li>To schedule and run your free audit call</li>
+        <li>To deliver the Rebuild and monthly retainer you paid for</li>
+        <li>To send invoices and receipts</li>
+        <li>To respond to questions and requests you send us</li>
+        <li>To understand how people use the site and improve it (analytics only)</li>
+      </ul>
+      <p style="margin-top:14px">We don't sell your information. We don't rent it. We don't send marketing emails to people who haven't asked to hear from us.</p>
+    </div>
+
+    <!-- THIRD PARTIES -->
+    <div class="policy-section">
+      <div class="ps-label">04</div>
+      <h2>Third-party services we use</h2>
+      <p>These services may receive some of your information in order to function. Each has its own privacy policy.</p>
+      <div class="tp-cards">
+        <div class="tp-card">
+          <div class="tp-name">Stripe</div>
+          <div class="tp-desc">Processes all payments. Stripe receives your name, email, and payment details. We receive a confirmation and receipt only — card numbers never touch our systems.</div>
+          <a class="tp-link" href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">stripe.com/privacy →</a>
+        </div>
+        <div class="tp-card">
+          <div class="tp-name">Google Analytics</div>
+          <div class="tp-desc">Tracks anonymous usage data on this site — pages viewed, session duration, traffic source, approximate location. IP addresses are anonymized. You can opt out with the Google Analytics Opt-out Browser Add-on.</div>
+          <a class="tp-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy →</a>
+        </div>
+        <div class="tp-card">
+          <div class="tp-name">Google Calendar</div>
+          <div class="tp-desc">Used to schedule the free audit call. When you book, Google receives your name and email address to confirm the appointment and send a calendar invite.</div>
+          <a class="tp-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy →</a>
+        </div>
+        <div class="tp-card">
+          <div class="tp-name">Vercel</div>
+          <div class="tp-desc">Hosts this website. Vercel may log IP addresses and request metadata for security and performance purposes. No personal data is stored beyond standard server logs.</div>
+          <a class="tp-link" href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">vercel.com/legal/privacy-policy →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DATA RETENTION -->
+    <div class="policy-section">
+      <div class="ps-label">05</div>
+      <h2>How long we keep it</h2>
+      <ul>
+        <li><b>Audit booking data</b> (name, email from calendar) — kept until you ask us to delete it, or until it's clear the contact won't become a client.</li>
+        <li><b>Client project files and intake data</b> — retained for 3 years after the project ends, then deleted. You may request deletion earlier.</li>
+        <li><b>Payment records</b> — kept for 7 years as required for US tax purposes. Stripe retains its own records independently.</li>
+        <li><b>Analytics data</b> — retained per Google Analytics default settings (14 months). No personally identifiable data is stored.</li>
+      </ul>
+    </div>
+
+    <!-- COOKIES -->
+    <div class="policy-section">
+      <div class="ps-label">06</div>
+      <h2>Cookies</h2>
+      <p>This site uses cookies in two ways:</p>
+      <ul>
+        <li><b>Analytics cookies</b> — set by Google Analytics to track anonymous usage patterns. These do not identify you personally.</li>
+        <li><b>Essential cookies</b> — if any forms or payment flows are used, session cookies may be set to make them work. These expire when you close your browser.</li>
+      </ul>
+      <p style="margin-top:12px">Most browsers let you block or delete cookies in settings. Blocking analytics cookies won't affect any functionality on this site.</p>
+    </div>
+
+    <!-- YOUR RIGHTS -->
+    <div class="policy-section">
+      <div class="ps-label">07</div>
+      <h2>Your rights</h2>
+      <p>Regardless of where you're located, you can ask us to do any of the following at any time:</p>
+      <div class="rights-grid">
+        <div class="right-card">
+          <div class="right-title">Access</div>
+          <div class="right-desc">Ask what personal data we hold about you and receive a copy.</div>
+        </div>
+        <div class="right-card">
+          <div class="right-title">Correction</div>
+          <div class="right-desc">Ask us to fix inaccurate or incomplete information.</div>
+        </div>
+        <div class="right-card">
+          <div class="right-title">Deletion</div>
+          <div class="right-desc">Ask us to delete your data. We'll comply where we're not legally required to retain it.</div>
+        </div>
+        <div class="right-card">
+          <div class="right-title">Opt-out</div>
+          <div class="right-desc">Unsubscribe from any emails or ask us to stop contacting you. One email, done.</div>
+        </div>
+      </div>
+      <p style="margin-top:18px">California residents: under CCPA, you have the right to know what data is collected, to delete it, and to opt out of its sale. We don't sell data, full stop.</p>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="policy-section">
+      <div class="ps-label">08</div>
+      <h2>Questions or requests</h2>
+      <p>If you want to exercise any of the rights above, have a question this page doesn't answer, or just want to know something specific — email us. We reply personally.</p>
+      <div class="contact-block">
+        <p><b>Taiga</b> (Taiga Gamell)<br>
+        Missoula, Montana, United States<br>
+        <a href="mailto:taiga@taigalocal.com">taiga@taigalocal.com</a></p>
+        <p style="margin-top:12px;font-size:13px;color:var(--muted)">This policy was last updated August 1, 2026. If anything material changes, we'll update this page and note the new effective date at the top.</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap doc-footer">
+    <div class="foot-info">
+      <div style="font-family:'Archivo',sans-serif;font-weight:760;font-size:16px;color:var(--bone);margin-bottom:6px">taiga<span class="d">.</span> — never go dormant</div>
+      <div class="foot-links-sm">
+        <a href="/">Home</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="work.html">Work</a>
+        <a href="privacy.html" aria-current="page" style="color:var(--ember)">Privacy</a>
+        <a href="mailto:taiga@taigalocal.com">taiga@taigalocal.com</a>
+      </div>
+    </div>
+    <div class="hanko" aria-label="Taiga seal"><span style="font-family:'Noto Serif JP',serif;font-weight:600;font-size:23px;color:var(--abyss)">大</span></div>
+  </div>
+</footer>
+
+</body>
+</html>

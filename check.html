@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Visibility Checker · Taiga</title>
+<meta name="description" content="Find out if ChatGPT and Gemini recommend your business when patients search for your service in your city. Free, real API responses — no signup required.">
+<meta property="og:title" content="Is your business invisible to AI? Check for free.">
+<meta property="og:description" content="We ask ChatGPT and Gemini who they'd recommend in your city, then show you the actual response. Free tool by Taiga.">
+<meta property="og:url" content="https://taigalocal.com/check">
+<link rel="canonical" href="https://taigalocal.com/check">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 110'><path fill='%23E8A44A' fill-rule='evenodd' d='M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{--boreal:#123127;--pine:#0B1F19;--abyss:#071410;--ember:#E8A44A;--ember-hot:#F2BA6B;--bone:#F2EDE1;--mist:#C9D6C7;--muted:#87A093;--hair:rgba(201,214,199,.14);--bad:#f87171;--good:#4ade80;--warn:#fbbf24}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{background:var(--abyss);color:var(--bone);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+  ::selection{background:var(--ember);color:var(--abyss)}
+  a{color:var(--ember);text-decoration:none}
+  a:hover{text-decoration:underline;text-underline-offset:3px}
+  .wrap{max-width:680px;margin:0 auto;padding:0 24px}
+  .wordfont{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;letter-spacing:-.03em}
+  .mono{font-family:'Space Mono',monospace}
+  .d{color:var(--ember)}
+  [hidden]{display:none!important}
+
+  /* ── HEADER ─────────────────────────────────────────── */
+  .check-header{border-bottom:1px solid var(--hair);padding:18px 0;background:var(--pine)}
+  .check-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand-link{display:flex;align-items:center;gap:9px;text-decoration:none;color:inherit}
+  .brand-link .wordfont{font-size:19px;color:var(--bone)}
+  .header-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);background:rgba(201,214,199,.07);border:1px solid var(--hair);border-radius:100px;padding:4px 12px;white-space:nowrap}
+  .header-back{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s}
+  .header-back:hover{color:var(--ember);text-decoration:none}
+
+  /* ── HERO ───────────────────────────────────────────── */
+  .check-hero{padding:60px 0 0;text-align:center}
+  .hero-eyebrow{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);margin-bottom:20px;display:inline-flex;align-items:center;gap:10px}
+  .hero-eyebrow::before,.hero-eyebrow::after{content:"";width:20px;height:1px;background:var(--ember)}
+  h1{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;font-size:clamp(32px,6vw,52px);letter-spacing:-.03em;line-height:.97;color:var(--bone)}
+  h1 em{font-style:normal;color:var(--ember)}
+  .hero-sub{font-size:16px;color:var(--mist);margin-top:18px;max-width:52ch;margin-left:auto;margin-right:auto;line-height:1.65}
+  .trust-pills{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .trust-pill{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:rgba(201,214,199,.06);border:1px solid var(--hair);border-radius:100px;padding:5px 14px}
+
+  /* ── FORM CARD ──────────────────────────────────────── */
+  .form-card{background:rgba(18,49,39,.35);border:1px solid var(--hair);border-radius:20px;padding:36px;margin-top:40px;margin-bottom:64px}
+  .field{margin-bottom:20px}
+  .field:last-of-type{margin-bottom:0}
+  label{display:block;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .opt-hint{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0;text-transform:none;color:var(--muted);margin-left:8px}
+  input[type="text"],input[type="email"]{width:100%;background:rgba(7,20,16,.6);border:1px solid var(--hair);border-radius:10px;padding:13px 16px;font-family:'Inter',sans-serif;font-size:15px;color:var(--bone);outline:none;transition:border-color .2s,background .2s;-webkit-appearance:none}
+  input[type="text"]::placeholder,input[type="email"]::placeholder{color:var(--muted)}
+  input[type="text"]:focus,input[type="email"]:focus{border-color:rgba(232,164,74,.5);background:rgba(7,20,16,.8)}
+  input[type="text"].err,input[type="email"].err{border-color:rgba(248,113,113,.5)}
+  .field-hint{font-size:12px;color:var(--muted);margin-top:6px;font-family:'Space Mono',monospace}
+  .form-footer{margin-top:26px;display:flex;flex-direction:column;gap:14px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Archivo',sans-serif;font-weight:760;font-size:15px;letter-spacing:.01em;color:var(--abyss);background:var(--ember);border:none;border-radius:10px;padding:14px 28px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none;white-space:nowrap}
+  .btn:hover{background:var(--ember-hot);transform:translateY(-1px);text-decoration:none;color:var(--abyss)}
+  .btn:active{transform:none}
+  .btn.ghost{background:transparent;color:var(--ember);border:1px solid rgba(232,164,74,.35)}
+  .btn.ghost:hover{background:rgba(232,164,74,.08);color:var(--ember)}
+  .btn-full{width:100%}
+  .privacy-note{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);text-align:center;line-height:1.5}
+
+  /* ── LOADING ────────────────────────────────────────── */
+  .loading-card{background:rgba(18,49,39,.35);border:1px solid var(--hair);border-radius:20px;padding:40px 36px;margin-top:40px;margin-bottom:64px}
+  .loading-for{font-family:'Archivo',sans-serif;font-weight:760;font-size:18px;letter-spacing:-.01em;color:var(--bone);margin-bottom:32px}
+  .loading-for span{color:var(--ember)}
+  .steps{display:flex;flex-direction:column;gap:18px}
+  .step{display:flex;align-items:center;gap:14px}
+  .step-dot{width:10px;height:10px;border-radius:50%;flex:none;transition:background .3s}
+  .step.pending .step-dot{background:rgba(201,214,199,.18)}
+  .step.active .step-dot{background:var(--ember);animation:dotpulse 1.1s ease-in-out infinite}
+  .step.done .step-dot{background:var(--good)}
+  .step-text{font-size:14px;transition:color .3s}
+  .step.pending .step-text{color:var(--muted)}
+  .step.active .step-text{color:var(--bone)}
+  .step.done .step-text{color:var(--muted)}
+  @keyframes dotpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+
+  /* ── RESULTS ────────────────────────────────────────── */
+  .results-card{background:rgba(18,49,39,.35);border:1px solid var(--hair);border-radius:20px;overflow:hidden;margin-top:40px}
+  .result-header{padding:32px 32px 28px;border-bottom:1px solid var(--hair)}
+  .result-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .result-biz{font-family:'Archivo',sans-serif;font-weight:760;font-size:18px;letter-spacing:-.01em;color:var(--bone)}
+  .result-meta{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);margin-top:3px}
+  .score-row{display:flex;align-items:center;gap:18px;margin-top:22px;flex-wrap:wrap}
+  .score-num{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;font-size:clamp(48px,9vw,72px);line-height:1;letter-spacing:-.04em}
+  .score-num.s0{color:var(--bad)}
+  .score-num.s1{color:var(--warn)}
+  .score-num.s2{color:var(--good)}
+  .score-of{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);line-height:1.4}
+  .score-verdict{font-family:'Archivo',sans-serif;font-weight:720;font-size:17px;letter-spacing:-.01em;line-height:1.3;color:var(--bone)}
+  .score-verdict.s0{color:var(--bad)}
+  .score-verdict.s1{color:var(--warn)}
+  .score-verdict.s2{color:var(--good)}
+
+  /* model cards */
+  .model-cards{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--hair)}
+  .model-card{padding:28px 28px 24px;position:relative}
+  .model-card:first-child{border-right:1px solid var(--hair)}
+  .model-card.not-cited{background:rgba(248,113,113,.03)}
+  .model-card.cited{background:rgba(74,222,128,.03)}
+  .model-card.error{background:transparent}
+  .mc-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+  .mc-name{font-family:'Archivo',sans-serif;font-weight:760;font-size:15px;color:var(--bone)}
+  .verdict-badge{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;border-radius:100px;padding:4px 10px;font-weight:700;white-space:nowrap}
+  .verdict-badge.cited{background:rgba(74,222,128,.12);color:var(--good);border:1px solid rgba(74,222,128,.25)}
+  .verdict-badge.not-cited{background:rgba(248,113,113,.1);color:var(--bad);border:1px solid rgba(248,113,113,.2)}
+  .verdict-badge.error{background:rgba(201,214,199,.06);color:var(--muted);border:1px solid var(--hair)}
+  .excerpt-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+  .excerpt-label.not-cited{color:var(--bad);opacity:.7}
+  .excerpt-label.cited{color:var(--good);opacity:.8}
+  .excerpt-label.error{color:var(--muted)}
+  .excerpt{font-size:13px;color:var(--mist);line-height:1.7;font-style:italic}
+  .excerpt mark{background:rgba(232,164,74,.2);color:var(--ember-hot);font-style:normal;border-radius:3px;padding:0 2px}
+
+  /* CTA block */
+  .result-cta{padding:28px 32px 32px}
+  .cta-message{font-size:15px;color:var(--mist);margin-bottom:20px;line-height:1.65;max-width:52ch}
+  .cta-message b{color:var(--bone)}
+  .cta-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .cta-or{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.1em}
+
+  /* credibility note */
+  .cred-note{padding:16px 32px;background:rgba(7,20,16,.4);border-top:1px solid var(--hair);font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);line-height:1.6;letter-spacing:.03em}
+  .cred-note a{color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+
+  /* cache notice */
+  .cache-notice{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.05em;padding:10px 32px;border-top:1px solid var(--hair);background:rgba(7,20,16,.3)}
+
+  /* reset button */
+  .reset-btn{display:block;margin:20px auto 64px;background:none;border:none;cursor:pointer;font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;transition:color .2s;padding:8px}
+  .reset-btn:hover{color:var(--ember)}
+
+  /* ── ERROR ──────────────────────────────────────────── */
+  .error-card{background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.2);border-radius:16px;padding:32px;margin-top:40px;margin-bottom:64px;text-align:center}
+  .error-card p{color:var(--mist);margin-bottom:20px;font-size:15px}
+  .error-card a{color:var(--ember)}
+
+  /* ── FOOTER ─────────────────────────────────────────── */
+  footer{margin-top:auto;border-top:1px solid var(--hair);padding:36px 0 52px}
+  .foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+  .foot-brand{font-family:'Archivo',sans-serif;font-weight:760;font-size:15px;color:var(--bone)}
+  .foot-links{display:flex;gap:18px;flex-wrap:wrap}
+  .foot-links a{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s}
+  .foot-links a:hover{color:var(--ember)}
+  .hanko{width:36px;height:36px;border-radius:8px;background:var(--ember);display:flex;align-items:center;justify-content:center;transform:rotate(-3deg);flex:none}
+
+  /* ── RESPONSIVE ─────────────────────────────────────── */
+  @media(max-width:600px){
+    .model-cards{grid-template-columns:1fr}
+    .model-card:first-child{border-right:none;border-bottom:1px solid var(--hair)}
+    .form-card,.loading-card,.results-card{border-radius:14px}
+    .result-header,.result-cta,.cred-note,.cache-notice{padding-left:22px;padding-right:22px}
+    .model-card{padding:22px}
+    .wrap{padding:0 16px}
+    h1{font-size:clamp(28px,8vw,42px)}
+    .score-row{gap:12px}
+  }
+  @media(max-width:400px){
+    .cta-actions{flex-direction:column;align-items:stretch}
+    .cta-or{text-align:center}
+    .btn{width:100%;justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="check-header">
+  <div class="wrap">
+    <a class="brand-link" href="/" aria-label="Taiga — Home">
+      <svg width="20" height="23" viewBox="0 0 100 110" aria-hidden="true"><path fill="#E8A44A" fill-rule="evenodd" d="M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z"/></svg>
+      <span class="wordfont">taiga<span class="d">.</span></span>
+    </a>
+    <span class="header-tag">Free AI Visibility Checker</span>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="check-hero">
+    <div class="hero-eyebrow">AI Visibility Check</div>
+    <h1>Is your business<br><em>invisible</em> to AI?</h1>
+    <p class="hero-sub">We ask ChatGPT and Gemini who they'd recommend for your service in your city — then show you the actual response. Takes 10 seconds.</p>
+    <div class="trust-pills">
+      <span class="trust-pill">Real API responses</span>
+      <span class="trust-pill">Free · No signup</span>
+      <span class="trust-pill">ChatGPT + Gemini</span>
+    </div>
+  </section>
+
+  <!-- STATE: FORM -->
+  <div id="s-form">
+    <form id="check-form" class="form-card" novalidate>
+      <div class="field">
+        <label for="f-biz">Business name</label>
+        <input id="f-biz" type="text" placeholder="Bloom Chiropractic" autocomplete="organization" required>
+        <div class="field-hint">Use the name exactly as it appears on Google Business Profile</div>
+      </div>
+      <div class="field">
+        <label for="f-city">City</label>
+        <input id="f-city" type="text" placeholder="Missoula, MT" autocomplete="address-level2" required>
+      </div>
+      <div class="field">
+        <label for="f-service">Service type</label>
+        <input id="f-service" type="text" placeholder="chiropractor" list="svc-list" required>
+        <datalist id="svc-list">
+          <option value="chiropractor">
+          <option value="dentist">
+          <option value="dental office">
+          <option value="physical therapist">
+          <option value="gym">
+          <option value="fitness studio">
+          <option value="massage therapist">
+          <option value="acupuncturist">
+          <option value="yoga studio">
+          <option value="personal trainer">
+          <option value="sports medicine doctor">
+          <option value="naturopathic doctor">
+          <option value="orthodontist">
+          <option value="optometrist">
+        </datalist>
+      </div>
+      <div class="field">
+        <label for="f-email">Email <span class="opt-hint">(optional — get a copy of your results)</span></label>
+        <input id="f-email" type="email" placeholder="you@yourpractice.com" autocomplete="email">
+      </div>
+      <div class="form-footer">
+        <button type="submit" class="btn btn-full">Check my AI visibility →</button>
+        <p class="privacy-note">No card required. We don't sell your data. <a href="privacy.html">Privacy policy.</a></p>
+      </div>
+    </form>
+  </div>
+
+  <!-- STATE: LOADING -->
+  <div id="s-loading" hidden>
+    <div class="loading-card">
+      <div class="loading-for">Checking <span id="l-biz"></span></div>
+      <div class="steps">
+        <div class="step pending" id="step-1">
+          <div class="step-dot"></div>
+          <span class="step-text">Asking ChatGPT who they'd recommend in <span id="l-city-1"></span>…</span>
+        </div>
+        <div class="step pending" id="step-2">
+          <div class="step-dot"></div>
+          <span class="step-text">Asking Gemini the same question…</span>
+        </div>
+        <div class="step pending" id="step-3">
+          <div class="step-dot"></div>
+          <span class="step-text">Scanning responses for <span id="l-biz-3"></span>…</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATE: RESULTS -->
+  <div id="s-results" hidden>
+    <div class="results-card">
+
+      <!-- score header -->
+      <div class="result-header">
+        <div class="result-label">◦ AI Visibility Report</div>
+        <div class="result-biz" id="r-biz"></div>
+        <div class="result-meta" id="r-meta"></div>
+        <div class="score-row">
+          <div class="score-num" id="r-score-num">0</div>
+          <div>
+            <div class="score-of">/ 2 AI systems<br>mention you</div>
+          </div>
+          <div class="score-verdict" id="r-verdict"></div>
+        </div>
+      </div>
+
+      <!-- per-model results -->
+      <div class="model-cards">
+        <div class="model-card" id="mc-chatgpt">
+          <div class="mc-header">
+            <span class="mc-name">ChatGPT</span>
+            <span class="verdict-badge" id="vb-chatgpt">—</span>
+          </div>
+          <div class="excerpt-label" id="el-chatgpt"></div>
+          <div class="excerpt" id="ex-chatgpt"></div>
+        </div>
+        <div class="model-card" id="mc-gemini">
+          <div class="mc-header">
+            <span class="mc-name">Gemini</span>
+            <span class="verdict-badge" id="vb-gemini">—</span>
+          </div>
+          <div class="excerpt-label" id="el-gemini"></div>
+          <div class="excerpt" id="ex-gemini"></div>
+        </div>
+      </div>
+
+      <!-- credibility note -->
+      <div class="cred-note">
+        Real responses from the OpenAI and Google AI APIs, queried live. Verify by pasting the prompt directly into ChatGPT or Gemini yourself: "What are the best [service]s in [city]? List specific businesses by name."
+      </div>
+
+      <!-- CTA -->
+      <div class="result-cta">
+        <p class="cta-message" id="r-cta-msg"></p>
+        <div class="cta-actions">
+          <a class="btn" id="r-cta-primary" href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer">Book the free 15-minute audit</a>
+          <span class="cta-or" id="r-cta-or" hidden>or</span>
+          <a class="btn ghost" id="r-cta-secondary" href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer" hidden>Monitor monthly · $99/mo</a>
+        </div>
+      </div>
+
+      <!-- cached notice -->
+      <div class="cache-notice" id="r-cache" hidden>
+        ◦ Results cached · checked <span id="r-cached-ts"></span>
+      </div>
+
+    </div>
+    <button class="reset-btn" id="reset-btn">← Check a different business</button>
+  </div>
+
+  <!-- STATE: ERROR -->
+  <div id="s-error" hidden>
+    <div class="error-card">
+      <p id="error-msg">Something went wrong. Please try again.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn ghost" id="error-back">← Try again</button>
+        <a class="btn ghost" href="mailto:taiga@taigalocal.com">Contact Taiga</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <div class="foot-brand">taiga<span class="d">.</span> — never go dormant</div>
+      <nav class="foot-links" style="margin-top:10px">
+        <a href="/">Home</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/check" aria-current="page" style="color:var(--ember)">AI Checker</a>
+        <a href="work.html">Work</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="mailto:taiga@taigalocal.com">taiga@taigalocal.com</a>
+      </nav>
+    </div>
+    <div class="hanko" aria-label="Taiga seal"><span style="font-family:'Noto Serif JP',serif;font-weight:600;font-size:20px;color:var(--abyss)">大</span></div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── state ──────────────────────────────────────────────────────
+  const states = ['s-form', 's-loading', 's-results', 's-error'];
+  function show(id) {
+    states.forEach(s => {
+      const el = document.getElementById(s);
+      if (el) el.hidden = (s !== id);
+    });
+  }
+
+  // ── helpers ────────────────────────────────────────────────────
+  function esc(str) {
+    return String(str)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function renderExcerpt(text) {
+    if (!text) return '<em style="color:var(--muted)">No response available.</em>';
+    return esc(text)
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n\n+/g, '<br><br>')
+      .replace(/\n/g, '<br>');
+  }
+
+  function highlightBiz(html, bizName) {
+    const escaped = bizName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const re = new RegExp('(' + escaped + ')', 'gi');
+    return html.replace(re, '<mark>$1</mark>');
+  }
+
+  function stepState(id, state) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove('pending', 'active', 'done');
+    el.classList.add(state);
+  }
+
+  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  function fmtDate(iso) {
+    try {
+      return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+    } catch { return iso; }
+  }
+
+  // ── render result ──────────────────────────────────────────────
+  function renderResult(data) {
+    const { businessName, city, service, chatgpt, gemini, cached, checkedAt } = data;
+
+    document.getElementById('r-biz').textContent = businessName;
+    document.getElementById('r-meta').textContent = `${city} · ${service}`;
+
+    const score = [chatgpt, gemini].filter(m => m?.status === 'cited').length;
+    const scoreEl = document.getElementById('r-score-num');
+    scoreEl.textContent = score;
+    scoreEl.className = 'score-num s' + score;
+
+    const verdicts = ['You\'re invisible to AI search', 'Partially visible — gaps remain', 'You\'re showing up'];
+    const verdictEl = document.getElementById('r-verdict');
+    verdictEl.textContent = verdicts[score];
+    verdictEl.className = 'score-verdict s' + score;
+
+    // per-model cards
+    renderModel('chatgpt', chatgpt, businessName);
+    renderModel('gemini',  gemini,  businessName);
+
+    // CTA copy
+    const ctaMsg  = document.getElementById('r-cta-msg');
+    const ctaPri  = document.getElementById('r-cta-primary');
+    const ctaOr   = document.getElementById('r-cta-or');
+    const ctaSec  = document.getElementById('r-cta-secondary');
+
+    if (score === 0) {
+      ctaMsg.innerHTML = `<b>Your competitors are getting those referrals. You're not.</b> The audit takes 15 minutes — no pitch, just an honest look at what's costing you clients and the fastest path to fix it.`;
+      ctaPri.textContent = 'Stop losing clients. Book the free audit →';
+      ctaOr.hidden = true;
+      ctaSec.hidden = true;
+    } else if (score === 1) {
+      ctaMsg.innerHTML = `One AI mentions you. One doesn't — and that gap is likely where you're losing the comparison. Book the audit to see exactly what's missing.`;
+      ctaPri.textContent = 'Book the free 15-minute audit →';
+      ctaOr.hidden = false;
+      ctaSec.hidden = false;
+      ctaSec.textContent = 'Monitor monthly · $99/mo';
+    } else {
+      ctaMsg.innerHTML = `Both AI systems mention you — that's a real advantage. <b>Keep it.</b> AI recommendations shift as competitors build new content. Monthly Terrain Monitoring tells you the moment that changes.`;
+      ctaPri.textContent = 'Monitor my visibility · $99/mo';
+      ctaPri.href = 'https://calendar.app.google/i2b2EPtz2N3sz2RN8';
+      ctaOr.hidden = false;
+      ctaSec.hidden = false;
+      ctaSec.textContent = 'Or book the free audit';
+    }
+
+    // cache notice
+    const cacheEl = document.getElementById('r-cache');
+    const cachedTs = document.getElementById('r-cached-ts');
+    if (cached && checkedAt) {
+      cacheEl.hidden = false;
+      cachedTs.textContent = fmtDate(checkedAt);
+    } else {
+      cacheEl.hidden = true;
+    }
+
+    show('s-results');
+  }
+
+  function renderModel(model, result, bizName) {
+    const card = document.getElementById('mc-' + model);
+    const badge = document.getElementById('vb-' + model);
+    const label = document.getElementById('el-' + model);
+    const excerpt = document.getElementById('ex-' + model);
+    if (!card || !badge || !label || !excerpt) return;
+
+    card.className = 'model-card ' + (result?.status || 'error');
+    badge.className = 'verdict-badge ' + (result?.status || 'error');
+
+    if (result?.status === 'cited') {
+      badge.textContent = '✓ Cited';
+      label.textContent = 'What AI said about you:';
+      label.className = 'excerpt-label cited';
+    } else if (result?.status === 'not_cited') {
+      badge.textContent = '✗ Not cited';
+      label.textContent = 'What AI recommended instead:';
+      label.className = 'excerpt-label not-cited';
+    } else {
+      badge.textContent = '— Unavailable';
+      label.textContent = 'Could not reach model';
+      label.className = 'excerpt-label error';
+      excerpt.innerHTML = '';
+      return;
+    }
+
+    let html = renderExcerpt(result.excerpt);
+    if (result.status === 'cited') html = highlightBiz(html, bizName);
+    excerpt.innerHTML = html;
+  }
+
+  // ── form submit ────────────────────────────────────────────────
+  document.getElementById('check-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const bizEl   = document.getElementById('f-biz');
+    const cityEl  = document.getElementById('f-city');
+    const svcEl   = document.getElementById('f-service');
+    const emailEl = document.getElementById('f-email');
+
+    [bizEl, cityEl, svcEl].forEach(el => el.classList.remove('err'));
+
+    let valid = true;
+    if (!bizEl.value.trim())  { bizEl.classList.add('err');  bizEl.focus(); valid = false; }
+    if (!cityEl.value.trim()) { cityEl.classList.add('err'); if (valid) cityEl.focus(); valid = false; }
+    if (!svcEl.value.trim())  { svcEl.classList.add('err');  if (valid) svcEl.focus();  valid = false; }
+    if (!valid) return;
+
+    const biz   = bizEl.value.trim();
+    const city  = cityEl.value.trim();
+    const svc   = svcEl.value.trim();
+    const email = emailEl.value.trim();
+
+    // Set loading labels
+    document.getElementById('l-biz').textContent   = biz;
+    document.getElementById('l-city-1').textContent = city;
+    document.getElementById('l-biz-3').textContent  = biz;
+
+    // Reset steps
+    ['step-1','step-2','step-3'].forEach(s => stepState(s, 'pending'));
+
+    show('s-loading');
+    stepState('step-1', 'active');
+
+    // Staggered step animation + API call in parallel
+    const apiPromise = fetch('/api/check', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ businessName: biz, city, service: svc, email }),
+    }).then(r => r.json());
+
+    await sleep(1100);
+    stepState('step-1', 'done');
+    stepState('step-2', 'active');
+
+    await sleep(1100);
+    stepState('step-2', 'done');
+    stepState('step-3', 'active');
+
+    // Wait for API (might already be done)
+    let data;
+    try {
+      data = await apiPromise;
+    } catch {
+      show('s-error');
+      document.getElementById('error-msg').textContent = 'Network error. Check your connection and try again.';
+      return;
+    }
+
+    await sleep(400);
+    stepState('step-3', 'done');
+    await sleep(300);
+
+    if (data.error) {
+      show('s-error');
+      document.getElementById('error-msg').textContent = data.error;
+      return;
+    }
+
+    renderResult(data);
+  });
+
+  // ── reset buttons ──────────────────────────────────────────────
+  document.getElementById('reset-btn').addEventListener('click', function () {
+    show('s-form');
+    document.getElementById('f-biz').focus();
+  });
+  document.getElementById('error-back').addEventListener('click', function () {
+    show('s-form');
+  });
+
+})();
+</script>
+</body>
+</html>

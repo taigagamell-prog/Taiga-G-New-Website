@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NOVA_AI — Today AI Aligns With Bold Dreams</title>
+<meta name="description" content="NovaAI — AI automation, integration, and agent development for bold businesses.">
+<link rel="icon" href="data:," />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+html { min-height: 100%; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #0a0a0a;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
+}
+::selection { background: rgba(255,255,255,.2); }
+
+/* ── SCROLL VIDEO ── */
+#scroll-video-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: #0a0a0a;
+  overflow: hidden;
+  pointer-events: none;
+}
+#scroll-video-layer img,
+#scroll-video-layer video,
+#scroll-video-layer canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 500ms;
+}
+#scroll-video-layer canvas { transition: opacity 500ms; }
+
+/* ── Z-10 WRAPPER ── */
+#app {
+  position: relative;
+  z-index: 10;
+}
+
+/* ── NAVBAR ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  background: rgba(10,10,10,.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+@media (min-width: 640px) { nav { padding: 14px 32px; } }
+@media (min-width: 768px) { nav { padding: 14px 48px; } }
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -.015em;
+  text-decoration: none;
+  color: #fff;
+}
+@media (min-width: 640px) { .nav-logo { font-size: 1.25rem; } }
+
+.nav-links {
+  display: none;
+  align-items: center;
+  gap: 32px;
+}
+@media (min-width: 768px) {
+  .nav-links { display: flex; }
+}
+@media (min-width: 1024px) { .nav-links { gap: 40px; } }
+.nav-links a {
+  font-size: .875rem;
+  color: rgba(255,255,255,.85);
+  text-decoration: none;
+  transition: color 300ms;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.nav-links a:hover { color: #fff; }
+.nav-links a sup {
+  font-family: 'Inter', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,.6);
+  vertical-align: super;
+  line-height: 0;
+}
+
+.nav-cta {
+  display: inline-block;
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: .75rem;
+  color: #fff;
+  text-decoration: none;
+  transition: background 300ms;
+  white-space: nowrap;
+}
+@media (min-width: 640px) { .nav-cta { padding: 8px 20px; font-size: .875rem; } }
+.nav-cta:hover { background: rgba(255,255,255,.25); }
+
+/* ── SECTIONS ── */
+section {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 96px 20px 48px;
+}
+@media (min-width: 640px) { section { padding: 112px 32px 64px; } }
+@media (min-width: 768px) { section { padding: 112px 48px 64px; } }
+
+/* ── GLASS TOKENS ── */
+.glass-panel {
+  background: rgba(255,255,255,.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.15);
+}
+.glass-panel-sm {
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.glass-badge {
+  display: inline-flex;
+  align-items: center;
+  border-left: 2px solid #fff;
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 6px 12px;
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.mono-label {
+  font-family: 'Inter', monospace;
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+.text-muted { color: rgba(255,255,255,.7); }
+.text-faint  { color: rgba(255,255,255,.6); }
+.text-dimmer { color: rgba(255,255,255,.55); }
+
+/* drop shadows */
+.ds-md  { filter: drop-shadow(0 4px 6px rgba(0,0,0,.4)); }
+.ds-lg  { filter: drop-shadow(0 8px 24px rgba(0,0,0,.6)); }
+
+/* ── HERO: TOP ROW ── */
+.hero-top {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+@media (min-width: 640px) {
+  .hero-top { flex-direction: row; justify-content: space-between; }
+}
+
+.service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.service-item {
+  font-family: 'Inter', monospace;
+  font-size: .75rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.9);
+}
+
+.hero-intro {
+  max-width: 20rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #fff;
+}
+@media (min-width: 640px) { .hero-intro { text-align: right; font-size: 1.25rem; } }
+
+/* ── HERO: BOTTOM ROW ── */
+.hero-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+@media (min-width: 768px) {
+  .hero-bottom { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+}
+
+.hero-badge { margin-bottom: 20px; }
+
+h1 {
+  font-size: clamp(2.75rem, 7vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -.025em;
+  color: #fff;
+}
+
+/* Mitha card */
+.mitha-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: 12px;
+  padding: 12px;
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  flex-shrink: 0;
+}
+.mitha-card img {
+  width: 80px;
+  height: 96px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.mitha-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 8px;
+}
+.mitha-name {
+  font-size: .875rem;
+  font-weight: 500;
+  color: #fff;
+}
+.mitha-role {
+  font-family: 'Inter', monospace;
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+}
+.btn-book {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  border-radius: 999px;
+  background: #fff;
+  padding: 8px 16px;
+  font-size: .75rem;
+  font-weight: 500;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 300ms;
+}
+.btn-book:hover { background: rgba(255,255,255,.85); }
+
+/* ── SPACER ── */
+.spacer { height: 80vh; }
+
+/* ── SECTION TWO ── */
+.s2-top {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+@media (min-width: 640px) {
+  .s2-top { flex-direction: row; justify-content: space-between; align-items: flex-start; }
+}
+.s2-copy {
+  max-width: 24rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #fff;
+}
+@media (min-width: 640px) { .s2-copy { text-align: right; font-size: 1.25rem; } }
+
+.s2-bottom {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 48px;
+}
+@media (min-width: 768px) {
+  .s2-bottom { flex-direction: row; align-items: flex-end; justify-content: space-between; gap: 64px; }
+}
+
+.s2-left { max-width: 40rem; }
+
+h2 {
+  font-size: clamp(2.75rem, 7vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -.025em;
+  color: #fff;
+}
+.s2-body {
+  margin-top: 24px;
+  max-width: 28rem;
+  font-size: .875rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,.8);
+}
+@media (min-width: 640px) { .s2-body { font-size: 1rem; } }
+
+.s2-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 999px;
+  background: #fff;
+  padding: 10px 20px;
+  font-size: .75rem;
+  font-weight: 500;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 300ms;
+}
+.btn-primary:hover { background: rgba(255,255,255,.85); }
+@media (min-width: 640px) { .btn-primary { font-size: .875rem; } }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 10px 20px;
+  font-size: .75rem;
+  color: #fff;
+  text-decoration: none;
+  transition: background 300ms;
+}
+.btn-secondary:hover { background: rgba(255,255,255,.2); }
+@media (min-width: 640px) { .btn-secondary { font-size: .875rem; } }
+
+/* Capability panel */
+.cap-panel {
+  width: 100%;
+  max-width: 28rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0 20px;
+  flex-shrink: 0;
+}
+@media (min-width: 640px) { .cap-panel { padding: 0 24px; } }
+
+.cap-row {
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+}
+.cap-row:last-child { border-bottom: none; }
+.cap-idx {
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  letter-spacing: .15em;
+  color: rgba(255,255,255,.55);
+  padding-top: 2px;
+  flex-shrink: 0;
+  width: 28px;
+}
+.cap-body { flex: 1; }
+.cap-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: default;
+}
+.cap-title-row:hover .cap-chevron { transform: translateX(2px); color: #fff; }
+.cap-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+}
+@media (min-width: 640px) { .cap-title { font-size: 1.125rem; } }
+.cap-chevron {
+  color: rgba(255,255,255,.4);
+  transition: transform 300ms, color 300ms;
+  flex-shrink: 0;
+}
+.cap-desc {
+  margin-top: 6px;
+  font-size: .875rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,.7);
+}
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 700ms ease-out, transform 700ms ease-out;
+  will-change: transform;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- SCROLL VIDEO LAYER -->
+<div id="scroll-video-layer" aria-hidden="true">
+  <img id="sv-poster" src="" alt="" style="opacity:1">
+  <video id="sv-video"
+    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260729_102822_0e6c87e8-c141-4744-bf32-ad30db296371.mp4"
+    muted playsinline preload="auto"
+    style="opacity:1">
+  </video>
+  <canvas id="sv-canvas" style="opacity:0"></canvas>
+</div>
+
+<!-- Z-10 APP SHELL -->
+<div id="app">
+
+  <!-- NAVBAR -->
+  <nav aria-label="Main navigation">
+    <a class="nav-logo reveal" style="transition-delay:0ms" href="#">
+      <!-- Hexagon icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+      </svg>
+      novaai
+    </a>
+    <div class="nav-links" role="list">
+      <a href="#" class="reveal" style="transition-delay:100ms" role="listitem">Projects<sup>6</sup></a>
+      <a href="#" class="reveal" style="transition-delay:200ms" role="listitem">About</a>
+      <a href="#" class="reveal" style="transition-delay:300ms" role="listitem">Blog</a>
+      <a href="#" class="reveal" style="transition-delay:400ms" role="listitem">Contact</a>
+    </div>
+    <a class="nav-cta reveal" style="transition-delay:500ms" href="#">Get Free Consultation</a>
+  </nav>
+
+  <main>
+
+    <!-- SECTION ONE — HERO -->
+    <section aria-labelledby="hero-h1">
+
+      <!-- Top row: service list + intro -->
+      <div class="hero-top">
+        <div class="service-list ds-md">
+          <div class="service-item reveal" style="transition-delay:150ms">/ AI AUTOMATION</div>
+          <div class="service-item reveal" style="transition-delay:270ms">/ AI INTEGRATION</div>
+          <div class="service-item reveal" style="transition-delay:390ms">/ AI AGENT DEVELOPMENT</div>
+        </div>
+        <p class="hero-intro ds-md reveal" style="transition-delay:300ms">
+          We design automation that brings clarity, precision, and efficiency to the way your company operates.
+        </p>
+      </div>
+
+      <!-- Bottom row: badge + H1 + Mitha card -->
+      <div class="hero-bottom">
+        <div>
+          <div class="hero-badge reveal" style="transition-delay:150ms">
+            <span class="glass-badge ds-md">We Automate 100+ Businesses</span>
+          </div>
+          <h1 id="hero-h1" class="ds-lg reveal" style="transition-delay:280ms">
+            Clear. Precise.<br>Automated.
+          </h1>
+        </div>
+
+        <div class="mitha-card reveal" style="transition-delay:420ms">
+          <img
+            src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260728_050334_5b076e26-0ce7-4898-b432-d764190e448f.png&w=1280&q=85"
+            alt="Mitha, co-founder of NovaAI"
+            loading="lazy"
+          >
+          <div class="mitha-text">
+            <div class="mitha-name">Talk with Mitha</div>
+            <div class="mitha-role">Co-founder of NovaAI</div>
+            <a class="btn-book" href="#">
+              Book 15-mins call
+              <!-- ChevronRight 14 -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /section-one -->
+
+    <!-- MID SPACER -->
+    <div class="spacer" aria-hidden="true"></div>
+
+    <!-- SECTION TWO — CAPABILITY -->
+    <section aria-labelledby="s2-h2">
+
+      <!-- Top row: badge + copy -->
+      <div class="s2-top">
+        <div class="glass-badge ds-md reveal" style="transition-delay:120ms">Insight On Demand</div>
+        <p class="s2-copy ds-md reveal" style="transition-delay:220ms">
+          Our AI doesn&rsquo;t just respond — it interprets, sharpens, and delivers the signal you need.
+        </p>
+      </div>
+
+      <!-- Bottom area: H2 + body + CTAs | capability panel -->
+      <div class="s2-bottom">
+
+        <div class="s2-left">
+          <h2 id="s2-h2" class="ds-lg reveal" style="transition-delay:180ms">
+            Learn to see<br>brilliantly.
+          </h2>
+          <p class="s2-body ds-md reveal" style="transition-delay:320ms">
+            From the first sketch to the final render, Nova turns raw intent into decisions your team can act on — quietly, precisely, at speed.
+          </p>
+          <div class="s2-ctas reveal" style="transition-delay:420ms">
+            <a class="btn-primary" href="#">
+              Run the demo
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+            <a class="btn-secondary" href="#">Free consultation</a>
+          </div>
+        </div>
+
+        <!-- Frosted capability panel -->
+        <div class="cap-panel">
+          <div class="cap-row reveal" style="transition-delay:300ms">
+            <div class="cap-idx">01</div>
+            <div class="cap-body">
+              <div class="cap-title-row">
+                <span class="cap-title">Real-time vision</span>
+                <svg class="cap-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+              <p class="cap-desc">Reads context as it happens and surfaces what matters before you ask.</p>
+            </div>
+          </div>
+          <div class="cap-row reveal" style="transition-delay:410ms">
+            <div class="cap-idx">02</div>
+            <div class="cap-body">
+              <div class="cap-title-row">
+                <span class="cap-title">Layered insight</span>
+                <svg class="cap-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+              <p class="cap-desc">Moves from rough outline to sharp output without losing the thread.</p>
+            </div>
+          </div>
+          <div class="cap-row reveal" style="transition-delay:520ms">
+            <div class="cap-idx">03</div>
+            <div class="cap-body">
+              <div class="cap-title-row">
+                <span class="cap-title">Adaptive speed</span>
+                <svg class="cap-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+              <p class="cap-desc">Learns your cadence and tightens every pass as you work.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- /section-two -->
+
+  </main>
+</div><!-- /#app -->
+
+<script defer>
+(function () {
+  /* ── REVEAL ── */
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  }
+
+  /* ── SCROLL VIDEO ── */
+  const VIDEO_URL = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260729_102822_0e6c87e8-c141-4744-bf32-ad30db296371.mp4';
+  const FRAME_COUNT = 90;
+  const MAX_W = 960;
+  const DPR = Math.min(devicePixelRatio, 2);
+
+  const posterEl = document.getElementById('sv-poster');
+  const videoEl  = document.getElementById('sv-video');
+  const canvas   = document.getElementById('sv-canvas');
+  const ctx      = canvas.getContext('2d');
+
+  let frames = [];
+  let framesReady = false;
+  let smoothed = 0;
+  let rafId;
+
+  /* object-cover draw */
+  function drawCover(src, w, h) {
+    const sw = src.width || src.videoWidth;
+    const sh = src.height || src.videoHeight;
+    if (!sw || !sh) return;
+    const scale = Math.max(w / sw, h / sh);
+    const dw = sw * scale, dh = sh * scale;
+    ctx.drawImage(src, (w - dw) / 2, (h - dh) / 2, dw, dh);
+  }
+
+  function resizeCanvas() {
+    const W = window.innerWidth * DPR;
+    const H = window.innerHeight * DPR;
+    if (canvas.width !== W || canvas.height !== H) {
+      canvas.width  = W;
+      canvas.height = H;
+    }
+    canvas.style.width  = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+  }
+
+  function getProgress() {
+    const max = document.body.scrollHeight - window.innerHeight;
+    return max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+  }
+
+  let lastSeeked = -1;
+
+  function tick() {
+    rafId = requestAnimationFrame(tick);
+    const target = getProgress();
+    smoothed += (target - smoothed) * 0.12;
+
+    if (framesReady && frames.length) {
+      const idx = Math.min(frames.length - 1, Math.round(smoothed * (frames.length - 1)));
+      resizeCanvas();
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawCover(frames[idx], canvas.width, canvas.height);
+    } else if (videoEl.readyState >= 2 && videoEl.duration) {
+      const t = smoothed * (videoEl.duration - 0.05);
+      if (Math.abs(t - lastSeeked) > 0.04) {
+        videoEl.currentTime = t;
+        lastSeeked = t;
+      }
+    }
+  }
+
+  async function extractFrames() {
+    const offVideo = document.createElement('video');
+    offVideo.muted = true;
+    offVideo.playsInline = true;
+    offVideo.preload = 'auto';
+    offVideo.crossOrigin = 'anonymous';
+    offVideo.src = VIDEO_URL;
+
+    await new Promise((resolve, reject) => {
+      offVideo.addEventListener('loadedmetadata', resolve, { once: true });
+      offVideo.addEventListener('error', reject, { once: true });
+      setTimeout(reject, 15000);
+    });
+
+    await offVideo.play().catch(() => {});
+    offVideo.pause();
+    offVideo.currentTime = 0;
+
+    const dur = offVideo.duration;
+    const count = Math.max(24, Math.min(FRAME_COUNT, Math.floor(dur * 12)));
+    const scale = Math.min(1, MAX_W / (offVideo.videoWidth || 960));
+    const w = Math.round((offVideo.videoWidth || 960) * scale);
+    const h = Math.round((offVideo.videoHeight || 540) * scale);
+
+    const offCanvas = new OffscreenCanvas(w, h);
+    const offCtx = offCanvas.getContext('2d');
+    const bitmaps = [];
+
+    for (let i = 0; i < count; i++) {
+      const t = (i / (count - 1)) * (dur - 0.05);
+      offVideo.currentTime = t;
+      await new Promise(r => offVideo.addEventListener('seeked', r, { once: true }));
+      offCtx.drawImage(offVideo, 0, 0, w, h);
+      const bitmap = await createImageBitmap(offCanvas);
+      bitmaps.push(bitmap);
+    }
+
+    frames = bitmaps;
+    framesReady = true;
+    canvas.style.opacity = '1';
+    videoEl.style.opacity = '0';
+    posterEl.style.opacity = '0';
+  }
+
+  /* start */
+  videoEl.addEventListener('loadeddata', () => {
+    /* hide poster once video has data */
+    posterEl.style.opacity = '0';
+    setTimeout(() => {
+      extractFrames().catch(() => {
+        /* frame extraction failed; fallback to video seek stays active */
+      });
+    }, 300);
+  }, { once: true });
+
+  window.addEventListener('resize', resizeCanvas, { passive: true });
+  window.addEventListener('scroll', () => {}, { passive: true });
+
+  resizeCanvas();
+  tick();
+})();
+</script>
+</body>
+</html>

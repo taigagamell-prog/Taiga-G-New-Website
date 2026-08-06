@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Taiga System · $500 Self-Build Kit</title>
+<meta name="description" content="80% of what a $3,000 Taiga client gets, packaged for self-builders. Framer template, fill-in guide, GBP checklist, geo-content formula, and local SEO playbook. $500, one time.">
+<meta property="og:title" content="The Taiga System — $500 self-build kit for health practices">
+<meta property="og:description" content="The 8-page Framer template, fill-in guide, GBP checklist, geo-content formula, and meta rules. 80% of a $3K build, built by yourself in a weekend.">
+<meta property="og:url" content="https://taigalocal.com/template">
+<link rel="canonical" href="https://taigalocal.com/template">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 110'><path fill='%23E8A44A' fill-rule='evenodd' d='M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{--boreal:#123127;--pine:#0B1F19;--abyss:#071410;--ember:#E8A44A;--ember-hot:#F2BA6B;--bone:#F2EDE1;--mist:#C9D6C7;--muted:#87A093;--hair:rgba(201,214,199,.14);--moss:#4E8168}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{background:var(--abyss);color:var(--bone);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--ember);color:var(--abyss)}
+  a{color:var(--ember);text-decoration:none}
+  a:hover{text-decoration:underline;text-underline-offset:3px}
+  .wrap{max-width:860px;margin:0 auto;padding:0 28px}
+  .wordfont{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;letter-spacing:-.03em}
+  .d{color:var(--ember)}
+  .eyebrow{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);display:inline-flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--ember)}
+  .sh2{font-family:'Archivo',sans-serif;font-weight:840;font-variation-settings:"wdth" 110;font-size:clamp(26px,4vw,38px);letter-spacing:-.022em;margin-top:14px;color:var(--bone);line-height:1.05}
+
+  /* HEADER */
+  .t-header{padding:18px 0;background:var(--pine);border-bottom:1px solid var(--hair)}
+  .t-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand-link{display:flex;align-items:center;gap:9px;text-decoration:none;color:inherit}
+  .brand-link .wordfont{font-size:20px;color:var(--bone)}
+  .header-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);background:rgba(201,214,199,.07);border:1px solid var(--hair);border-radius:100px;padding:4px 12px}
+
+  /* BUTTONS */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Archivo',sans-serif;font-weight:760;font-size:15px;letter-spacing:.01em;color:var(--abyss);background:var(--ember);border:none;border-radius:10px;padding:15px 30px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none;white-space:nowrap}
+  .btn:hover{background:var(--ember-hot);transform:translateY(-1px);text-decoration:none;color:var(--abyss)}
+  .btn.ghost{background:transparent;color:var(--bone);border:1px solid rgba(201,214,199,.3)}
+  .btn.ghost:hover{border-color:var(--ember);color:var(--ember);background:transparent}
+
+  /* HERO */
+  .t-hero{padding:72px 0 0;background:linear-gradient(180deg,var(--pine) 0%,var(--abyss) 100%)}
+  h1{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;font-size:clamp(36px,5.5vw,58px);letter-spacing:-.03em;line-height:.97;color:var(--bone)}
+  .hero-sub{font-size:17px;color:var(--mist);margin-top:20px;max-width:52ch;line-height:1.65}
+  .hero-grid{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:end;padding:36px 0 60px;border-bottom:1px solid var(--hair)}
+  .hero-ctas{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:28px}
+  .credit-line{margin-top:16px;font-family:'Space Mono',monospace;font-size:11px;color:var(--ember);line-height:1.6;display:flex;align-items:flex-start;gap:8px}
+  .credit-line::before{content:"◦";flex:none}
+  .price-block{text-align:right}
+  .price-big{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;font-size:clamp(46px,7vw,66px);letter-spacing:-.04em;line-height:1;color:var(--bone)}
+  .price-label{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+
+  /* WHAT'S THE POINT */
+  .point-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair);margin-top:0;border-bottom:1px solid var(--hair)}
+  .point-cell{background:var(--abyss);padding:28px 24px}
+  .point-n{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);margin-bottom:8px}
+  .point-title{font-family:'Archivo',sans-serif;font-weight:740;font-size:15px;letter-spacing:-.01em;color:var(--bone);margin-bottom:6px}
+  .point-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+  /* COMPONENTS */
+  .components{padding:72px 0}
+  .comp{border-top:1px solid var(--hair);padding:56px 0}
+  .comp:first-of-type{border-top:none;padding-top:48px}
+  .comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:32px}
+  .comp-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ember);margin-bottom:12px}
+  .comp-title{font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(22px,3vw,30px);letter-spacing:-.02em;line-height:1.05;color:var(--bone);margin-bottom:14px}
+  .comp-desc{font-size:15px;color:var(--mist);line-height:1.7;margin-bottom:20px}
+  .comp-list{display:flex;flex-direction:column;gap:9px;list-style:none;padding:0}
+  .comp-list li{font-size:14px;color:var(--muted);display:flex;gap:10px;align-items:baseline;line-height:1.55}
+  .comp-list li::before{content:"✓";color:var(--ember);font-family:'Space Mono',monospace;font-size:11px;flex:none}
+  .comp-list li b{color:var(--mist)}
+
+  /* BRACKET DEMO */
+  .bracket-demo{background:rgba(7,20,16,.75);border:1px solid var(--hair);border-radius:14px;padding:22px 26px;font-family:'Space Mono',monospace;font-size:12px;line-height:2;margin-top:4px}
+  .bd-line{color:var(--mist)}
+  .bd-b{color:var(--ember);background:rgba(232,164,74,.1);border-radius:3px;padding:1px 5px}
+  .bd-note{font-size:11px;color:var(--muted);margin-top:12px;padding-top:12px;border-top:1px solid var(--hair);letter-spacing:.04em}
+
+  /* PAGES GRID */
+  .pages-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:4px}
+  .page-chip{background:rgba(18,49,39,.4);border:1px solid var(--hair);border-radius:8px;padding:10px 12px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;line-height:1.4}
+  .page-chip.geo{border-color:rgba(232,164,74,.2);color:var(--ember);background:rgba(232,164,74,.04)}
+
+  /* OPERATING DOCS */
+  .ops-docs{background:rgba(18,49,39,.2);border:1px solid var(--hair);border-radius:18px;overflow:hidden;margin-top:4px}
+  .ops-doc{padding:22px 26px;border-bottom:1px solid var(--hair);display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
+  .ops-doc:last-child{border-bottom:none}
+  .ops-num{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--ember);flex:none;padding-top:1px}
+  .ops-title{font-family:'Archivo',sans-serif;font-weight:720;font-size:15px;color:var(--bone);margin-bottom:4px}
+  .ops-desc{font-size:13px;color:var(--muted);line-height:1.55}
+
+  /* DELIVERY */
+  .delivery{background:var(--pine);padding:72px 0}
+  .delivery-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);border-radius:16px;overflow:hidden;margin-top:44px}
+  .ds{background:var(--pine);padding:28px 22px}
+  .ds-n{font-family:'Space Mono',monospace;font-size:32px;color:rgba(232,164,74,.2);line-height:1;margin-bottom:12px;font-weight:700}
+  .ds-title{font-family:'Archivo',sans-serif;font-weight:720;font-size:15px;color:var(--bone);margin-bottom:6px}
+  .ds-desc{font-size:13px;color:var(--muted);line-height:1.55}
+
+  /* HONEST */
+  .honest{padding:72px 0;border-top:1px solid var(--hair)}
+  .honest-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:44px;align-items:start}
+  .honest-col h3{font-family:'Archivo',sans-serif;font-weight:760;font-size:19px;letter-spacing:-.01em;color:var(--bone);margin-bottom:20px}
+  .honest-list{display:flex;flex-direction:column;gap:14px}
+  .hi{display:flex;gap:14px;align-items:baseline}
+  .hi-icon{font-family:'Space Mono',monospace;font-size:12px;flex:none}
+  .hi-icon.yes{color:var(--ember)}
+  .hi-icon.no{color:var(--muted)}
+  .hi-text{font-size:15px;color:var(--mist);line-height:1.6}
+  .hi-text b{color:var(--bone)}
+
+  /* ESCAPE HATCHES */
+  .escape{background:var(--pine);padding:72px 0}
+  .escape-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+  .ec{border:1px solid var(--hair);border-radius:18px;padding:32px}
+  .ec.hot{border-color:rgba(232,164,74,.3);background:rgba(18,49,39,.5)}
+  .ec-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .ec-price{font-family:'Archivo',sans-serif;font-weight:860;font-size:28px;letter-spacing:-.025em;color:var(--bone);margin-bottom:10px}
+  .ec.hot .ec-price{color:var(--ember)}
+  .ec-was{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);text-decoration:line-through;margin-bottom:2px}
+  .ec-title{font-family:'Archivo',sans-serif;font-weight:720;font-size:16px;color:var(--bone);margin-bottom:8px}
+  .ec-desc{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:20px}
+
+  /* BUY BLOCK */
+  .buy-block{padding:80px 0;text-align:center}
+  .buy-price{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;font-size:clamp(56px,9vw,84px);letter-spacing:-.04em;line-height:1;color:var(--bone)}
+  .buy-once{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:8px;margin-bottom:36px}
+  .buy-actions{display:flex;flex-direction:column;align-items:center;gap:16px}
+  .buy-note{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.04em;line-height:1.7;max-width:44ch;text-align:center}
+  .buy-note a{color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+
+  /* FAQ */
+  .t-faq{background:var(--pine);padding:72px 0}
+  .faq-list{margin-top:44px;max-width:760px}
+  details{border-bottom:1px solid var(--hair)}
+  summary{cursor:pointer;list-style:none;padding:22px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;letter-spacing:-.01em;transition:color .25s;user-select:none}
+  summary::-webkit-details-marker{display:none}
+  summary:hover{color:var(--ember)}
+  summary .pm{font-family:'Space Mono',monospace;color:var(--ember);font-size:18px;flex:none;transition:transform .35s cubic-bezier(.4,0,.2,1)}
+  details[open] summary .pm{transform:rotate(45deg)}
+  details p{color:var(--mist);font-size:15px;padding:4px 0 22px;max-width:62ch;line-height:1.7}
+  details p b{color:var(--bone)}
+
+  /* FOOTER */
+  .t-footer{padding:44px 0 60px;border-top:1px solid var(--hair)}
+  .foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+  .foot-brand{font-family:'Archivo',sans-serif;font-weight:760;font-size:16px;color:var(--bone)}
+  .foot-links{display:flex;gap:20px;flex-wrap:wrap}
+  .foot-links a{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s}
+  .foot-links a:hover{color:var(--ember)}
+  .hanko{width:40px;height:40px;border-radius:9px;background:var(--ember);display:flex;align-items:center;justify-content:center;transform:rotate(-3deg);flex:none}
+
+  @media(max-width:760px){
+    .hero-grid,.comp-grid,.honest-grid,.escape-cards{grid-template-columns:1fr;gap:28px}
+    .price-block{text-align:left}
+    .point-row{grid-template-columns:1fr}
+    .delivery-steps{grid-template-columns:1fr 1fr}
+    .pages-grid{grid-template-columns:repeat(2,1fr)}
+    .wrap{padding:0 20px}
+  }
+  @media(max-width:480px){
+    .delivery-steps{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="t-header">
+  <div class="wrap">
+    <a class="brand-link" href="/" aria-label="Taiga — Home">
+      <svg width="22" height="25" viewBox="0 0 100 110" aria-hidden="true"><path fill="#E8A44A" fill-rule="evenodd" d="M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z"/></svg>
+      <span class="wordfont">taiga<span class="d">.</span></span>
+    </a>
+    <span class="header-tag">The Taiga System</span>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="t-hero">
+  <div class="wrap">
+    <div class="eyebrow" style="margin-bottom:20px">◦ Self-build kit</div>
+    <div class="hero-grid">
+      <div>
+        <h1>80% of a $3K build.<br>You do the work.<br>$500, one time.</h1>
+        <p class="hero-sub">The Taiga System is the Framer template, fill-in guide, and operating playbook we build every client site from — genericized and packaged so you can implement it yourself in a weekend.</p>
+        <div class="hero-ctas">
+          <!-- TODO: Replace href with your Stripe Payment Link. Set the success URL in Stripe to https://taigalocal.com/kit -->
+          <a class="btn" href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer">Buy The Taiga System — $500</a>
+          <a class="btn ghost" href="/check">Check your AI visibility first</a>
+        </div>
+        <div class="credit-line">$500 credits toward a full Rebuild if you upgrade later. The system becomes the deposit.</div>
+      </div>
+      <div class="price-block">
+        <div class="price-big">$500</div>
+        <div class="price-label">One time · Own it forever</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- three-point bar -->
+  <div class="point-row">
+    <div class="point-cell">
+      <div class="point-n">◦ 01</div>
+      <div class="point-title">The site template</div>
+      <div class="point-desc">8-page Framer template. Duplicate with one click, edit visually, no code required.</div>
+    </div>
+    <div class="point-cell">
+      <div class="point-n">◦ 02</div>
+      <div class="point-title">The fill-in guide</div>
+      <div class="point-desc">Every [bracket] mapped. Colors, fonts, logo, photos — an afternoon to personalize.</div>
+    </div>
+    <div class="point-cell">
+      <div class="point-n">◦ 03</div>
+      <div class="point-title">The operating docs</div>
+      <div class="point-desc">GBP checklist, geo-content formula, meta rules, local SEO steps. The real value.</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<section class="components">
+  <div class="wrap">
+    <div class="eyebrow">◦ What's in the kit</div>
+    <h2 class="sh2">Three things you actually need.</h2>
+
+    <!-- 01: The template -->
+    <div class="comp">
+      <div class="comp-label">◦ Component 01 — The site template</div>
+      <div class="comp-grid">
+        <div>
+          <div class="comp-title">8 pages, built right.<br>Edit without touching code.</div>
+          <p class="comp-desc">A neutral, handsome Framer template stripped of Taiga branding — ready for your name, colors, and photos. Framer lets you edit text and images the way you'd edit a Google Doc. No developer required for the basics.</p>
+          <ul class="comp-list">
+            <li><b>All the technical wins pre-baked</b> — schema blocks, FAQ pattern, clean meta slots, mobile-first layout, fast load. A normal owner would never think to add these.</li>
+            <li><b>Raw HTML also included</b> if you prefer to self-host or hand it to a developer</li>
+            <li><b>PageSpeed 95+ out of the box</b> — the structure doesn't hurt you</li>
+            <li><b>Accessible markup</b> (WCAG AA) — one less thing Google penalizes</li>
+          </ul>
+        </div>
+        <div>
+          <div style="margin-bottom:10px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">8 pages included</div>
+          <div class="pages-grid">
+            <div class="page-chip">Home</div>
+            <div class="page-chip">Services</div>
+            <div class="page-chip">About</div>
+            <div class="page-chip">Contact</div>
+            <div class="page-chip geo">Geo page 1</div>
+            <div class="page-chip geo">Geo page 2</div>
+            <div class="page-chip geo">Geo page 3</div>
+            <div class="page-chip geo">Geo page 4</div>
+          </div>
+          <div style="margin-top:10px;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);line-height:1.6">◦ Geo pages are pre-structured for "[service] in [city]" rankings — the pages most sites are missing entirely</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02: Fill-in guide -->
+    <div class="comp">
+      <div class="comp-label">◦ Component 02 — The fill-in guide</div>
+      <div class="comp-grid">
+        <div>
+          <div class="comp-title">Every bracket mapped.<br>An afternoon to personalize.</div>
+          <p class="comp-desc">A short guide that turns the template personal — written in plain language, not developer speak. It shows you exactly where to put your information, how to swap colors and fonts in Framer, and where your logo goes.</p>
+          <ul class="comp-list">
+            <li>Bracket map for every <b>[variable]</b> in the template</li>
+            <li>Color and font swap instructions (a 2-minute task in Framer)</li>
+            <li>Photo placement guide with size specs</li>
+            <li>What to prioritize if you only have 2 hours</li>
+          </ul>
+        </div>
+        <div>
+          <div style="margin-bottom:10px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Example bracket map</div>
+          <div class="bracket-demo">
+            <div class="bd-line"><span class="bd-b">[Practice Name]</span></div>
+            <div class="bd-line"><span class="bd-b">[Service]</span> in <span class="bd-b">[City]</span>, <span class="bd-b">[State]</span></div>
+            <div class="bd-line">Call <span class="bd-b">[Phone]</span> · <span class="bd-b">[Hours]</span></div>
+            <div class="bd-line"><span class="bd-b">[Address]</span>, <span class="bd-b">[Zip]</span></div>
+            <div class="bd-note">→ swap once in the guide — updates everywhere in the template</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03: Operating docs -->
+    <div class="comp">
+      <div class="comp-label">◦ Component 03 — The operating docs</div>
+      <div class="comp-grid">
+        <div>
+          <div class="comp-title">This is what separates<br>$500 from a $40 theme.</div>
+          <p class="comp-desc">The template is the vessel. These docs are what you put in it — and they're what an owner can't get anywhere else. They're built from the same playbooks Taiga uses with every full-service client.</p>
+          <ul class="comp-list">
+            <li>Already written. Not invented for this kit — extracted from real client work</li>
+            <li>Written for owners, not agencies or developers</li>
+            <li>Do them once. They compound forever</li>
+          </ul>
+        </div>
+        <div>
+          <div class="ops-docs">
+            <div class="ops-doc">
+              <div class="ops-num">01</div>
+              <div>
+                <div class="ops-title">GBP Optimization Checklist</div>
+                <div class="ops-desc">40 items. The same checklist from our client onboarding. Most practices miss at least 12 — categories, attributes, photo cadence, Q&amp;A pre-population, post templates.</div>
+              </div>
+            </div>
+            <div class="ops-doc">
+              <div class="ops-num">02</div>
+              <div>
+                <div class="ops-title">Geo-Content Formula</div>
+                <div class="ops-desc">How to write a blog post that ranks for "[service] near me." The structure, length, heading pattern, and internal linking rules — repeatable for every city and service variation.</div>
+              </div>
+            </div>
+            <div class="ops-doc">
+              <div class="ops-num">03</div>
+              <div>
+                <div class="ops-title">Meta &amp; Title Rules</div>
+                <div class="ops-desc">Character limits, keyword placement, how to write titles that rank without being spam. Fill-in templates for every page type in the kit.</div>
+              </div>
+            </div>
+            <div class="ops-doc">
+              <div class="ops-num">04</div>
+              <div>
+                <div class="ops-title">Local SEO Setup Steps</div>
+                <div class="ops-desc">Citation building, NAP consistency, directory priorities, and the order to do them in. Do it once when you launch — it protects everything that comes after.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DELIVERY FLOW -->
+<section class="delivery">
+  <div class="wrap">
+    <div class="eyebrow">◦ After you buy</div>
+    <h2 class="sh2">What actually happens.</h2>
+    <p style="font-size:16px;color:var(--mist);margin-top:14px;max-width:52ch;line-height:1.65">No manual work on our end after setup. No waiting. Here's the sequence from payment to published.</p>
+    <div class="delivery-steps">
+      <div class="ds">
+        <div class="ds-n">01</div>
+        <div class="ds-title">Pay via Stripe</div>
+        <div class="ds-desc">Stripe payment link. ~30 seconds. Card or Apple Pay.</div>
+      </div>
+      <div class="ds">
+        <div class="ds-n">02</div>
+        <div class="ds-title">Email arrives</div>
+        <div class="ds-desc">Framer template duplicate link, docs download, and setup guide. Instant.</div>
+      </div>
+      <div class="ds">
+        <div class="ds-n">03</div>
+        <div class="ds-title">Duplicate the template</div>
+        <div class="ds-desc">One click in Framer. The full 8-page template is now yours to edit.</div>
+      </div>
+      <div class="ds">
+        <div class="ds-n">04</div>
+        <div class="ds-title">Build &amp; publish</div>
+        <div class="ds-desc">Swap the brackets, run the GBP checklist, connect your domain, publish. A weekend of focused work.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HONEST -->
+<section class="honest">
+  <div class="wrap">
+    <div class="eyebrow">◦ Honest description</div>
+    <h2 class="sh2">What it does. What it doesn't.</h2>
+    <div class="honest-grid">
+      <div class="honest-col">
+        <h3>The kit gives you</h3>
+        <div class="honest-list">
+          <div class="hi"><span class="hi-icon yes">✓</span><span class="hi-text">The <b>structure</b> that makes sites rank — schema, page hierarchy, question-answer format that gets cited by AI</span></div>
+          <div class="hi"><span class="hi-icon yes">✓</span><span class="hi-text">A <b>fast, accessible site</b> that won't hurt you on PageSpeed or Core Web Vitals</span></div>
+          <div class="hi"><span class="hi-icon yes">✓</span><span class="hi-text">The <b>GBP playbook</b> to set up your profile the right way, once</span></div>
+          <div class="hi"><span class="hi-icon yes">✓</span><span class="hi-text">The <b>geo-content formula</b> to keep adding pages that compound over time</span></div>
+          <div class="hi"><span class="hi-icon yes">✓</span><span class="hi-text"><b>Files and docs you own</b> — no subscription, no platform lock-in, no monthly seat fee beyond Framer hosting ($10–25/mo)</span></div>
+        </div>
+      </div>
+      <div class="honest-col">
+        <h3>What you still have to do</h3>
+        <div class="honest-list">
+          <div class="hi"><span class="hi-icon no">◦</span><span class="hi-text">Write your copy. Placeholders are there — your words, your story, your differentiators</span></div>
+          <div class="hi"><span class="hi-icon no">◦</span><span class="hi-text">Source photos. Stock works. Real photos rank and convert better</span></div>
+          <div class="hi"><span class="hi-icon no">◦</span><span class="hi-text">Manage your GBP monthly. The checklist gets you set up right — staying active is ongoing work</span></div>
+          <div class="hi"><span class="hi-icon no">◦</span><span class="hi-text">Publish geo content using the formula. The formula tells you how — the writing is yours</span></div>
+          <div class="hi"><span class="hi-icon no">◦</span><span class="hi-text"><b>No support included.</b> The kit is sold as-is. If you get stuck, there are two priced options below</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESCAPE HATCHES -->
+<section class="escape">
+  <div class="wrap">
+    <div class="eyebrow">◦ If you get stuck</div>
+    <h2 class="sh2">Two honest exits.</h2>
+    <p style="font-size:16px;color:var(--mist);margin-top:14px;max-width:52ch;line-height:1.65">The kit is sold as-is. But if you hit a wall, you're not stranded. Your $500 travels with you either way.</p>
+    <div class="escape-cards">
+      <div class="ec">
+        <div class="ec-tag">◦ Option A — Setup call</div>
+        <div class="ec-price">$200</div>
+        <div class="ec-title">60-minute setup call</div>
+        <div class="ec-desc">Taiga screen-shares with you and works through your specific site live. Exact fixes, no guesswork. Covers wherever you're stuck — from Framer basics to schema debugging to GBP questions.</div>
+        <a class="btn ghost" href="mailto:taiga@taigalocal.com?subject=Setup call" style="width:100%;justify-content:center">Email to book → taiga@taigalocal.com</a>
+      </div>
+      <div class="ec hot">
+        <div class="ec-tag">◦ Option B — Done for you</div>
+        <div class="ec-was">$3,000 down</div>
+        <div class="ec-price">$2,500 down</div>
+        <div class="ec-title">Full Rebuild — your $500 credited</div>
+        <div class="ec-desc">Taiga does the complete build — custom brand, site, geo content, GBP setup, the works. Your $500 template purchase is credited in full toward the Rebuild deposit. No expiry, no conditions.</div>
+        <a class="btn" href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer" style="width:100%;justify-content:center">Book the free audit →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUY -->
+<section class="buy-block" style="background:var(--abyss)">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;margin-bottom:22px">◦ Ready to build</div>
+    <div class="buy-price">$500</div>
+    <div class="buy-once">One-time · Instant delivery · Own it forever</div>
+    <div class="buy-actions">
+      <!-- TODO: Replace href with your Stripe Payment Link. Set Stripe success URL → https://taigalocal.com/kit -->
+      <a class="btn" style="font-size:17px;padding:18px 44px" href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer">Buy The Taiga System — $500</a>
+      <div class="buy-note">After payment, Framer duplicate link and docs arrive by email instantly.<br>Questions first? <a href="mailto:taiga@taigalocal.com">taiga@taigalocal.com</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="t-faq">
+  <div class="wrap">
+    <div class="eyebrow">◦ Questions</div>
+    <h2 class="sh2">Before you buy.</h2>
+    <div class="faq-list">
+
+      <details open>
+        <summary>Do I need to know how to code?<span class="pm" aria-hidden="true">+</span></summary>
+        <p>For basic setup — swapping text, photos, and contact info — no. Framer lets you edit visually, the way you'd edit a Canva or Google Doc. If you want to customize beyond the template's design (layouts, custom interactions), that may require a developer. Most owners hand the Framer link to their web person and are live in an afternoon.</p>
+      </details>
+
+      <details>
+        <summary>What if I don't want to use Framer?<span class="pm" aria-hidden="true">+</span></summary>
+        <p>Raw HTML/CSS files are also included. You can host those on Vercel, Netlify, or anywhere that accepts static files — free tiers exist on both. The HTML version requires editing files directly, so a basic comfort with code (or a developer) helps. Framer is the recommended path for non-coders.</p>
+      </details>
+
+      <details>
+        <summary>What does Framer hosting cost?<span class="pm" aria-hidden="true">+</span></summary>
+        <p>Framer's site hosting runs $10–25/month depending on the plan. That's separate from the $500 template purchase. The raw HTML version can be hosted free on Vercel's hobby plan. Either way, the $500 is a one-time cost — no ongoing payments to Taiga.</p>
+      </details>
+
+      <details>
+        <summary>Will this actually help me rank in search?<span class="pm" aria-hidden="true">+</span></summary>
+        <p>Structure is one part of ranking — content, citations, and GBP activity are the rest. The Taiga System gives you the foundation that makes all of that compound: correct schema, fast load time, FAQ structure for AI citation, and the geo-content formula to keep adding pages over time. <b>The structure won't hold you back. Most sites' structure does.</b></p>
+      </details>
+
+      <details>
+        <summary>Is this the same thing Taiga builds for $3,000 clients?<span class="pm" aria-hidden="true">+</span></summary>
+        <p>Same foundation, different execution. The $3,000 Rebuild includes custom brand design, copywriting, photo selection, a brand guide, and active monthly geo content. The Taiga System is the bones — template, schema, and playbooks. You supply the brand, the words, and the ongoing work. That's the honest difference.</p>
+      </details>
+
+      <details>
+        <summary>Can I use it for multiple locations?<span class="pm" aria-hidden="true">+</span></summary>
+        <p>One purchase covers one site. Additional licenses for a second location are $300 — email <a href="mailto:taiga@taigalocal.com">taiga@taigalocal.com</a>.</p>
+      </details>
+
+      <details>
+        <summary>How does the $500 credit toward the Rebuild work?<span class="pm" aria-hidden="true">+</span></summary>
+        <p>If you buy the System and later book a full Rebuild, your $500 is credited toward the deposit. The Rebuild becomes <b>$2,500 down instead of $3,000</b>. No time limit, no conditions — just mention the template purchase when you book. Your $500 is never wasted.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="t-footer">
+  <div class="wrap foot-in">
+    <div>
+      <div class="foot-brand">taiga<span class="d">.</span> — never go dormant</div>
+      <nav class="foot-links" style="margin-top:10px">
+        <a href="/">Home</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/check">Free AI Check</a>
+        <a href="work.html">Work</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="mailto:taiga@taigalocal.com">taiga@taigalocal.com</a>
+      </nav>
+    </div>
+    <div class="hanko" aria-label="Taiga seal"><span style="font-family:'Noto Serif JP',serif;font-weight:600;font-size:23px;color:var(--abyss)">大</span></div>
+  </div>
+</footer>
+
+</body>
+</html>

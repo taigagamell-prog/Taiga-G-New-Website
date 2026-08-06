@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Kickoff · Taiga</title>
+<meta name="description" content="New Taiga client onboarding. Complete your intake questionnaire and get credentials in — then we build.">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Client Kickoff · Taiga">
+<meta property="og:description" content="New client onboarding — intake questionnaire, 4-week timeline, and credentials guide.">
+<meta property="og:image" content="https://taigalocal.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://taigalocal.com/images/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{--boreal:#123127;--pine:#0B1F19;--abyss:#071410;--moss:#4E8168;--ember:#E8A44A;--ember-hot:#F2BA6B;--bone:#F2EDE1;--mist:#C9D6C7;--muted:#87A093;--hair:rgba(201,214,199,.14)}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{background:var(--abyss);color:var(--bone);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--ember);color:var(--abyss)}
+  .mono{font-family:'Space Mono',monospace;letter-spacing:.02em}
+  .jp{font-family:'Noto Serif JP',serif}
+  .wrap{max-width:860px;margin:0 auto;padding:0 28px}
+  .full{max-width:1120px;margin:0 auto;padding:0 28px}
+  .wordfont{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;letter-spacing:-.03em}
+  .d{color:var(--ember)}
+  .eyebrow{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);display:inline-flex;align-items:center;gap:12px}
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--ember)}
+  h2{font-family:'Archivo',sans-serif;font-weight:780;font-variation-settings:"wdth" 108;font-size:clamp(24px,3.8vw,38px);letter-spacing:-.02em;line-height:1.06;margin-top:14px}
+  h3{font-family:'Archivo',sans-serif;font-weight:720;font-size:20px;letter-spacing:-.015em;line-height:1.2;color:var(--bone)}
+  .note{color:var(--mist);margin-top:14px;max-width:56ch;font-size:16px}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .75s cubic-bezier(.2,.6,.2,1),transform .75s cubic-bezier(.2,.6,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .btn{display:inline-block;background:var(--ember);color:var(--abyss);font-family:'Archivo',sans-serif;font-weight:800;font-size:16px;padding:16px 30px;border-radius:100px;text-decoration:none;letter-spacing:-.01em;transition:transform .3s cubic-bezier(.2,.6,.2,1),background .3s}
+  .btn:hover{transform:translateY(-3px);background:var(--ember-hot)}
+  .btn.ghost{background:transparent;border:1px solid rgba(201,214,199,.3);color:var(--bone)}
+  .btn.ghost:hover{border-color:var(--ember);color:var(--ember);background:transparent}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;background:rgba(7,20,16,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--hair)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+  .nav-brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--bone)}
+  .nav-brand .wordfont{font-size:23px}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{color:var(--mist);text-decoration:none;font-size:14.5px;font-weight:500;transition:color .3s}
+  .nav-links a:hover{color:var(--ember)}
+  .nav-links .btn{padding:11px 24px;font-size:15px;font-weight:700;letter-spacing:.01em}
+  @media(max-width:760px){.nav-links a:not(.btn){display:none}}
+
+  /* PAGE HERO */
+  .page-hero{padding:88px 0 64px;background:linear-gradient(180deg,var(--boreal),var(--abyss));border-bottom:1px solid var(--hair)}
+  .page-hero h1{font-family:'Archivo',sans-serif;font-weight:840;font-variation-settings:"wdth" 110;font-size:clamp(34px,5vw,52px);letter-spacing:-.028em;line-height:.98;margin-top:18px}
+  .page-hero h1 em{font-style:normal;color:var(--ember)}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px;margin-top:24px;font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+  .hero-meta span{display:flex;align-items:center;gap:8px}
+  .hero-meta .dot{width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block;animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+  section{padding:72px 0;position:relative}
+  section+section{border-top:1px solid var(--hair)}
+
+  /* TIMELINE */
+  .timeline{margin-top:44px;display:flex;flex-direction:column;gap:0}
+  .tl-step{display:grid;grid-template-columns:60px 1fr;gap:0;position:relative}
+  .tl-step+.tl-step .tl-left::before{content:"";position:absolute;top:0;left:29px;width:1px;height:100%;background:linear-gradient(180deg,var(--ember),transparent);opacity:.25}
+  .tl-left{position:relative;padding:0 0 48px 0;display:flex;flex-direction:column;align-items:center}
+  .tl-num{width:38px;height:38px;border-radius:50%;background:var(--ember);color:var(--abyss);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none;z-index:1}
+  .tl-line{width:1px;flex:1;background:rgba(201,214,199,.1);margin:8px 0}
+  .tl-right{padding:6px 0 48px 24px}
+  .tl-week{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);margin-bottom:8px}
+  .tl-right h3{font-size:19px;margin-bottom:12px}
+  .tl-items{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+  .tl-item{display:flex;gap:12px;align-items:baseline;font-size:14.5px;color:var(--mist)}
+  .tl-item::before{content:"◦";font-family:'Space Mono',monospace;font-size:10px;color:rgba(232,164,74,.5);flex:none;position:relative;top:-1px}
+  .tl-step:last-child .tl-left{padding-bottom:0}
+  .tl-step:last-child .tl-right{padding-bottom:0}
+
+  /* INTAKE FORM */
+  .intake-section{background:var(--pine)}
+  .intake-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+  .q-card{background:rgba(7,20,16,.6);border:1px solid var(--hair);border-radius:16px;padding:26px;transition:border-color .3s}
+  .q-card:hover{border-color:rgba(232,164,74,.25)}
+  .q-num{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);margin-bottom:10px}
+  .q-card h4{font-family:'Archivo',sans-serif;font-weight:720;font-size:16px;color:var(--bone);line-height:1.35;letter-spacing:-.01em}
+  .q-card p{font-size:13.5px;color:var(--muted);margin-top:8px;line-height:1.55}
+  .q-group-label{grid-column:1/-1;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding-top:8px;border-top:1px dashed var(--hair)}
+
+  /* ACCESS / CREDS */
+  .access-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
+  .access-card{background:rgba(7,20,16,.55);border:1px solid var(--hair);border-radius:16px;padding:24px}
+  .access-icon{font-size:26px;margin-bottom:12px}
+  .access-card h4{font-family:'Archivo',sans-serif;font-weight:720;font-size:15.5px;letter-spacing:-.01em;color:var(--bone)}
+  .access-card p{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.55}
+  .access-warn{margin-top:20px;background:rgba(232,164,74,.06);border:1px solid rgba(232,164,74,.2);border-radius:14px;padding:18px 22px;font-size:14px;color:var(--mist);display:flex;gap:14px;align-items:flex-start}
+  .access-warn::before{content:"⚠";flex:none;font-size:18px}
+
+  /* WHAT TO EXPECT */
+  .expect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+  .expect-card{background:rgba(18,49,39,.25);border:1px solid var(--hair);border-radius:16px;padding:26px}
+  .expect-num{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .expect-card h4{font-family:'Archivo',sans-serif;font-weight:760;font-size:16px;color:var(--bone);letter-spacing:-.01em}
+  .expect-card p{font-size:13.5px;color:var(--muted);margin-top:8px;line-height:1.55}
+
+  /* PROOF SECTION */
+  .proof-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:32px}
+  .proof-card{background:rgba(7,20,16,.5);border:1px solid var(--hair);border-radius:16px;padding:28px}
+  .proof-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);margin-bottom:10px}
+  .proof-card h4{font-family:'Archivo',sans-serif;font-weight:720;font-size:17px;letter-spacing:-.01em}
+  .proof-card p{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.6}
+
+  /* CTA */
+  .kickoff-cta{background:var(--abyss);border-top:1px solid var(--hair);padding:72px 0;text-align:center}
+  .kickoff-cta h2{max-width:24ch;margin:0 auto}
+  .kickoff-cta .note{text-align:center;margin:16px auto 0;max-width:44ch}
+  .kickoff-cta .btn{margin-top:32px;font-size:17px;padding:18px 36px}
+
+  footer{background:var(--abyss);border-top:1px solid var(--hair);padding:52px 0;color:var(--muted);font-size:13.5px}
+  .foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+  .foot-brand{display:flex;align-items:center;gap:12px}
+  .foot-brand .wordfont{font-size:22px;color:var(--bone)}
+  .foot-links{display:flex;gap:24px;flex-wrap:wrap}
+  .foot-links a{color:var(--muted);text-decoration:none;transition:color .3s}
+  .foot-links a:hover{color:var(--ember)}
+  .hanko{width:40px;height:40px;border-radius:9px;background:var(--ember);display:flex;align-items:center;justify-content:center;transform:rotate(-3deg)}
+  .hanko span{font-family:'Noto Serif JP',serif;font-weight:600;font-size:23px;color:var(--abyss)}
+
+  @media(max-width:780px){
+    .intake-grid,.expect-grid,.access-cards{grid-template-columns:1fr}
+    .q-group-label{grid-column:1}
+    .proof-row{grid-template-columns:1fr}
+  }
+  @media(max-width:560px){section{padding:54px 0}}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.dot{animation:none!important}}
+</style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="wrap" style="max-width:1120px">
+    <div class="nav-in">
+      <a class="nav-brand" href="/" aria-label="Taiga — Home">
+        <svg width="26" height="29" viewBox="0 0 100 110" aria-hidden="true"><path fill="#E8A44A" fill-rule="evenodd" d="M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z"/></svg>
+        <span class="wordfont">taiga<span class="d">.</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/#rebuild">The Rebuild</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="work.html">Work</a>
+        <a href="/#faq">FAQ</a>
+        <a class="btn" href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer">Book a free audit</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow mono">◦ New client onboarding</div>
+    <h1>Deposit received.<br>Now we <em>build.</em></h1>
+    <div class="hero-meta">
+      <span><span class="dot"></span> Active project</span>
+      <span>Target launch: 4 weeks from intake</span>
+      <span>Est. intake time: 15 min</span>
+    </div>
+    <p class="note" style="margin-top:24px">Two things unlock week one: the intake questionnaire below and your credentials via password manager. The faster those land, the faster we launch.</p>
+  </div>
+</header>
+
+<!-- 4-WEEK TIMELINE -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow mono reveal">◦ The plan</div>
+    <h2 class="reveal">Four weeks, front to back.</h2>
+    <p class="note reveal">Here's exactly what happens and when.</p>
+
+    <div class="timeline">
+      <div class="tl-step reveal">
+        <div class="tl-left">
+          <div class="tl-num">1</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-week">Week 1 — Terrain &amp; brand</div>
+          <h3>We map the ground before we build on it.</h3>
+          <div class="tl-items">
+            <div class="tl-item">Intake reviewed — any gaps chased once, then a quick call to fill them in</div>
+            <div class="tl-item">Baseline snapshot recorded: rankings, map pack position, load time, GBP state, review counts — this becomes the "was" column in every future terrain report</div>
+            <div class="tl-item">Keyword map: 1 primary "near me" target + 3–5 secondary local terms</div>
+            <div class="tl-item">Brand guide drafted: colors, type, voice, dialed to your vertical</div>
+            <div class="tl-item">You get one round of notes on the brand direction</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-step reveal">
+        <div class="tl-left">
+          <div class="tl-num">2</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-week">Weeks 2–3 — Build</div>
+          <h3>The site goes up, mobile-first, wired to convert.</h3>
+          <div class="tl-items">
+            <div class="tl-item">Up to 8 pages, one CTA per page, booking system wired in</div>
+            <div class="tl-item">Every service page: H1 = [service] in [city] + outcome, FAQ block with direct-answer first sentences</div>
+            <div class="tl-item">Schema markup: LocalBusiness, FAQ, and service structured data</div>
+            <div class="tl-item">Speed target: under 2.5s mobile load</div>
+            <div class="tl-item">Google Business Profile rebuilt: categories, services, hours, photos, first post</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-step reveal">
+        <div class="tl-left">
+          <div class="tl-num">3</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-week">Week 4 — Launch</div>
+          <h3>Live. Then we make sure it sticks.</h3>
+          <div class="tl-items">
+            <div class="tl-item">Client walkthrough, one revision round</div>
+            <div class="tl-item">Redirects mapped from every old URL — never skipped, this is where redesigns kill traffic</div>
+            <div class="tl-item">Search Console submitted, Analytics verified</div>
+            <div class="tl-item">Launch post prepared for your social and GBP</div>
+            <div class="tl-item">Final invoice (remaining 50%) sent at launch</div>
+            <div class="tl-item">Month 1 retainer deliverables agreed in writing</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-step reveal">
+        <div class="tl-left">
+          <div class="tl-num">→</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-week">Ongoing — Retainer rhythm</div>
+          <h3>Monthly. Consistent. Accountable.</h3>
+          <div class="tl-items">
+            <div class="tl-item">Credits used per your plan — one credit = one geo blog post or one revision, never banked beyond one month</div>
+            <div class="tl-item">GBP kept active: posts, responses, photo updates (Growth: weekly cadence)</div>
+            <div class="tl-item">Terrain report in your inbox the first week of every month, always vs. your day-one baseline</div>
+            <div class="tl-item">One plan check per quarter — if you're growing and want more credits, easy to upgrade</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTAKE QUESTIONNAIRE -->
+<section class="intake-section">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">◦ Part 1 of 2 — Intake</div>
+    <h2 class="reveal">15 minutes of homework.<br>Then we take it from here.</h2>
+    <p class="note reveal">Answer directly in an email to <a href="mailto:taiga@taigalocal.com" style="color:var(--ember)">taiga@taigalocal.com</a> with subject line: <strong style="color:var(--bone)">Taiga intake — [Your Business Name]</strong>. Take 15 minutes, be specific where it matters — your own words beat polished answers every time.</p>
+
+    <div class="intake-grid">
+
+      <div class="q-group-label">The business</div>
+
+      <div class="q-card reveal">
+        <div class="q-num">Q 01</div>
+        <h4>Business name exactly as it should appear everywhere.</h4>
+        <p>Legal name + display name if different. This becomes your NAP standard across all platforms.</p>
+      </div>
+
+      <div class="q-card reveal">
+        <div class="q-num">Q 02</div>
+        <h4>Address, phone, and email — exactly as they should appear online.</h4>
+        <p>Consistency here directly affects local search ranking. One format, used everywhere.</p>
+      </div>
+
+      <div class="q-card reveal">
+        <div class="q-num">Q 03</div>
+        <h4>Services or classes offered, and the 1–3 you most want to grow.</h4>
+        <p>Cash services first. We'll build dedicated pages for the top earners.</p>
+      </div>
+
+      <div class="q-card reveal">
+        <div class="q-num">Q 04</div>
+        <h4>Which prices are you comfortable publishing publicly?</h4>
+        <p>Yes or no per service. Publishing prices reduces low-intent contacts and improves SEO.</p>
+      </div>
+
+      <div class="q-card reveal">
+        <div class="q-num">Q 05</div>
+        <h4>Who is your ideal customer?</h4>
+        <p>Describe your favorite current patient or member — age, situation, what they were dealing with before, why they're a great fit.</p>
+      </div>
+
+      <div class="q-card reveal">
+        <div class="q-num">Q 06</div>
+        <h4>Name your top 3 local competitors. What annoys you about their marketing?</h4>
+        <p>We'll benchmark against them and find where you can clearly own territory they're ignoring.</p>
+      </div>
+
+      <div class="q-group-label">The goal</div>
+
+      <div class="q-card reveal">
+        <div class="q-num">Q 07</div>
+        <h4>What does a great month look like in numbers?</h4>
+        <p>New patients, members, inbound calls, trial signups — whatever the metric is, put a number on it.</p>
+      </div>
+
+      <div class="q-card reveal">
+        <div class="q-num">Q 08</div>
+        <h4>What's the single action a website visitor should take?</h4>
+        <p>Book, call, or trial signup. One CTA per page. We need to know which one drives your business.</p>
+      </div>
+
+      <div class="q-card reveal">
+        <div class="q-num">Q 09</div>
+        <h4>Booking system in use — link and how we access it.</h4>
+        <p>Mindbody, Jane, Calendly, Square, custom — include the URL. Credentials come via password manager, not here.</p>
+      </div>
+
+      <div class="q-group-label">Brand &amp; taste</div>
+
+      <div class="q-card reveal">
+        <div class="q-num">Q 10</div>
+        <h4>Three websites you like — any industry — and one word about each.</h4>
+        <p>Not necessarily competitors. Just sites that feel right to you. Your gut reaction tells us more than any brief.</p>
+      </div>
+
+      <div class="q-card reveal">
+        <div class="q-num">Q 11</div>
+        <h4>Anything about your current brand you want to keep.</h4>
+        <p>Logo, colors, tagline, a specific photo. Tell us what's sacred and what's up for grabs.</p>
+      </div>
+
+      <div class="q-card reveal">
+        <div class="q-num">Q 12</div>
+        <h4>Words you'd use to describe your practice or gym. Words you'd never use.</h4>
+        <p>Both lists matter equally. The "never" list shapes voice faster than anything.</p>
+      </div>
+
+      <div class="q-card reveal">
+        <div class="q-num">Q 13</div>
+        <h4>Do you have photos of the space, team, and clients (with consent)?</h4>
+        <p>Real photos outperform stock by a wide margin. If none exist, we'll schedule a shoot — it's worth it.</p>
+      </div>
+
+      <div class="q-group-label">Proof</div>
+
+      <div class="q-card reveal">
+        <div class="q-num">Q 19</div>
+        <h4>Paste your 3 best reviews or testimonials.</h4>
+        <p>Google, Yelp, email, direct message — wherever they live. Verbatim is best.</p>
+      </div>
+
+      <div class="q-card reveal">
+        <div class="q-num">Q 20</div>
+        <h4>Any before/afters, transformations, or results you're proud of.</h4>
+        <p>With consent to publish. This becomes social proof on the site and a source for GBP posts.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS / CREDENTIALS -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow mono reveal">◦ Part 2 of 2 — Credentials</div>
+    <h2 class="reveal">Send access via password manager. Never email.</h2>
+    <p class="note reveal">Share a secure note in 1Password, Bitwarden, or similar — not in the body of an email. Here's what we need to get into the build.</p>
+
+    <div class="access-cards">
+      <div class="access-card reveal">
+        <div class="access-icon">🌐</div>
+        <h4>Domain registrar</h4>
+        <p>GoDaddy, Cloudflare, Namecheap, Google Domains — login or DNS access.</p>
+      </div>
+      <div class="access-card reveal">
+        <div class="access-icon">⚙️</div>
+        <h4>Current website or hosting</h4>
+        <p>Squarespace, Wix, WordPress, Webflow admin — login credentials.</p>
+      </div>
+      <div class="access-card reveal">
+        <div class="access-icon">📍</div>
+        <h4>Google Business Profile</h4>
+        <p>The Google account that owns the GBP — we'll need manager access.</p>
+      </div>
+      <div class="access-card reveal">
+        <div class="access-icon">📊</div>
+        <h4>Google Analytics &amp; Search Console</h4>
+        <p>If set up. If not, we'll create and connect both during the build.</p>
+      </div>
+      <div class="access-card reveal">
+        <div class="access-icon">📅</div>
+        <h4>Booking system</h4>
+        <p>Mindbody, Jane, Calendly, Square — login and any embed keys needed.</p>
+      </div>
+      <div class="access-card reveal">
+        <div class="access-icon">📱</div>
+        <h4>Social accounts to link</h4>
+        <p>Instagram, Facebook, LinkedIn — we'll add these to the site footer and GBP.</p>
+      </div>
+    </div>
+
+    <div class="access-warn reveal">
+      Never paste passwords in email or text. If your team doesn't have a shared password manager yet, use a free Bitwarden account — send us the shared vault item. This protects you as much as us.
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section style="background:var(--pine)">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">◦ What happens next</div>
+    <h2 class="reveal">You'll hear from us within 24 hours of your intake.</h2>
+
+    <div class="expect-grid">
+      <div class="expect-card reveal">
+        <div class="expect-num">Step 01</div>
+        <h4>We review your intake</h4>
+        <p>Within 24 hours. If anything's unclear we chase it once — or schedule a 15-minute call to fill in gaps fast.</p>
+      </div>
+      <div class="expect-card reveal">
+        <div class="expect-num">Step 02</div>
+        <h4>Brand direction lands in week one</h4>
+        <p>Colors, type, voice, tone. You get one round of notes. We implement and move to build.</p>
+      </div>
+      <div class="expect-card reveal">
+        <div class="expect-num">Step 03</div>
+        <h4>Site preview in week two</h4>
+        <p>First full build on a preview URL. You'll be able to click through every page on mobile and desktop.</p>
+      </div>
+      <div class="expect-card reveal">
+        <div class="expect-num">Step 04</div>
+        <h4>Revisions + launch in week four</h4>
+        <p>One revision round, then we push live. Old URLs redirect, Search Console submits, GBP posts go up.</p>
+      </div>
+      <div class="expect-card reveal">
+        <div class="expect-num">Step 05</div>
+        <h4>Terrain report month one</h4>
+        <p>Rankings, map pack position, load time, inbound — all vs. the baseline we recorded on day one.</p>
+      </div>
+      <div class="expect-card reveal">
+        <div class="expect-num">Step 06</div>
+        <h4>Ongoing, never dormant</h4>
+        <p>Monthly deliverables, monthly terrain report, quarterly strategy check. You grow or we adjust.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF SECTION -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow mono reveal">◦ What we're building toward</div>
+    <h2 class="reveal">Proof we look for and the kind we help you collect.</h2>
+    <p class="note reveal">The best proof is specific. Vague praise doesn't convert. Real results do.</p>
+    <div class="proof-row">
+      <div class="proof-card reveal">
+        <div class="proof-label">What makes strong proof</div>
+        <h4>Specificity converts. Generic doesn't.</h4>
+        <p>"Great service" is noise. "Went from 8 patients a day to 14 in the first 90 days" is signal. Before/after numbers, named results, and specific outcomes are what turn a site visitor into a booked appointment.</p>
+      </div>
+      <div class="proof-card reveal">
+        <div class="proof-label">What we do with your proof</div>
+        <h4>We place it where it earns its keep.</h4>
+        <p>Testimonials on service pages, results in FAQs, transformation photos as GBP posts. Nothing goes in a sidebar. Every proof element has a conversion job and a search optimization angle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RETAINER AT A GLANCE -->
+<section style="background:var(--abyss)">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">◦ Month one, locked in at launch</div>
+    <h2 class="reveal">Your retainer starts the day the site goes live.</h2>
+    <p class="note reveal">Here's exactly what you're getting from day one, by tier. Most clients treat this as the thing that compounds everything the Rebuild started.</p>
+
+    <div class="expect-grid" style="margin-top:36px">
+      <div class="expect-card reveal" style="border-color:rgba(201,214,199,.1)">
+        <div class="expect-num" style="color:var(--muted)">Roots · $150/mo</div>
+        <h4 style="font-size:15px">1 credit/mo</h4>
+        <p>One geo blog post or revision per month, hosting oversight, basic GBP upkeep. The floor that keeps you from ever going fully dark.</p>
+      </div>
+      <div class="expect-card reveal">
+        <div class="expect-num">Steady · $350/mo</div>
+        <h4 style="font-size:15px">3 credits/mo</h4>
+        <p>Three deliverables — blogs, revisions, or page updates — plus GBP upkeep. Roughly one piece of work per week. The natural rhythm for most clinics.</p>
+      </div>
+      <div class="expect-card reveal" style="border-color:rgba(232,164,74,.3);background:rgba(18,49,39,.4)">
+        <div class="expect-num" style="color:var(--ember)">Growth · $1,000/mo</div>
+        <h4 style="font-size:15px">8 credits/mo + full management</h4>
+        <p>8 deliverables, active GBP management, review-generation system, local rank tracking, and a full terrain report the first week of every month. This is where the compounding happens.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:22px;padding:18px 24px;background:rgba(232,164,74,.05);border:1px solid rgba(232,164,74,.18);border-radius:14px;font-size:14px;color:var(--mist);display:flex;gap:14px;align-items:flex-start" class="reveal">
+      <span style="color:var(--ember);font-family:'Space Mono',monospace;font-size:16px;line-height:1;flex:none">◦</span>
+      <span><b style="color:var(--bone)">Not sure which tier yet?</b> No pressure during the build. We'll look at where your rankings are, how much competition you're up against, and what your growth goals are — then recommend a starting tier at the week-four walkthrough. You're not locked in either way.</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="kickoff-cta">
+  <div class="wrap">
+    <div class="eyebrow mono" style="justify-content:center">◦ Ready to go</div>
+    <h2>Questions before submitting your intake?</h2>
+    <p class="note">15 minutes on a call is faster than an email thread. Pick a time and we'll clear everything up.</p>
+    <a class="btn" href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer">Book a quick call</a>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div class="full foot-in">
+    <div class="foot-brand">
+      <svg width="24" height="27" viewBox="0 0 100 110" aria-hidden="true"><path fill="#E8A44A" fill-rule="evenodd" d="M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z"/></svg>
+      <span class="wordfont">taiga<span class="d">.</span></span>
+      <span style="margin-left:6px">Web · Brand · Local Search</span>
+    </div>
+    <nav class="foot-links" aria-label="Footer navigation">
+      <a href="/">Home</a>
+      <a href="/#rebuild">The Rebuild</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="work.html">Work</a>
+      <a href="/#faq">FAQ</a>
+      <a href="kickoff.html">Client kickoff</a>
+      <a href="check.html">Free AI Checker</a>
+      <a href="template.html">Template</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="https://calendar.app.google/i2b2EPtz2N3sz2RN8" target="_blank" rel="noopener noreferrer">Book an audit</a>
+    </nav>
+    <div class="hanko" aria-label="Taiga seal"><span class="jp">大</span></div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
