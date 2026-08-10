@@ -302,7 +302,7 @@
   // Plan definitions
   const PLANS = {
     roots: {
-      label: 'Roots · 1 credit/mo', price: '$150/mo',
+      label: 'Roots · 1 credit/mo', price: '$199/mo',
       items: [
         '1 credit — use it for a geo blog post or a site revision',
         'Hosting oversight, security monitoring, and small fixes',
@@ -311,7 +311,7 @@
       note: 'Credits roll over one month if unused · Cancel anytime with 30 days\' notice'
     },
     steady: {
-      label: 'Steady · 3 credits/mo', price: '$350/mo',
+      label: 'Steady · 3 credits/mo', price: '$499/mo',
       items: [
         '3 credits — geo blog posts, revisions, or page updates, your call',
         'Google Business Profile upkeep',
@@ -321,7 +321,7 @@
       note: 'Credits roll over one month if unused · Cancel anytime with 30 days\' notice'
     },
     growth: {
-      label: 'Growth · 8 credits/mo', price: '$1,000/mo',
+      label: 'Growth · 8 credits/mo', price: '$999/mo',
       items: [
         '8 credits — geo blogs, revisions, or landing pages',
         'Active Google Business Profile management',
@@ -340,7 +340,7 @@
     planEl.textContent = PLANS[plan].label + ' — ' + PLANS[plan].price;
     planEl.style.color = 'var(--ember)';
   } else {
-    planEl.textContent = 'Roots $150 · Steady $350 · Growth $1,000 /mo';
+    planEl.textContent = 'Roots $199 · Steady $499 · Growth $999 /mo';
   }
 
   // Populate retainer preview card
