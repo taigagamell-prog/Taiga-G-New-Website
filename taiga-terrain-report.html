@@ -2,107 +2,474 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Taiga — Terrain Report · [Client] · [Month]</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Taiga — Terrain Report</title>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet">
 <style>
-  :root{--boreal:#123127;--pine:#0B1F19;--abyss:#071410;--moss:#4E8168;--ember:#E8A44A;--bone:#F2EDE1;--mist:#C9D6C7;--muted:#87A093;--hair:rgba(201,214,199,.14)}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:linear-gradient(180deg,var(--boreal),var(--pine) 70%,var(--abyss));background-attachment:fixed;color:var(--bone);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-  .mono{font-family:'Space Mono',monospace;letter-spacing:.02em}
-  .jp{font-family:'Noto Serif JP',serif}
-  .wrap{max-width:860px;margin:0 auto;padding:0 28px}
-  .wordfont{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;letter-spacing:-.03em}
-  .d{color:var(--ember)}
-  .eyebrow{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);display:inline-flex;align-items:center;gap:12px}
-  .eyebrow::before{content:"";width:28px;height:1px;background:var(--ember)}
-  header{padding:76px 0 50px}
-  h1{font-family:'Archivo',sans-serif;font-weight:820;font-variation-settings:"wdth" 108;font-size:clamp(32px,5.6vw,50px);letter-spacing:-.025em;line-height:1;margin-top:18px}
-  .meta{margin-top:24px;display:flex;flex-wrap:wrap;gap:26px;font-family:'Space Mono',monospace;font-size:12.5px;color:var(--mist)}
-  .meta b{color:var(--ember)}
-  section{padding:44px 0;border-top:1px solid var(--hair)}
-  h2{font-family:'Archivo',sans-serif;font-weight:760;font-size:clamp(21px,3.2vw,28px);letter-spacing:-.015em;margin-top:14px}
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
-  .stat{background:rgba(7,20,16,.55);border:1px solid var(--hair);border-radius:14px;padding:22px}
-  .stat .v{font-family:'Archivo',sans-serif;font-weight:840;font-size:34px;letter-spacing:-.02em;color:var(--ember)}
-  .stat .l{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--muted);margin-top:6px;text-transform:uppercase}
-  .card{background:rgba(7,20,16,.55);border:1px solid var(--hair);border-radius:16px;padding:26px;margin-top:24px}
-  .row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px dashed rgba(201,214,199,.15);font-family:'Space Mono',monospace;font-size:13.5px}
-  .row:last-child{border:none}
-  .row .kw{color:var(--mist)} .row .val{color:var(--ember);font-weight:700}
-  .row .was{color:var(--muted);font-size:11.5px;margin-left:10px}
-  .ship{margin-top:24px}
-  .ship li{list-style:none;padding:11px 0;border-bottom:1px dashed rgba(201,214,199,.15);font-size:14.5px;color:var(--mist);display:flex;gap:12px}
-  .ship li::before{content:"◦";color:var(--ember);font-family:'Space Mono',monospace;font-weight:700}
-  .next{border-left:3px solid var(--ember);background:rgba(7,20,16,.55);border-radius:0 14px 14px 0;padding:22px 26px;margin-top:24px;color:var(--mist);font-size:14.5px}
-  .next b{color:var(--bone)}
-  .ph{color:var(--ember);background:rgba(232,164,74,.08);padding:1px 7px;border-radius:5px;font-family:'Space Mono',monospace;font-size:.9em}
-  footer{padding:42px 0 66px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}
-  .hanko{width:44px;height:44px;border-radius:9px;background:var(--ember);display:flex;align-items:center;justify-content:center;transform:rotate(-3deg)}
-  .hanko span{font-family:'Noto Serif JP',serif;font-weight:600;font-size:25px;color:var(--abyss)}
-  @media(max-width:640px){.stats{grid-template-columns:1fr}}
+:root{
+  --boreal:#123127;--pine:#0B1F19;--abyss:#071410;
+  --moss:#4E8168;--ember:#E8A44A;--bone:#F2EDE1;
+  --mist:#C9D6C7;--muted:#87A093;
+  --hair:rgba(201,214,199,.14);--card:rgba(7,20,16,.55)
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:linear-gradient(180deg,var(--boreal),var(--pine) 60%,var(--abyss));
+  background-attachment:fixed;color:var(--bone);
+  font-family:'Inter',sans-serif;line-height:1.6;
+  -webkit-font-smoothing:antialiased;min-height:100vh
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 28px}
+.mono{font-family:'Space Mono',monospace}
+.wordfont{font-family:'Archivo',sans-serif;font-weight:860;font-variation-settings:"wdth" 112;letter-spacing:-.03em}
+.eyebrow{
+  font-family:'Space Mono',monospace;font-size:11.5px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ember);
+  display:inline-flex;align-items:center;gap:12px
+}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--ember)}
+
+header{padding:72px 0 48px}
+h1{
+  font-family:'Archivo',sans-serif;font-weight:820;
+  font-variation-settings:"wdth" 108;
+  font-size:clamp(30px,5vw,46px);letter-spacing:-.025em;
+  line-height:1.05;margin-top:16px
+}
+.meta-strip{
+  margin-top:20px;display:flex;flex-wrap:wrap;gap:22px;
+  font-family:'Space Mono',monospace;font-size:12px;color:var(--muted)
+}
+.meta-strip b{color:var(--ember)}
+
+section{padding:40px 0;border-top:1px solid var(--hair)}
+h2{
+  font-family:'Archivo',sans-serif;font-weight:760;
+  font-size:clamp(20px,3vw,26px);letter-spacing:-.015em;margin-top:12px
+}
+.section-note{
+  font-family:'Space Mono',monospace;font-size:10.5px;
+  color:var(--muted);letter-spacing:.06em;margin-top:7px
+}
+
+/* Headline stat cards */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+.stat{
+  background:var(--card);border:1px solid var(--hair);
+  border-radius:14px;padding:20px 22px
+}
+.stat-val{
+  font-family:'Archivo',sans-serif;font-weight:840;
+  font-size:30px;letter-spacing:-.02em;color:var(--ember);
+  display:flex;align-items:baseline;gap:8px
+}
+.stat-lbl{
+  font-family:'Space Mono',monospace;font-size:10px;
+  letter-spacing:.13em;color:var(--muted);
+  margin-top:8px;text-transform:uppercase
+}
+.d-good{color:var(--moss);font-family:'Space Mono',monospace;font-size:13px;font-weight:700}
+.d-bad{color:rgba(232,164,74,.5);font-family:'Space Mono',monospace;font-size:13px;font-weight:700}
+.d-flat{color:var(--muted);font-family:'Space Mono',monospace;font-size:13px}
+
+/* Rankings table */
+.rank-table{width:100%;border-collapse:collapse;margin-top:22px}
+.rank-table th{
+  font-family:'Space Mono',monospace;font-size:10px;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);text-align:left;
+  padding:0 0 12px;border-bottom:1px solid var(--hair)
+}
+.rank-table th.r{text-align:right}
+.rank-table td{
+  padding:13px 0;border-bottom:1px dashed var(--hair);
+  vertical-align:middle
+}
+.rank-table tr:last-child td{border-bottom:none}
+.kw-cell{
+  font-family:'Space Mono',monospace;font-size:12.5px;
+  color:var(--mist);padding-right:16px
+}
+.kickoff-cell{
+  font-family:'Space Mono',monospace;font-size:12px;
+  color:rgba(135,160,147,.45);text-align:right;
+  padding-right:18px;white-space:nowrap
+}
+.now-cell{text-align:right;padding-right:14px;white-space:nowrap}
+.now-num{
+  font-family:'Archivo',sans-serif;font-weight:820;
+  font-size:21px;letter-spacing:-.02em;color:var(--ember)
+}
+.was-lbl{
+  font-family:'Space Mono',monospace;font-size:10.5px;
+  color:var(--muted);display:block;margin-top:2px
+}
+.delta-cell{text-align:right;padding-right:14px;white-space:nowrap}
+.spark-cell{text-align:right}
+.spark-soon{
+  font-family:'Space Mono',monospace;font-size:9px;
+  color:rgba(135,160,147,.35);letter-spacing:.1em
+}
+
+/* Signal rows (map pack + AI Mode) */
+.signal-block{margin-top:14px;border-top:1px solid var(--hair)}
+.signal-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:13px 0;border-bottom:1px dashed var(--hair);gap:16px
+}
+.signal-row:last-child{border-bottom:none}
+.sig-label{font-family:'Space Mono',monospace;font-size:12.5px;color:var(--mist)}
+.sig-sub{
+  font-family:'Space Mono',monospace;font-size:10px;
+  color:var(--muted);margin-top:3px;letter-spacing:.04em
+}
+.sig-dots{
+  font-family:'Space Mono',monospace;font-size:15px;
+  letter-spacing:7px;line-height:1;flex-shrink:0
+}
+.dot-yes{color:var(--ember)}
+.dot-no{color:rgba(201,214,199,.2)}
+.dot-nil{color:rgba(201,214,199,.12)}
+
+/* Shipped */
+.ship{margin-top:20px;list-style:none}
+.ship li{
+  padding:11px 0;border-bottom:1px dashed var(--hair);
+  font-size:14px;color:var(--mist);
+  display:flex;gap:14px;align-items:baseline
+}
+.ship li:last-child{border-bottom:none}
+.ship-bullet{color:var(--ember);font-family:'Space Mono',monospace;flex-shrink:0}
+
+/* Next month */
+.next-card{
+  border-left:3px solid var(--ember);background:var(--card);
+  border-radius:0 14px 14px 0;padding:22px 26px;
+  margin-top:22px;font-size:14.5px;color:var(--mist)
+}
+.next-card b{color:var(--bone)}
+
+/* How to read this */
+.htr{
+  background:rgba(7,20,16,.45);border:1px solid var(--hair);
+  border-radius:14px;padding:24px 26px;margin-top:20px
+}
+.htr-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 32px}
+.htr-item{font-size:13px;color:var(--muted);line-height:1.65}
+.htr-item b{color:var(--mist);font-weight:600;display:block;margin-bottom:3px}
+.ai-callout{
+  background:rgba(232,164,74,.06);border:1px solid rgba(232,164,74,.16);
+  border-radius:10px;padding:14px 18px;margin-top:16px;
+  font-size:13px;color:var(--mist);line-height:1.55
+}
+.ai-callout b{color:var(--ember)}
+
+footer{
+  padding:40px 0 64px;border-top:1px solid var(--hair);
+  display:flex;justify-content:space-between;align-items:center;
+  color:var(--muted);font-size:13px
+}
+.hanko{
+  width:42px;height:42px;border-radius:9px;background:var(--ember);
+  display:flex;align-items:center;justify-content:center;
+  transform:rotate(-3deg);flex-shrink:0
+}
+.hanko span{font-family:'Noto Serif JP',serif;font-weight:600;font-size:24px;color:var(--abyss)}
+
+@media(max-width:640px){
+  .stats{grid-template-columns:1fr 1fr}
+  .htr-grid{grid-template-columns:1fr}
+  .kickoff-cell,.spark-cell{display:none}
+}
+@media(max-width:400px){.stats{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     TERRAIN REPORT — paste per-client JSON here, save, send.
+     history arrays run month 1 → most recent. Use null for months
+     before tracking began (e.g. a keyword added in month 2).
+     ═══════════════════════════════════════════════════════════════ -->
+<script id="D" type="application/json">
+{
+  "client":    "Peak Chiropractic",
+  "city":      "Missoula, MT",
+  "plan":      "Growth",
+  "month":     "August 2026",
+  "month_n":   3,
+
+  "keywords": [
+    { "phrase": "chiropractor near me",       "kickoff": 14, "history": [14, 11,  8] },
+    { "phrase": "chiropractor missoula",       "kickoff": 22, "history": [22, 16, 12] },
+    { "phrase": "back pain relief missoula",   "kickoff": null,"history": [null, 31, 24] }
+  ],
+
+  "map_pack":  [false, false, true],
+
+  "ai_mode": [
+    { "query": "best chiropractor in missoula", "cited": [false, false, true] }
+  ],
+
+  "call_taps":   [28,   36,   51  ],
+  "impressions": [1240, 1580, 2110],
+
+  "shipped": [
+    "Blog: \"5 Signs Your Back Pain Won't Fix Itself\" — targeting \"back pain relief missoula\"",
+    "GBP: 8 posts, 4 review replies, 3 new reviews",
+    "Speed: LCP down from 4.1 s to 1.8 s on mobile"
+  ],
+
+  "next_focus": "Take top 3 on \"chiropractor near me\"",
+  "next_why":   "Currently at #8 — two targeted posts and a GBP authority push put it inside the map-pack window before September."
+}
+</script>
+
 <div class="wrap">
-
-<header>
-  <div style="display:flex;align-items:center;gap:11px;margin-bottom:34px">
-    <svg width="26" height="29" viewBox="0 0 100 110"><path fill="#E8A44A" fill-rule="evenodd" d="M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42 C84,66 61,82 50,102 Z M50,20 L63,38 L37,38 Z M50,30 L68,52 L32,52 Z M30,58 Q40,52 50,58 Q60,64 70,58 L70,63 Q60,69 50,63 Q40,57 30,63 Z"/></svg>
-    <span class="wordfont" style="font-size:22px">taiga<span class="d">.</span></span>
-  </div>
-  <div class="eyebrow mono">◦ Monthly Terrain Report</div>
-  <h1><span class="ph">[Client Name]</span> · <span class="ph">[Month YYYY]</span></h1>
-  <div class="meta"><span>PLAN · <b>GROWTH</b></span><span>CITY · <b>[city]</b></span><span>MONTH · <b>[N] OF ENGAGEMENT</b></span></div>
-</header>
-
-<section>
-  <div class="eyebrow mono">◦ 01 — Headline numbers</div>
-  <h2>The month in three figures</h2>
-  <div class="stats">
-    <div class="stat"><div class="v">[+N%]</div><div class="l">Calls from Google</div></div>
-    <div class="stat"><div class="v">[+N%]</div><div class="l">Search traffic</div></div>
-    <div class="stat"><div class="v">[#N]</div><div class="l">Best local ranking</div></div>
-  </div>
-</section>
-
-<section>
-  <div class="eyebrow mono">◦ 02 — Rankings</div>
-  <h2>Where you stand vs last month</h2>
-  <div class="card">
-    <div class="row"><span class="kw">"[service] near me"</span><span><span class="val">#[N]</span><span class="was">was #[N]</span></span></div>
-    <div class="row"><span class="kw">"[service] [city]"</span><span><span class="val">#[N]</span><span class="was">was #[N]</span></span></div>
-    <div class="row"><span class="kw">"[secondary keyword]"</span><span><span class="val">#[N]</span><span class="was">was #[N]</span></span></div>
-    <div class="row"><span class="kw">Google map pack</span><span class="val">[TOP 3 / #N]</span></div>
-    <div class="row"><span class="kw">AI recommendations (ChatGPT / Google AI)</span><span class="val">[CITED / IN PROGRESS]</span></div>
-  </div>
-</section>
-
-<section>
-  <div class="eyebrow mono">◦ 03 — Shipped</div>
-  <h2>What went live this month</h2>
-  <ul class="ship">
-    <li><span class="ph">[Blog: "title" — targeting "keyword"]</span></li>
-    <li><span class="ph">[Landing page / revision shipped]</span></li>
-    <li><span class="ph">[GBP: N posts, N review replies, N new reviews]</span></li>
-    <li><span class="ph">[Technical: schema / speed / fixes]</span></li>
-  </ul>
-</section>
-
-<section>
-  <div class="eyebrow mono">◦ 04 — Next month</div>
-  <h2>Where we push</h2>
-  <div class="next"><b>Focus:</b> <span class="ph">[e.g. take #1 on "service near me"; seasonal promo page for January; push review count past competitor]</span> — <span class="ph">[one sentence on why this matters to revenue]</span>.</div>
-</section>
-
-<footer>
-  <div>
-    <div class="mono" style="color:var(--mist)">taiga. — never go dormant</div>
-    <div style="margin-top:6px">Reply to this report with any request — it goes straight into your queue.</div>
-  </div>
-  <div class="hanko"><span>大</span></div>
-</footer>
-
+  <header id="hdr"></header>
+  <div id="sections"></div>
+  <footer id="ftr"></footer>
 </div>
+
+<script>
+(function () {
+  const D = JSON.parse(document.getElementById('D').textContent);
+
+  /* ── data helpers ── */
+  function cur(arr) {
+    for (let i = arr.length - 1; i >= 0; i--)
+      if (arr[i] !== null) return arr[i];
+    return null;
+  }
+  function prv(arr) {
+    let found = false;
+    for (let i = arr.length - 1; i >= 0; i--) {
+      if (!found && arr[i] !== null) { found = true; continue; }
+      if (found && arr[i] !== null) return arr[i];
+    }
+    return null;
+  }
+  function moDelta(arr) {
+    const c = cur(arr), p = prv(arr);
+    return (c !== null && p !== null) ? c - p : null;
+  }
+  function fmtBig(n) {
+    return n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(n);
+  }
+
+  /* ── delta badge ── */
+  function badge(d, invertGood) {
+    if (d === null) return '';
+    const good = invertGood ? d < 0 : d > 0;
+    const bad  = invertGood ? d > 0 : d < 0;
+    const cls  = good ? 'd-good' : bad ? 'd-bad' : 'd-flat';
+    const arr  = good ? '↑' : bad ? '↓' : '—';
+    return `<span class="${cls}">${arr}${Math.abs(d) || ''}</span>`;
+  }
+
+  /* ── sparkline ── */
+  function spark(history) {
+    const vals = history.filter(v => v !== null);
+    if (vals.length < 3) return '<span class="spark-soon">3 mo</span>';
+    const W = 72, H = 18;
+    const mn = Math.min(...vals), mx = Math.max(...vals), rng = mx - mn || 1;
+    // Lower rank number = better = top of SVG (y=0). y = (v-mn)/rng * H
+    const pts = vals.map((v, i) => {
+      const x = (i / (vals.length - 1) * W).toFixed(1);
+      const y = ((v - mn) / rng * H).toFixed(1);
+      return `${x},${y}`;
+    }).join(' ');
+    const endY = ((vals[vals.length - 1] - mn) / rng * H).toFixed(1);
+    return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+      <polyline points="${pts}" fill="none" stroke="#E8A44A" stroke-width="1.5"
+        stroke-linejoin="round" stroke-linecap="round" opacity=".85"/>
+      <circle cx="${W}" cy="${endY}" r="2.5" fill="#E8A44A"/>
+    </svg>`;
+  }
+
+  /* ── presence dots ── */
+  function dots(hist) {
+    return '<span class="sig-dots">' + hist.map((v, i) => {
+      if (v === null) return `<span class="dot-nil" title="M${i + 1}: no data">·</span>`;
+      return (v === true || v > 0)
+        ? `<span class="dot-yes" title="M${i + 1}: yes">●</span>`
+        : `<span class="dot-no"  title="M${i + 1}: no">○</span>`;
+    }).join('') + '</span>';
+  }
+
+  /* ── HEADER ── */
+  document.getElementById('hdr').innerHTML = `
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:30px">
+      <svg width="24" height="27" viewBox="0 0 100 110">
+        <path fill="#E8A44A" fill-rule="evenodd"
+          d="M50,102 C39,82 16,66 16,42 A34,34 0 1 1 84,42
+             C84,66 61,82 50,102 Z
+             M50,20 L63,38 L37,38 Z
+             M50,30 L68,52 L32,52 Z
+             M30,58 Q40,52 50,58 Q60,64 70,58 L70,63
+             Q60,69 50,63 Q40,57 30,63 Z"/>
+      </svg>
+      <span class="wordfont" style="font-size:21px">taiga<span style="color:var(--ember)">.</span></span>
+    </div>
+    <div class="eyebrow mono">◦ Monthly Terrain Report</div>
+    <h1>${D.client}</h1>
+    <div class="meta-strip">
+      <span>PLAN · <b>${D.plan.toUpperCase()}</b></span>
+      <span>CITY · <b>${D.city}</b></span>
+      <span>MONTH · <b>${D.month}</b></span>
+      <span>ENGAGEMENT · <b>Month ${D.month_n}</b></span>
+    </div>`;
+
+  /* ── build sections ── */
+  let html = '';
+
+  /* 01 — Headline numbers */
+  const taps      = cur(D.call_taps),    tapD  = moDelta(D.call_taps);
+  const impr      = cur(D.impressions),  imprD = moDelta(D.impressions);
+  const bestKw    = D.keywords.reduce((best, kw) => {
+    const c = cur(kw.history);
+    return (c !== null && (!best || c < best.rank)) ? { rank: c, kw } : best;
+  }, null);
+  const bestRankD = bestKw ? moDelta(bestKw.kw.history) : null;
+
+  html += `<section>
+    <div class="eyebrow mono">◦ 01 — The month at a glance</div>
+    <h2>Three numbers that matter</h2>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-val">${taps !== null ? taps : '—'} ${badge(tapD, false)}</div>
+        <div class="stat-lbl">GBP call button taps</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">${impr !== null ? fmtBig(impr) : '—'} ${badge(imprD, false)}</div>
+        <div class="stat-lbl">Search impressions</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">${bestKw ? '#' + bestKw.rank : '—'} ${badge(bestRankD, true)}</div>
+        <div class="stat-lbl">${bestKw ? '"' + bestKw.kw.phrase + '"' : 'Best ranking'}</div>
+      </div>
+    </div>
+  </section>`;
+
+  /* 02 — Rankings */
+  const kwRows = D.keywords.map(kw => {
+    const c = cur(kw.history), p = prv(kw.history), d = moDelta(kw.history);
+    const nowHTML  = c !== null ? `<span class="now-num">#${c}</span>` : '<span class="now-num" style="color:var(--muted)">—</span>';
+    const wasHTML  = p !== null ? `<span class="was-lbl">was #${p}</span>` : '';
+    const kickHTML = kw.kickoff !== null ? `#${kw.kickoff}` : '—';
+    return `<tr>
+      <td class="kw-cell">"${kw.phrase}"</td>
+      <td class="kickoff-cell">${kickHTML}</td>
+      <td class="now-cell">${nowHTML}${wasHTML}</td>
+      <td class="delta-cell">${badge(d, true)}</td>
+      <td class="spark-cell">${spark(kw.history)}</td>
+    </tr>`;
+  }).join('');
+
+  /* map pack + AI Mode signal rows */
+  const mpCur    = cur(D.map_pack);
+  const mpCited  = D.map_pack.filter(v => v === true).length;
+  const mpTotal  = D.map_pack.filter(v => v !== null).length;
+
+  const aiRows = D.ai_mode.map(ai => {
+    const citedN = ai.cited.filter(v => v === true).length;
+    const totalN = ai.cited.filter(v => v !== null).length;
+    return `<div class="signal-row">
+      <div>
+        <div class="sig-label">Google AI Mode · "${ai.query}"</div>
+        <div class="sig-sub">cited ${citedN} of ${totalN} month${totalN !== 1 ? 's' : ''} · single spot check per month</div>
+      </div>
+      ${dots(ai.cited)}
+    </div>`;
+  }).join('');
+
+  html += `<section>
+    <div class="eyebrow mono">◦ 02 — Rankings</div>
+    <h2>Where you stand vs last month</h2>
+    <p class="section-note">Keywords locked at kickoff · ${D.keywords.length} phrases tracked · sparklines appear at month 3</p>
+    <table class="rank-table">
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th class="r kickoff-cell">Kickoff</th>
+          <th class="r">Now</th>
+          <th class="r">Δ</th>
+          <th class="r spark-cell">Trend</th>
+        </tr>
+      </thead>
+      <tbody>${kwRows}</tbody>
+    </table>
+    <div class="signal-block">
+      <div class="signal-row">
+        <div>
+          <div class="sig-label">Google map pack (top 3)</div>
+          <div class="sig-sub">${mpCited} of ${mpTotal} month${mpTotal !== 1 ? 's' : ''} in pack · ${mpCur ? 'in pack this month' : 'not in pack this month'}</div>
+        </div>
+        ${dots(D.map_pack)}
+      </div>
+      ${aiRows}
+    </div>
+  </section>`;
+
+  /* 03 — Shipped */
+  const shipHTML = D.shipped.map(s =>
+    `<li><span class="ship-bullet">◦</span>${s}</li>`
+  ).join('');
+  html += `<section>
+    <div class="eyebrow mono">◦ 03 — Shipped</div>
+    <h2>What went live this month</h2>
+    <ul class="ship">${shipHTML}</ul>
+  </section>`;
+
+  /* 04 — Next month */
+  html += `<section>
+    <div class="eyebrow mono">◦ 04 — Next month</div>
+    <h2>Where we push</h2>
+    <div class="next-card"><b>Focus:</b> ${D.next_focus} — ${D.next_why}</div>
+  </section>`;
+
+  /* 05 — How to read this */
+  html += `<section>
+    <div class="eyebrow mono">◦ How to read this report</div>
+    <h2>Methodology, plain language</h2>
+    <div class="htr">
+      <div class="htr-grid">
+        <div class="htr-item">
+          <b>Rankings</b>
+          Checked once per month on the keyword set locked at kickoff — same phrases every month, no retroactive changes. Positions can vary ±1–2 spots between checks; the month-over-month trend is what counts, not any single reading.
+        </div>
+        <div class="htr-item">
+          <b>Google AI Mode</b>
+          Checked manually once per month in a clean browser session. A single spot check disagrees with a 12-run majority roughly 19% of the time, so we report raw counts (cited 2 of 3 months), not percentages. Directional signal, not precise measurement.
+        </div>
+        <div class="htr-item">
+          <b>GBP call button taps</b>
+          Pulled directly from Google Business Profile Insights. This is the number of times someone tapped your call button — not answered calls. Google removed answered-call data in 2024; that metric no longer exists anywhere.
+        </div>
+        <div class="htr-item">
+          <b>Sparklines &amp; locked keywords</b>
+          Trend lines appear at month 3, when there are enough data points to show direction. On each chart, lower rank = higher position = the line rises. Locking keywords at kickoff is what makes the trend apples-to-apples — and kills scope creep by design.
+        </div>
+      </div>
+    </div>
+    <div class="ai-callout">
+      <b>Why AI Mode matters more than AI Overview:</b> AI Overviews appear on only 4–8% of local-service searches — the map pack takes that slot on most queries. AI Mode always answers. A May 2026 study found 28.5% of businesses in the local map pack don't appear in AI Mode for the same search. That gap is the opportunity your retainer is closing.
+    </div>
+  </section>`;
+
+  document.getElementById('sections').innerHTML = html;
+
+  /* ── FOOTER ── */
+  document.getElementById('ftr').innerHTML = `
+    <div>
+      <div class="mono" style="color:var(--mist);font-size:12px">taiga. — never go dormant</div>
+      <div style="margin-top:6px">Reply to this report with any request — it goes straight into your queue.</div>
+    </div>
+    <div class="hanko"><span>大</span></div>`;
+
+  document.title = `Taiga — Terrain Report · ${D.client} · ${D.month}`;
+})();
+</script>
 </body>
 </html>
